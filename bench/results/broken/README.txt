@@ -1,0 +1,1 @@
+RF-DETR-Seg INT8 on Iris Xe GPU: scores/boxes correct, mask logits all < -38 (CPU: -107..+18.7) -> every mask empty -> AP 0.000. GPU plugin numeric issue on the quantized mask head. CPU INT8 is fine. (nano file = 100-image rerun)

@@ -1,0 +1,288 @@
+quiet after 2430s
+{'model': 'rfdetrsegmedium_fp16', 'device': 'GPU', 'compile_ms': 1120.56, 'median_ms': 144.85, 'avg_ms': 145.82, 'min_ms': 136.39, 'max_ms': 160.61, 'fps': 6.79, 'input': '1,3,432,432', 'contended': False}
+{'model': 'rfdetrsegmedium_fp16', 'device': 'CPU', 'compile_ms': 1095.37, 'median_ms': 388.36, 'avg_ms': 398.88, 'min_ms': 378.97, 'max_ms': 522.58, 'fps': 2.5, 'input': '1,3,432,432', 'contended': False}
+{'model': 'rfdetrsegnano_fp16', 'device': 'GPU', 'compile_ms': 1435.78, 'median_ms': 80.66, 'avg_ms': 83.89, 'min_ms': 66.26, 'max_ms': 210.68, 'fps': 11.85, 'input': '1,3,312,312', 'contended': False}
+{'model': 'rfdetrsegnano_fp16', 'device': 'CPU', 'compile_ms': 1313.34, 'median_ms': 216.97, 'avg_ms': 222.61, 'min_ms': 194.49, 'max_ms': 281.75, 'fps': 4.48, 'input': '1,3,312,312', 'contended': False}
+{'model': 'rfdetrsegnano_int8', 'device': 'GPU', 'compile_ms': 3538.25, 'median_ms': 118.0, 'avg_ms': 120.37, 'min_ms': 105.58, 'max_ms': 154.18, 'fps': 8.28, 'input': '1,3,312,312', 'contended': False}
+{'model': 'rfdetrsegnano_int8', 'device': 'CPU', 'compile_ms': 2020.41, 'median_ms': 107.18, 'avg_ms': 113.38, 'min_ms': 94.71, 'max_ms': 453.6, 'fps': 8.79, 'input': '1,3,312,312', 'contended': False}
+{'model': 'rfdetrsegsmall_fp16', 'device': 'GPU', 'compile_ms': 1526.31, 'median_ms': 138.35, 'avg_ms': 142.51, 'min_ms': 121.28, 'max_ms': 195.57, 'fps': 6.98, 'input': '1,3,384,384', 'contended': False}
+{'model': 'rfdetrsegsmall_fp16', 'device': 'CPU', 'compile_ms': 1029.04, 'median_ms': 300.67, 'avg_ms': 317.12, 'min_ms': 282.86, 'max_ms': 666.36, 'fps': 3.15, 'input': '1,3,384,384', 'contended': False}
+{'model': 'rfdetrsegsmall_int8', 'device': 'GPU', 'compile_ms': 5923.86, 'median_ms': 173.9, 'avg_ms': 174.76, 'min_ms': 165.71, 'max_ms': 185.43, 'fps': 5.7, 'input': '1,3,384,384', 'contended': False}
+{'model': 'rfdetrsegsmall_int8', 'device': 'CPU', 'compile_ms': 1714.97, 'median_ms': 145.33, 'avg_ms': 146.82, 'min_ms': 139.13, 'max_ms': 165.55, 'fps': 6.78, 'input': '1,3,384,384', 'contended': False}
+{'model': 'yolo11n-seg_fp16_openvino_model', 'device': 'GPU', 'compile_ms': 446.76, 'median_ms': 15.04, 'avg_ms': 15.91, 'min_ms': 12.72, 'max_ms': 57.63, 'fps': 58.82, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo11n-seg_fp16_openvino_model', 'device': 'CPU', 'compile_ms': 240.23, 'median_ms': 42.85, 'avg_ms': 43.46, 'min_ms': 40.28, 'max_ms': 63.02, 'fps': 22.49, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo11n-seg_int8_openvino_model', 'device': 'GPU', 'compile_ms': 731.99, 'median_ms': 11.59, 'avg_ms': 12.48, 'min_ms': 10.26, 'max_ms': 22.66, 'fps': 73.46, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo11n-seg_int8_openvino_model', 'device': 'CPU', 'compile_ms': 510.77, 'median_ms': 18.23, 'avg_ms': 18.81, 'min_ms': 16.52, 'max_ms': 97.71, 'fps': 50.25, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo11s-seg_fp16_openvino_model', 'device': 'GPU', 'compile_ms': None, 'median_ms': None, 'avg_ms': None, 'min_ms': None, 'max_ms': None, 'fps': None, 'input': 'FAILED: ts: [ INFO ]     x.1 (node: x.1) : u8 / [N,C,H,W] / [1,3,640,640] [ INFO ] Model outputs: [ INFO ]     ***NO_NAME*** (node: __module.model.23/aten::cat/Concat_4) : f32 / [...] / [1,116,8400] [ INFO ]     input (node: __module.model.23.cv4.2.1.act/aten::silu_/Swish_46) : f32 / [...] / [1,32,160,160] ', 'contended': False}
+{'model': 'yolo11s-seg_fp16_openvino_model', 'device': 'CPU', 'compile_ms': 261.57, 'median_ms': 127.9, 'avg_ms': 128.65, 'min_ms': 124.02, 'max_ms': 146.13, 'fps': 7.71, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo11s-seg_int8_openvino_model', 'device': 'GPU', 'compile_ms': 3091.99, 'median_ms': 25.79, 'avg_ms': 25.44, 'min_ms': 20.2, 'max_ms': 95.46, 'fps': 37.5, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo11s-seg_int8_openvino_model', 'device': 'CPU', 'compile_ms': 644.68, 'median_ms': 44.89, 'avg_ms': 45.18, 'min_ms': 41.62, 'max_ms': 52.28, 'fps': 21.56, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo26n-seg_fp16_openvino_model', 'device': 'GPU', 'compile_ms': 717.58, 'median_ms': 17.89, 'avg_ms': 17.06, 'min_ms': 13.88, 'max_ms': 27.34, 'fps': 55.12, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo26n-seg_fp16_openvino_model', 'device': 'CPU', 'compile_ms': 502.81, 'median_ms': 40.57, 'avg_ms': 41.04, 'min_ms': 37.7, 'max_ms': 55.25, 'fps': 23.78, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo26n-seg_int8_openvino_model', 'device': 'GPU', 'compile_ms': 5844.32, 'median_ms': 14.0, 'avg_ms': 15.11, 'min_ms': 11.94, 'max_ms': 23.82, 'fps': 61.72, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo26n-seg_int8_openvino_model', 'device': 'CPU', 'compile_ms': 746.25, 'median_ms': 18.23, 'avg_ms': 19.47, 'min_ms': 15.98, 'max_ms': 98.04, 'fps': 48.47, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo26s-seg_fp16_openvino_model', 'device': 'GPU', 'compile_ms': 749.05, 'median_ms': 39.49, 'avg_ms': 40.2, 'min_ms': 32.81, 'max_ms': 51.45, 'fps': 24.17, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo26s-seg_fp16_openvino_model', 'device': 'CPU', 'compile_ms': 346.2, 'median_ms': 133.62, 'avg_ms': 134.11, 'min_ms': 128.73, 'max_ms': 143.37, 'fps': 7.4, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo26s-seg_int8_openvino_model', 'device': 'GPU', 'compile_ms': 5251.85, 'median_ms': 28.5, 'avg_ms': 27.72, 'min_ms': 22.08, 'max_ms': 39.05, 'fps': 34.62, 'input': '1,3,640,640', 'contended': False}
+{'model': 'yolo26s-seg_int8_openvino_model', 'device': 'CPU', 'compile_ms': 803.13, 'median_ms': 47.12, 'avg_ms': 47.61, 'min_ms': 43.86, 'max_ms': 55.65, 'fps': 20.48, 'input': '1,3,640,640', 'contended': False}
+{
+ "spec": "ov-rfdetr:models/rfdetrsegmedium_fp16/model.xml:GPU",
+ "contended": false,
+ "frames": 169,
+ "fps": 5.633333333333334,
+ "p50_ms": 175.1321400006418,
+ "p95_ms": 189.6025696012657,
+ "p99_ms": 237.12709831859607,
+ "max_ms": 323.6992019956233,
+ "proc_cpu_pct_of_one_core": 100.1,
+ "system_cpu_pct": 19.1,
+ "rss_mb": 265.78125,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-rfdetr:models/rfdetrsegnano_fp16/model.xml:GPU",
+ "contended": false,
+ "frames": 342,
+ "fps": 11.4,
+ "p50_ms": 86.83133650265518,
+ "p95_ms": 95.47574090283888,
+ "p99_ms": 98.52851747193199,
+ "max_ms": 104.73619499680353,
+ "proc_cpu_pct_of_one_core": 99.5,
+ "system_cpu_pct": 16.5,
+ "rss_mb": 240.7421875,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-rfdetr:models/rfdetrsegnano_int8/model.xml:GPU",
+ "contended": false,
+ "frames": 239,
+ "fps": 7.966666666666667,
+ "p50_ms": 123.80058500275481,
+ "p95_ms": 134.43600110185798,
+ "p99_ms": 154.02856571789022,
+ "max_ms": 292.831685001147,
+ "proc_cpu_pct_of_one_core": 99.4,
+ "system_cpu_pct": 18.8,
+ "rss_mb": 269.9375,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-rfdetr:models/rfdetrsegsmall_fp16/model.xml:GPU",
+ "contended": false,
+ "frames": 218,
+ "fps": 7.266666666666667,
+ "p50_ms": 137.58949800103437,
+ "p95_ms": 150.3869924967148,
+ "p99_ms": 155.33294476859734,
+ "max_ms": 156.4323849961511,
+ "proc_cpu_pct_of_one_core": 100.0,
+ "system_cpu_pct": 17.0,
+ "rss_mb": 242.2578125,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-rfdetr:models/rfdetrsegsmall_int8/model.xml:GPU",
+ "contended": false,
+ "frames": 155,
+ "fps": 5.166666666666667,
+ "p50_ms": 191.6140249959426,
+ "p95_ms": 208.67841530125585,
+ "p99_ms": 279.53339825820933,
+ "max_ms": 385.0423019976006,
+ "proc_cpu_pct_of_one_core": 99.7,
+ "system_cpu_pct": 28.0,
+ "rss_mb": 275.37109375,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo11n-seg_fp16_openvino_model/yolo11n-seg.xml:GPU",
+ "contended": false,
+ "frames": 1009,
+ "fps": 33.63333333333333,
+ "p50_ms": 28.249941002286505,
+ "p95_ms": 43.6414325988153,
+ "p99_ms": 51.25904855871339,
+ "max_ms": 64.49836899992079,
+ "proc_cpu_pct_of_one_core": 729.1,
+ "system_cpu_pct": 96.3,
+ "rss_mb": 265.52734375,
+ "gpu_mhz_median": 1125.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo11n-seg_int8_openvino_model/yolo11n-seg.xml:GPU",
+ "contended": false,
+ "frames": 1251,
+ "fps": 41.7,
+ "p50_ms": 22.178949002409354,
+ "p95_ms": 35.494530500727706,
+ "p99_ms": 41.76478850058629,
+ "max_ms": 93.44451299693901,
+ "proc_cpu_pct_of_one_core": 774.4,
+ "system_cpu_pct": 99.7,
+ "rss_mb": 282.98828125,
+ "gpu_mhz_median": 0.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo11s-seg_fp16_openvino_model/yolo11s-seg.xml:GPU",
+ "contended": false,
+ "frames": 689,
+ "fps": 22.966666666666665,
+ "p50_ms": 41.68479399959324,
+ "p95_ms": 53.573004801000934,
+ "p99_ms": 62.880501397012274,
+ "max_ms": 71.26831200002925,
+ "proc_cpu_pct_of_one_core": 700.7,
+ "system_cpu_pct": 89.6,
+ "rss_mb": 273.11328125,
+ "gpu_mhz_median": 1250.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo11s-seg_int8_openvino_model/yolo11s-seg.xml:GPU",
+ "contended": false,
+ "frames": 916,
+ "fps": 30.533333333333335,
+ "p50_ms": 30.750553498364752,
+ "p95_ms": 43.1964387462358,
+ "p99_ms": 51.859842996054816,
+ "max_ms": 56.40473999665119,
+ "proc_cpu_pct_of_one_core": 743.0,
+ "system_cpu_pct": 94.8,
+ "rss_mb": 285.42578125,
+ "gpu_mhz_median": 1100.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo26n-seg_fp16_openvino_model/yolo26n-seg.xml:GPU",
+ "contended": false,
+ "frames": 1096,
+ "fps": 36.53333333333333,
+ "p50_ms": 25.036958501004847,
+ "p95_ms": 41.44177175112418,
+ "p99_ms": 55.0123215492931,
+ "max_ms": 138.6268449932686,
+ "proc_cpu_pct_of_one_core": 740.0,
+ "system_cpu_pct": 98.4,
+ "rss_mb": 262.70703125,
+ "gpu_mhz_median": 1175.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo26n-seg_int8_openvino_model/yolo26n-seg.xml:GPU",
+ "contended": false,
+ "frames": 1222,
+ "fps": 40.733333333333334,
+ "p50_ms": 23.377556997729698,
+ "p95_ms": 33.55420564803353,
+ "p99_ms": 40.83727007826383,
+ "max_ms": 63.257055000576656,
+ "proc_cpu_pct_of_one_core": 778.8,
+ "system_cpu_pct": 99.9,
+ "rss_mb": 291.55078125,
+ "gpu_mhz_median": 50.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo26s-seg_fp16_openvino_model/yolo26s-seg.xml:GPU",
+ "contended": false,
+ "frames": 644,
+ "fps": 21.466666666666665,
+ "p50_ms": 44.08402250192012,
+ "p95_ms": 59.15752094661002,
+ "p99_ms": 68.76255807110284,
+ "max_ms": 210.43232699594228,
+ "proc_cpu_pct_of_one_core": 670.3,
+ "system_cpu_pct": 88.0,
+ "rss_mb": 269.85546875,
+ "gpu_mhz_median": 1250.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo26s-seg_int8_openvino_model/yolo26s-seg.xml:GPU",
+ "contended": false,
+ "frames": 864,
+ "fps": 28.8,
+ "p50_ms": 32.903246999921976,
+ "p95_ms": 44.97856010020767,
+ "p99_ms": 50.903655620495556,
+ "max_ms": 85.72001800348517,
+ "proc_cpu_pct_of_one_core": 738.8,
+ "system_cpu_pct": 94.6,
+ "rss_mb": 289.57421875,
+ "gpu_mhz_median": 1100.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo26n-seg_int8_openvino_model/yolo26n-seg.xml:CPU",
+ "contended": false,
+ "frames": 482,
+ "fps": 16.066666666666666,
+ "p50_ms": 66.0827715000778,
+ "p95_ms": 105.81740610105044,
+ "p99_ms": 127.8093824815005,
+ "max_ms": 183.06234999909066,
+ "proc_cpu_pct_of_one_core": 733.7,
+ "system_cpu_pct": 95.1,
+ "rss_mb": 266.21484375,
+ "gpu_mhz_median": 0.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-yolo:models/yolo11n-seg_int8_openvino_model/yolo11n-seg.xml:CPU",
+ "contended": false,
+ "frames": 535,
+ "fps": 17.833333333333332,
+ "p50_ms": 56.8473930034088,
+ "p95_ms": 84.59647830241009,
+ "p99_ms": 110.03302815719505,
+ "max_ms": 126.13996699656127,
+ "proc_cpu_pct_of_one_core": 727.6,
+ "system_cpu_pct": 92.5,
+ "rss_mb": 265.25,
+ "gpu_mhz_median": 0.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-rfdetr:models/rfdetrsegnano_int8/model.xml:CPU",
+ "contended": false,
+ "frames": 303,
+ "fps": 10.1,
+ "p50_ms": 96.33062599459663,
+ "p95_ms": 112.15615809924199,
+ "p99_ms": 176.29406025444078,
+ "max_ms": 305.7755059999181,
+ "proc_cpu_pct_of_one_core": 378.1,
+ "system_cpu_pct": 52.1,
+ "rss_mb": 415.76953125,
+ "gpu_mhz_median": 0.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "gl": "Mesa Intel(R) Iris(R) Xe Graphics (TGL GT2)",
+ "contended": false,
+ "downscale_plus_sync_readback_ms": {
+  "p50": 2.998874995682854,
+  "p95": 3.895296944392612,
+  "max": 12.031019999994896
+ },
+ "downscale_plus_pbo_async_readback_ms": {
+  "p50": 2.5574130013410468,
+  "p95": 2.8552280979056377,
+  "max": 7.7705779985990375
+ },
+ "mask_upload_plus_pixelate_pass_1080p_ms": {
+  "p50": 3.630047500337241,
+  "p95": 3.957197247291334,
+  "max": 13.155660999473184
+ }
+}
+READBACK_DONE
+TIMING_DONE

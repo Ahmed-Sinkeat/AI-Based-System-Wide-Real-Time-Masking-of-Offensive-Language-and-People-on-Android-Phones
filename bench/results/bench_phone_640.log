@@ -1,0 +1,2 @@
+{'model': 'yolo26n-seg_640_fp32', 'config': 'cpu4', 'size_mb': 10.6, 'avg_ms': 295.114, 'std_ms': 5.802, 'p95_ms': 310.079, 'max_ms': 312.395, 'init_ms': 94.273, 'peak_mem_mb': 98.3125, 'delegated': '473/477', 'batt_temp_dC': '350', 'note': ''}
+{'model': 'yolo26n-seg_640_fp32', 'config': 'cpu2', 'size_mb': 10.6, 'avg_ms': 463.146, 'std_ms': 11.269, 'p95_ms': 481.284, 'max_ms': 500.108, 'init_ms': 294.676, 'peak_mem_mb': 98.3828, 'delegated': '473/477', 'batt_temp_dC': '360', 'note': ''}

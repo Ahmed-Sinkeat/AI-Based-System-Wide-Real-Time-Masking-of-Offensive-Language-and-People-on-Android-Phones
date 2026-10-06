@@ -1,0 +1,441 @@
+Statistics collection ━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 128/128 • 0:00:50 • 0:00:00
+Applying Smooth Quant ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 93/93 • 0:00:02 • 0:00:00
+Statistics collection ━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 128/128 • 0:01:12 • 0:00:00
+Applying Fast Bias correction ━━━━━━━━━━━━━━━━━ 100% 110/110 • 0:00:06 • 0:00:00
+quantized rfdetrsegnano
+Statistics collection ━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 128/128 • 0:01:08 • 0:00:00
+Applying Smooth Quant ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 93/93 • 0:00:03 • 0:00:00
+Statistics collection ━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 128/128 • 0:01:38 • 0:00:00
+Applying Fast Bias correction ━━━━━━━━━━━━━━━━━ 100% 110/110 • 0:00:06 • 0:00:00
+quantized rfdetrsegsmall
+loading annotations into memory...
+Done (t=0.48s)
+creating index...
+index created!
+0/3193 427.1 ms/img
+250/3193 491.2 ms/img
+500/3193 495.9 ms/img
+750/3193 491.2 ms/img
+1000/3193 491.3 ms/img
+1250/3193 486.9 ms/img
+1500/3193 484.7 ms/img
+1750/3193 469.8 ms/img
+2000/3193 433.9 ms/img
+2250/3193 287.9 ms/img
+2500/3193 186.2 ms/img
+2750/3193 168.0 ms/img
+3000/3193 158.5 ms/img
+Loading and preparing results...
+DONE (t=0.41s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=6.47s).
+Accumulating evaluation results...
+DONE (t=0.45s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.489
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.810
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.511
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.205
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.565
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.769
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.183
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.502
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.561
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.317
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.652
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.819
+wrote results/coco__ov-rfdetr_models_rfdetrsegmedium_fp16_model.xml_GPU.json
+loading annotations into memory...
+Done (t=0.33s)
+creating index...
+index created!
+malloc(): invalid size (unsorted)
+./run_all.sh: line 14: 236271 Segmentation fault         (core dumped) $PY eval.py coco "$(kind $m):$m:GPU"
+FAILED coco models/rfdetrsegnano_fp16/model.xml
+loading annotations into memory...
+Done (t=0.38s)
+creating index...
+index created!
+0/3193 130.8 ms/img
+250/3193 107.5 ms/img
+500/3193 106.8 ms/img
+750/3193 106.4 ms/img
+1000/3193 106.5 ms/img
+1250/3193 106.7 ms/img
+1500/3193 106.7 ms/img
+1750/3193 106.4 ms/img
+2000/3193 106.4 ms/img
+2250/3193 106.4 ms/img
+2500/3193 107.0 ms/img
+2750/3193 107.8 ms/img
+3000/3193 108.6 ms/img
+Loading and preparing results...
+DONE (t=0.59s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=8.62s).
+Accumulating evaluation results...
+DONE (t=1.18s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.002
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.001
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.001
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.003
+wrote results/coco__ov-rfdetr_models_rfdetrsegnano_int8_model.xml_GPU.json
+loading annotations into memory...
+Done (t=0.56s)
+creating index...
+index created!
+0/3193 449.1 ms/img
+250/3193 599.8 ms/img
+500/3193 600.3 ms/img
+750/3193 597.2 ms/img
+1000/3193 594.9 ms/img
+1250/3193 591.2 ms/img
+1500/3193 567.7 ms/img
+1750/3193 538.0 ms/img
+2000/3193 494.3 ms/img
+2250/3193 439.1 ms/img
+2500/3193 419.2 ms/img
+2750/3193 407.6 ms/img
+3000/3193 403.7 ms/img
+Loading and preparing results...
+DONE (t=0.48s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=7.80s).
+Accumulating evaluation results...
+DONE (t=1.25s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.469
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.782
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.489
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.173
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.550
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.765
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.181
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.485
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.531
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.265
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.633
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.812
+wrote results/coco__ov-rfdetr_models_rfdetrsegsmall_fp16_model.xml_GPU.json
+loading annotations into memory...
+Done (t=0.57s)
+creating index...
+index created!
+0/3193 215.0 ms/img
+250/3193 569.5 ms/img
+500/3193 567.2 ms/img
+750/3193 565.0 ms/img
+1000/3193 564.9 ms/img
+1250/3193 565.0 ms/img
+1500/3193 556.8 ms/img
+1750/3193 521.7 ms/img
+2000/3193 511.1 ms/img
+2250/3193 510.9 ms/img
+2500/3193 510.2 ms/img
+2750/3193 507.9 ms/img
+3000/3193 506.7 ms/img
+Loading and preparing results...
+DONE (t=0.37s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=8.25s).
+Accumulating evaluation results...
+DONE (t=1.06s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.001
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.010
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.001
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.001
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.000
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.003
+wrote results/coco__ov-rfdetr_models_rfdetrsegsmall_int8_model.xml_GPU.json
+loading annotations into memory...
+Done (t=0.44s)
+creating index...
+index created!
+0/3193 113.3 ms/img
+250/3193 75.0 ms/img
+500/3193 75.5 ms/img
+750/3193 75.1 ms/img
+1000/3193 75.5 ms/img
+1250/3193 76.5 ms/img
+1500/3193 77.9 ms/img
+1750/3193 78.2 ms/img
+2000/3193 78.8 ms/img
+2250/3193 78.8 ms/img
+2500/3193 77.9 ms/img
+2750/3193 77.2 ms/img
+3000/3193 76.2 ms/img
+Loading and preparing results...
+DONE (t=0.21s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=4.45s).
+Accumulating evaluation results...
+DONE (t=0.52s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.398
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.707
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.403
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.149
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.454
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.662
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.163
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.423
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.462
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.228
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.542
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.718
+wrote results/coco__ov-yolo_models_yolo11n-seg_fp16_openvino_model_yolo11n-seg.xml_GPU.json
+loading annotations into memory...
+Done (t=0.48s)
+creating index...
+index created!
+0/3193 45.3 ms/img
+250/3193 65.2 ms/img
+500/3193 62.9 ms/img
+750/3193 61.5 ms/img
+1000/3193 63.4 ms/img
+1250/3193 63.4 ms/img
+1500/3193 61.7 ms/img
+1750/3193 62.2 ms/img
+2000/3193 60.8 ms/img
+2250/3193 61.2 ms/img
+2500/3193 61.2 ms/img
+2750/3193 60.2 ms/img
+3000/3193 58.5 ms/img
+Loading and preparing results...
+DONE (t=0.21s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=4.05s).
+Accumulating evaluation results...
+DONE (t=0.49s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.397
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.705
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.401
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.147
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.452
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.664
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.163
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.421
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.461
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.226
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.541
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.719
+wrote results/coco__ov-yolo_models_yolo11n-seg_int8_openvino_model_yolo11n-seg.xml_GPU.json
+loading annotations into memory...
+Done (t=0.52s)
+creating index...
+index created!
+0/3193 53.6 ms/img
+250/3193 136.3 ms/img
+500/3193 142.6 ms/img
+750/3193 144.4 ms/img
+1000/3193 145.7 ms/img
+1250/3193 149.2 ms/img
+1500/3193 151.6 ms/img
+1750/3193 154.1 ms/img
+2000/3193 151.5 ms/img
+2250/3193 147.0 ms/img
+2500/3193 143.8 ms/img
+2750/3193 142.0 ms/img
+3000/3193 139.3 ms/img
+Loading and preparing results...
+DONE (t=0.20s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=4.65s).
+Accumulating evaluation results...
+DONE (t=0.46s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.446
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.775
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.458
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.198
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.504
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.695
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.171
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.464
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.509
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.284
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.594
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.746
+wrote results/coco__ov-yolo_models_yolo11s-seg_fp16_openvino_model_yolo11s-seg.xml_GPU.json
+loading annotations into memory...
+Done (t=0.55s)
+creating index...
+index created!
+0/3193 48.4 ms/img
+250/3193 90.4 ms/img
+500/3193 71.6 ms/img
+750/3193 43.4 ms/img
+1000/3193 37.9 ms/img
+1250/3193 36.8 ms/img
+1500/3193 36.1 ms/img
+1750/3193 35.9 ms/img
+2000/3193 35.1 ms/img
+2250/3193 34.7 ms/img
+2500/3193 34.5 ms/img
+2750/3193 34.1 ms/img
+3000/3193 33.5 ms/img
+Loading and preparing results...
+DONE (t=0.16s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=3.26s).
+Accumulating evaluation results...
+DONE (t=0.22s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.444
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.767
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.458
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.196
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.504
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.695
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.171
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.462
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.507
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.279
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.594
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.746
+wrote results/coco__ov-yolo_models_yolo11s-seg_int8_openvino_model_yolo11s-seg.xml_GPU.json
+loading annotations into memory...
+Done (t=0.41s)
+creating index...
+index created!
+0/3193 62.8 ms/img
+250/3193 26.6 ms/img
+500/3193 28.7 ms/img
+750/3193 43.2 ms/img
+1000/3193 52.8 ms/img
+1250/3193 60.7 ms/img
+1500/3193 66.9 ms/img
+1750/3193 71.7 ms/img
+2000/3193 75.1 ms/img
+2250/3193 78.3 ms/img
+2500/3193 78.6 ms/img
+2750/3193 72.1 ms/img
+3000/3193 66.2 ms/img
+Loading and preparing results...
+DONE (t=0.16s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=3.33s).
+Accumulating evaluation results...
+DONE (t=0.22s).
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.416
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.718
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.429
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.162
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.476
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.677
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.167
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.438
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.478
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.241
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.564
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.733
+wrote results/coco__ov-yolo_models_yolo26n-seg_fp16_openvino_model_yolo26n-seg.xml_GPU.json
+loading annotations into memory...
+Done (t=0.63s)
+creating index...
+index created!
+./run_all.sh: line 14: 287263 Segmentation fault         (core dumped) $PY eval.py coco "$(kind $m):$m:GPU"
+FAILED coco models/yolo26n-seg_int8_openvino_model/yolo26n-seg.xml
+loading annotations into memory...
+Done (t=0.44s)
+creating index...
+index created!
+*** longjmp causes uninitialized stack frame ***: terminated
+*** longjmp causes uninitialized stack frame ***: terminated
+./run_all.sh: line 14: 287857 Aborted                    (core dumped) $PY eval.py coco "$(kind $m):$m:GPU"
+FAILED coco models/yolo26s-seg_fp16_openvino_model/yolo26s-seg.xml
+loading annotations into memory...
+Done (t=0.36s)
+creating index...
+index created!
+*** longjmp causes uninitialized stack frame ***: terminated
+*** longjmp causes uninitialized stack frame ***: terminated
+./run_all.sh: line 14: 288417 Aborted                    (core dumped) $PY eval.py coco "$(kind $m):$m:GPU"
+FAILED coco models/yolo26s-seg_int8_openvino_model/yolo26s-seg.xml
+loading annotations into memory...
+Done (t=0.36s)
+creating index...
+index created!
+canvas 0/100
+canvas 20/100
+canvas 40/100
+canvas 60/100
+canvas 80/100
+wrote results/screen__ov-yolo_models_yolo11n-seg_fp16_openvino_model_yolo11n-seg.xml_GPU.json
+loading annotations into memory...
+Done (t=0.68s)
+creating index...
+index created!
+canvas 0/100
+canvas 20/100
+canvas 40/100
+canvas 60/100
+canvas 80/100
+wrote results/screen__ov-yolo_models_yolo26n-seg_fp16_openvino_model_yolo26n-seg.xml_GPU.json
+loading annotations into memory...
+Done (t=0.37s)
+creating index...
+index created!
+canvas 0/100
+canvas 20/100
+canvas 40/100
+canvas 60/100
+canvas 80/100
+wrote results/screen__ov-yolo_models_yolo11s-seg_fp16_openvino_model_yolo11s-seg.xml_GPU.json
+loading annotations into memory...
+Done (t=0.36s)
+creating index...
+index created!
+canvas 0/100
+canvas 20/100
+canvas 40/100
+canvas 60/100
+canvas 80/100
+wrote results/screen__ov-rfdetr_models_rfdetrsegnano_fp16_model.xml_GPU.json
+loading annotations into memory...
+Done (t=0.37s)
+creating index...
+index created!
+canvas 0/100
+canvas 20/100
+canvas 40/100
+canvas 60/100
+canvas 80/100
+wrote results/screen__ov-rfdetr_models_rfdetrsegsmall_fp16_model.xml_GPU.json
+quiet-wait 0s, contended=yes

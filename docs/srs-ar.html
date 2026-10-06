@@ -1,0 +1,268 @@
+<title>متطلبات HaramBlurr</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap">
+<style>
+/* Layout: one reading column (RTL), document header with meta grid, requirement tables with status chips */
+:root {
+  --bg: #f4f6f7; --surface: #ffffff; --fg: #16212a; --muted: #5b6873; --line: #dbe1e5;
+  --accent: #1b5a6b; --accent-soft: #e2eef1;
+  --warn: #9a5800; --warn-soft: #fbeedb; --ok: #2c6a38; --ok-soft: #e3f0e2;
+  --font: "IBM Plex Sans Arabic", "Noto Sans Arabic", Tahoma, system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11171c; --surface: #172028; --fg: #e3e9ed; --muted: #97a4ae; --line: #2a3640;
+  --accent: #7cc2d4; --accent-soft: #1b3038; --warn: #f0b25c; --warn-soft: #33281a; --ok: #8dcc93; --ok-soft: #1c2e1f;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11171c; --surface: #172028; --fg: #e3e9ed; --muted: #97a4ae; --line: #2a3640;
+  --accent: #7cc2d4; --accent-soft: #1b3038; --warn: #f0b25c; --warn-soft: #33281a; --ok: #8dcc93; --ok-soft: #1c2e1f;
+  color-scheme: dark }
+
+body { background: var(--bg); color: var(--fg); font: 17px/1.85 var(--font); }
+.page { max-width: 820px; margin: 0 auto; padding-inline: 16px; padding-block: 40px 72px; display: grid; gap: 40px; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.4; margin: 0; }
+h1 { font-size: 2.1rem; font-weight: 700; }
+h2 { font-size: 1.35rem; font-weight: 700; padding-bottom: 8px; border-bottom: 2px solid var(--line); }
+h3 { font-size: 1.08rem; font-weight: 600; }
+p, ul { margin: 0; max-width: 68ch; }
+ul { padding-inline-start: 1.2em; display: grid; gap: 6px; }
+section { display: grid; gap: 16px; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+code { font-family: var(--mono); font-size: .85em; }
+.eyebrow { font-size: .9rem; font-weight: 600; color: var(--accent); }
+.lead { font-size: 1.12rem; color: var(--muted); }
+header { display: grid; gap: 14px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 24px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.meta div { display: grid; gap: 2px; }
+.meta span { font-size: .82rem; color: var(--muted); }
+.toc { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .95rem; }
+.note { padding: 14px 16px; background: var(--accent-soft); border-radius: 8px; max-width: none; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .97rem; }
+th, td { text-align: start; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font-size: .85rem; font-weight: 600; color: var(--muted); }
+td.id { font: 500 .85rem var(--mono); color: var(--accent); white-space: nowrap; direction: ltr; }
+td small { display: block; color: var(--muted); font-size: .88rem; margin-top: 3px; }
+.chip { display: inline-block; font-size: .82rem; font-weight: 600; padding: 1px 10px; border-radius: 999px; white-space: nowrap; }
+.chip.ok { background: var(--ok-soft); color: var(--ok); }
+.chip.plan { background: var(--accent-soft); color: var(--accent); }
+.chip.open { background: var(--warn-soft); color: var(--warn); }
+
+/* the "hide first" timeline, the one picture this product needs */
+.flow { display: flex; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); font-size: .92rem; }
+.flow div { padding: 14px; display: grid; gap: 2px; min-width: 0; }
+.flow b { font-weight: 600; }
+.flow span { color: var(--muted); font-size: .86rem; }
+.flow .a { flex: 1; background: var(--surface); }
+.flow .b { flex: 1.3; background: repeating-linear-gradient(45deg, var(--warn-soft) 0 10px, var(--surface) 10px 20px); }
+.flow .c { flex: 1.6; background: var(--ok-soft); }
+@media (max-width: 560px) { .flow { flex-direction: column; } }
+footer { color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+
+<div class="page" dir="rtl" lang="ar">
+  <header>
+    <div class="eyebrow">وثيقة متطلبات البرنامج (SRS)</div>
+    <h1>HaramBlurr</h1>
+    <p class="lead">تطبيق أندرويد يُخفي الألفاظ السيئة وصور الأشخاص على الشاشة، في كل التطبيقات.</p>
+    <div class="meta">
+      <div><span>الإصدار</span>2.1 (مسودة)</div>
+      <div><span>التاريخ</span>6 أكتوبر 2026</div>
+      <div><span>النطاق</span>أندرويد، من v1 إلى v4</div>
+      <div><span>الحالة</span>للمراجعة من الفريق</div>
+    </div>
+    <nav class="toc" aria-label="المحتويات">
+      <a href="#intro">1. مقدمة</a><a href="#overview">2. نظرة عامة</a><a href="#functional">3. الميزات</a>
+      <a href="#quality">4. معايير الجودة</a><a href="#scope">5. خارج الخطة</a><a href="#status">6. الوضع الحالي والخطة</a>
+      <a href="#risks">7. المخاطر</a><a href="#terms">8. المصطلحات</a>
+    </nav>
+  </header>
+
+  <section id="intro">
+    <h2>1. مقدمة</h2>
+    <h3>1.1 الهدف من هذه الوثيقة</h3>
+    <p>تشرح هذه الوثيقة ما يجب أن يفعله HaramBlurr، ومدى الجودة المطلوبة. كُتبت لفريق المشروع والمشرفين، لذلك تتجنب التفاصيل التقنية العميقة. الدراسة التقنية الكاملة ونتائج الاختبارات موجودة في الملفين <code>investigation-android-v1.md</code> و<code>p0-results-android-v1.md</code>.</p>
+    <h3>1.2 المشكلة</h3>
+    <p>بعض الناس يريدون تجنّب الألفاظ السيئة وصور الأشخاص أثناء استخدام الهاتف: في التعليقات، والمحادثات، وتطبيقات التواصل، والفيديو، والإعلانات، والأخبار. وللأدوات الحالية ثلاث مشاكل:</p>
+    <ul>
+      <li>أغلبها يعمل في <strong>مكان واحد فقط</strong>، مثل متصفح واحد أو موقع واحد.</li>
+      <li>الأدوات التي تراقب الشاشة كلها تعرض المحتوى <strong>أولًا</strong> ثم تغطيه <strong>بعد ذلك</strong>، فيلمع على الشاشة للحظة.</li>
+      <li>بعضها يرسل محتوى الشاشة إلى خادم، وهذا يضر بالخصوصية.</li>
+    </ul>
+    <h3>1.3 فكرتنا</h3>
+    <p>HaramBlurr تطبيق أندرويد واحد. يستخدم ميزة إمكانية الوصول في أندرويد (وهي الميزة نفسها التي تستخدمها قارئات الشاشة) ليعرف ما على الشاشة، ثم يرسم أغطية فوقه. كل شيء يعمل على الهاتف.</p>
+    <ul>
+      <li><strong>الألفاظ السيئة:</strong> يقرأ التطبيق النص الذي تعرضه التطبيقات، ويجد الكلمات السيئة باستخدام قائمة كلمات، ثم يغطيها. ومن الإصدار v1.1 يضيف نموذج ذكاء اصطناعي صغير خاص بنا على الهاتف فهمَ السياق: يكتشف الإهانات التي لا تحتوي على كلمة سيئة، ولا يغطي الاستخدام العادي لكلمات مثل "كلب".</li>
+      <li><strong>الأشخاص:</strong> يلتقط التطبيق صورة للشاشة، ويجد الأشخاص بنموذج ذكاء اصطناعي يعمل على الهاتف، ثم يغطيهم.</li>
+    </ul>
+    <h3>1.4 خطة الإصدارات</h3>
+    <div class="table-wrap"><table>
+      <tr><th>الإصدار</th><th>ما يُخفيه</th><th>سبب هذا الترتيب</th></tr>
+      <tr><td class="id">v1</td><td><strong>الألفاظ السيئة</strong> بالعربية الفصحى والإنجليزية: الشتائم، والألفاظ الجنسية، والإهانات، والكلام المسيء للدين</td><td>أسهل بداية، ويبني التطبيق الذي تستخدمه الإصدارات التالية.</td></tr>
+      <tr><td class="id">v1.1</td><td><strong>فلتر نص أذكى</strong>: نموذج ذكاء اصطناعي صغير خاص بنا يضيف فهم السياق إلى قائمة الكلمات</td><td>يعالج ما لا تراه قائمة الكلمات، وهو المساهمة البحثية الأساسية للفريق</td></tr>
+      <tr><td class="id">v2</td><td><strong>الأشخاص الكبار</strong> على الشاشة (أطول من نحو 96 بكسل)</td><td>نموذج الذكاء الاصطناعي يجد أغلبهم من الآن</td></tr>
+      <tr><td class="id">v3</td><td><strong>الأشخاص المتوسطون</strong> (نحو 32–96 بكسل)</td><td>يحتاج فحصًا أدق على أجزاء من الشاشة</td></tr>
+      <tr><td class="id">v4</td><td><strong>الأشخاص الصغار</strong> (أقل من نحو 32 بكسل)</td><td>يحتاج تدريب نموذجنا على لقطات من شاشات الهواتف</td></tr>
+    </table></div>
+    <p>كل إصدار يضيف إلى الإصدار الذي قبله.</p>
+  </section>
+
+  <section id="overview">
+    <h2>2. نظرة عامة</h2>
+    <h3>2.1 كيف يعمل، ببساطة</h3>
+    <p><strong>الألفاظ السيئة (v1):</strong></p>
+    <ul>
+      <li><strong>الاستماع:</strong> يُخبر أندرويد التطبيقَ عندما تتغير الشاشة.</li>
+      <li><strong>القراءة:</strong> يقرأ التطبيق النص الظاهر على الشاشة.</li>
+      <li><strong>التنظيف:</strong> يزيل حيل الكتابة (مثل التشكيل، ومدّ الحروف، ووضع رموز مكان الحروف).</li>
+      <li><strong>المطابقة:</strong> يبحث عن كل كلمة في قائمة الكلمات السيئة.</li>
+      <li><strong>التغطية:</strong> يضع مربعًا مصمتًا فوق الكلمة السيئة أو فوق الرسالة كاملة (حسب اختيار المستخدم).</li>
+    </ul>
+    <p><strong>الأشخاص (v2–v4):</strong> يُغطّى الجزء الذي تغيّر من الشاشة فورًا. يلتقط التطبيق صورة لنافذة التطبيق الآخر (لا تحتوي الصورة على أغطيتنا)، فيجد النموذج الأشخاص، ثم يُزال الغطاء من كل مكان إلا فوق الأشخاص.</p>
+    <div class="flow" role="img" aria-label="خط زمني للأشخاص: يتغير المحتوى، ثم يبقى مغطى نحو 0.3 إلى 0.7 ثانية أثناء فحصه، ثم يظهر مع إخفاء الأشخاص">
+      <div class="a"><b>يتغير المحتوى</b><span>تمرير، صفحة جديدة، تطبيق جديد</span></div>
+      <div class="b"><b>مغطى أثناء الفحص</b><span>الأشخاص: نحو 0.3–0.7 ثانية حاليًا</span></div>
+      <div class="c"><b>يظهر</b><span>مع إخفاء كل شخص تم اكتشافه</span></div>
+    </div>
+    <p>النص لا يحتاج خطوة "مغطى أثناء الفحص"، لأن فحصه يستغرق أقل من ملّي ثانية، فيظهر الغطاء مباشرة بعد ظهور النص.</p>
+    <h3>2.2 المستخدمون</h3>
+    <p>نوع واحد من المستخدمين: شخص يختار بنفسه تثبيت الفلتر على هاتفه. هو أداة شخصية، وليس أداة رقابة أبوية أو مراقبة.</p>
+    <h3>2.3 أين يعمل</h3>
+    <div class="table-wrap"><table>
+      <tr><th>البند</th><th>المتطلب</th></tr>
+      <tr><td>النظام</td><td>v1 (النص): أندرويد 8.0 أو أحدث. v2–v4 (الأشخاص): أندرويد 14 أو أحدث، وأندرويد 13 فقط بوضع بديل أضعف (FR-16).</td></tr>
+      <tr><td>هاتف الاختبار</td><td>شاومي Redmi 12: معالج MediaTek Helio G88، فيه نواتان سريعتان و6 أنوية بطيئة، ومعالج رسوميات صغير Mali-G52. هاتف عادي منخفض السعر.</td></tr>
+      <tr><td>الإنترنت</td><td>غير مطلوب. التطبيق لا يطلب إذن الإنترنت أصلًا.</td></tr>
+      <tr><td>التثبيت</td><td>من ملف APK (وليس من Google Play) لمشروع التخرج</td></tr>
+    </table></div>
+    <h3>2.4 الافتراضات</h3>
+    <ul>
+      <li>يفعّل المستخدم HaramBlurr من إعدادات إمكانية الوصول في الهاتف، ويسمح له بالعمل في الخلفية.</li>
+      <li>"الألفاظ السيئة" هي الكلمات والعبارات الموجودة في قائمتنا، وهي أربعة أنواع: الشتائم، والألفاظ الجنسية، والإهانات، والكلام المسيء للدين.</li>
+      <li>"الشخص" يعني أي هيئة بشرية: حقيقية، أو مرسومة، أو متحركة، أو في لعبة.</li>
+      <li>إخفاء شيء بالخطأ مقبول. أما إظهار شخص أو كلمة سيئة بالخطأ فغير مقبول. عند الشك، نُخفي.</li>
+    </ul>
+  </section>
+
+  <section id="functional">
+    <h2>3. الميزات (المتطلبات الوظيفية)</h2>
+    <p>الأولوية: <strong>ضروري</strong> = لازم لذلك الإصدار، <strong>مُستحسن</strong> = مخطط إن سمح الوقت، <strong>لاحقًا</strong> = في إصدار قادم.</p>
+    <h3>3.1 التطبيق (يُبنى في v1 وتستخدمه كل الإصدارات)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>الرقم</th><th>المتطلب</th><th>الإصدار</th><th>الأولوية</th><th>الحالة</th></tr>
+      <tr><td class="id">FR-1</td><td>قبل التفعيل، عرض شاشة واضحة تشرح ما يستطيع التطبيق رؤيته، وأن لا شيء يخرج من الهاتف.</td><td>v1</td><td>ضروري</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-2</td><td>إظهار إشعار صغير ما دام الفلتر يعمل. إذا توقف الفلتر أو تعطل، يختفي الإشعار فيعرف المستخدم ذلك.</td><td>v1</td><td>ضروري</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-3</td><td>تتحرك الأغطية مع الصفحة عند التمرير، فيبقى المحتوى المغطى مغطى ولا يرمش الغطاء.</td><td>v1</td><td>ضروري</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-4</td><td>يستطيع المستخدم تشغيل الفلتر وإيقافه، واستثناء تطبيقات معينة.</td><td>v1</td><td>مُستحسن</td><td><span class="chip plan">مخطط</span></td></tr>
+    </table></div>
+    <h3>3.2 الألفاظ السيئة (v1)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>الرقم</th><th>المتطلب</th><th>الإصدار</th><th>الأولوية</th><th>الحالة</th></tr>
+      <tr><td class="id">FR-5</td><td>قراءة النص الذي يعرضه كل تطبيق يشارك نصه مع أندرويد: تطبيقات التواصل، والمحادثات، والمتصفحات، والأخبار.</td><td>v1</td><td>ضروري</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-6</td><td>اكتشاف الكلمات والعبارات السيئة بالعربية الفصحى والإنجليزية، في أربعة أنواع: الشتائم، والألفاظ الجنسية، والإهانات، والكلام المسيء للدين.</td><td>v1</td><td>ضروري</td><td><span class="chip open">القائمة مطلوبة</span><small>يجب أن يبني الفريق القائمة العربية.</small></td></tr>
+      <tr><td class="id">FR-7</td><td>كشف حيل الكتابة الشائعة: التشكيل، ومدّ الحروف (ـ)، وأشكال الألف والياء المختلفة، وتكرار الحروف، ووضع رموز مكان الحروف.</td><td>v1</td><td>ضروري</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-8</td><td>مطابقة الكلمات الكاملة فقط، حتى لا تُغطّى كلمة عادية تحتوي في داخلها على كلمة سيئة.</td><td>v1</td><td>ضروري</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-9</td><td>التغطية بمربع مصمت. يختار المستخدم: تغطية الكلمة السيئة فقط، أو الرسالة كاملة.</td><td>v1</td><td>ضروري</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-10</td><td>يستطيع المستخدم تشغيل كل نوع من الأنواع الأربعة أو إيقافه.</td><td>v1</td><td>مُستحسن</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-11</td><td>عدم تغطية النص الذي يكتبه المستخدم بنفسه.</td><td>v1</td><td>مُستحسن</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-12</td><td>قراءة النص داخل الصور والفيديو أيضًا (الميمز، والصور المصغّرة، والترجمة المكتوبة على الفيديو).<small>مخطط باستخدام PaddleOCR (نموذج عربي للهواتف، نحو 8 ميغابايت). أداة Google على الهاتف لا تدعم العربية.</small></td><td>لاحقًا</td><td>لاحقًا</td><td><span class="chip plan">لاحقًا</span></td></tr>
+      <tr><td class="id">FR-20</td><td>نموذج ذكاء اصطناعي صغير خاص بنا على الهاتف كطبقة ثانية: يقرأ الرسالة كاملة، ويحدد نوعها مع درجة الثقة، ويشير إلى <strong>الكلمات</strong> المسيئة. يعالج الكلمات التي يعتمد معناها على السياق، والإهانات التي لا تحتوي على كلمة سيئة.<small>يدرّبه الفريق بالاستعانة بنماذج مفتوحة كبيرة كـ"معلّم" (الدراسة التقنية §3.5)، ويُقارَن بقائمة الكلمات وبنماذج صغيرة جاهزة.</small></td><td>v1.1</td><td>مُستحسن</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-21</td><td>يختار المستخدم اللغة (أو اللغتين) التي يريد فلترتها: <strong>لغة واحدة افتراضيًا</strong> (لغة الهاتف)، ولغتان عند الحاجة. لكل لغة "حزمة" فيها قائمة كلماتها، ومن الإصدار v1.1 نموذجها الخاص. الحزم المختارة فقط تستهلك الذاكرة. ويُرسل النص إلى الحزمة المناسبة حسب حروفه (عربية أو لاتينية).</td><td>v1</td><td>ضروري</td><td><span class="chip plan">مخطط</span></td></tr>
+    </table></div>
+    <h3>3.3 الأشخاص (v2–v4)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>الرقم</th><th>المتطلب</th><th>الإصدار</th><th>الأولوية</th><th>الحالة</th></tr>
+      <tr><td class="id">FR-13</td><td>اكتشاف الأشخاص في كل تطبيق يعرض صورًا، وتغطية كل شخص بتقطيع قوي (بكسلة) أو لون مصمت، أكبر قليلًا من الشخص.<small>التمويه الخفيف يُظهر شكل الجسم.</small></td><td>v2</td><td>ضروري</td><td><span class="chip ok">مُختبَر خارج الهاتف</span></td></tr>
+      <tr><td class="id">FR-14</td><td>تغطية المحتوى المتغيّر فور أن يُبلغ الهاتف بالتغيير، وإبقاؤه مغطى حتى يُفحص. الغطاء لا يُرفع من تلقاء نفسه أبدًا.</td><td>v2</td><td>ضروري</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-15</td><td>بعض التطبيقات تمنع لقطات الشاشة (البنوك، وبعض تطبيقات الفيديو). يختار المستخدم إما تركها كما هي أو تغطيتها دائمًا.</td><td>v2</td><td>مُستحسن</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-16</td><td>وضع بديل لأندرويد 13: استخدام تسجيل الشاشة بدل صور النوافذ.<small>في هذا الوضع قد يظهر المحتوى الجديد للحظة قبل تغطيته.</small></td><td>v2</td><td>لاحقًا</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">FR-17</td><td>فحص أدق على أجزاء من الشاشة (مربعات) لاكتشاف الأشخاص المتوسطين.</td><td>v3</td><td>ضروري</td><td><span class="chip open">يحتاج عملًا</span><small>يعمل خارج الهاتف، لكنه بطيء جدًا على الهاتف حاليًا.</small></td></tr>
+      <tr><td class="id">FR-18</td><td>اكتشاف الأشخاص الصغار والبعيدين، بنموذج مدرَّب على لقطات حقيقية من شاشات الهواتف.</td><td>v4</td><td>ضروري</td><td><span class="chip open">يحتاج عملًا</span></td></tr>
+      <tr><td class="id">FR-19</td><td>وضع خاص للفيديو بملء الشاشة يفحص بشكل أكثر تكرارًا.</td><td>لاحقًا</td><td>لاحقًا</td><td><span class="chip plan">لاحقًا</span></td></tr>
+    </table></div>
+  </section>
+
+  <section id="quality">
+    <h2>4. معايير الجودة (المتطلبات غير الوظيفية)</h2>
+    <div class="table-wrap"><table>
+      <tr><th>الرقم</th><th>المجال</th><th>الهدف</th><th>الوضع الحالي</th></tr>
+      <tr><td class="id">NFR-1</td><td>أمان النص (v1)</td><td>إخفاء 95% على الأقل من الكلمات السيئة الموجودة في قائمتنا، في تعليقات ومحادثات حقيقية.</td><td><span class="chip open">لم يُقَس</span></td></tr>
+      <tr><td class="id">NFR-2</td><td>التغطية الخاطئة للنص (v1)</td><td>لا أكثر من تغطية خاطئة واحدة لكل 1000 كلمة نظيفة (أخبار، قرآن، محادثات عادية).</td><td><span class="chip open">لم يُقَس</span></td></tr>
+      <tr><td class="id">NFR-3</td><td>اللحظة قبل الغطاء</td><td>المحتوى الجديد لا يظهر أكثر من نحو 3 إطارات (نحو 33 ملّي ثانية على شاشة 90 هرتز) قبل تغطيته.</td><td><span class="chip open">لم يُقَس</span><small>أول قياس في v1.</small></td></tr>
+      <tr><td class="id">NFR-4</td><td>أمان الأشخاص (v2–v4)</td><td>إخفاء 95% على الأقل من الأشخاص بحجم ذلك الإصدار: الكبار في v2، والمتوسطون في v3، والصغار في v4.</td><td><span class="chip open">لم يتحقق بعد</span><small>على شاشات اختبار، فحص واحد (مع المربعات): الكبار 85–89% (91–95%)، المتوسطون 60–76% (87–89%)، الصغار 24–27% (51–54%).</small></td></tr>
+      <tr><td class="id">NFR-5</td><td>وقت الانتظار (الأشخاص)</td><td>المحتوى المتغيّر لا يبقى مغطى أكثر من نحو 0.7 ثانية.</td><td><span class="chip open">لم يُقَس</span><small>المتوقع 0.3–0.7 ثانية من قياس الأجزاء.</small></td></tr>
+      <tr><td class="id">NFR-6</td><td>سرعة الفحص (الأشخاص)</td><td>فحص الشاشة كاملة يستغرق 150 ملّي ثانية أو أقل على هاتف الاختبار.</td><td><span class="chip open">لم يتحقق بعد</span><small>295 ملّي ثانية على المعالج. الخيارات الأسرع لم تُقَس بعد.</small></td></tr>
+      <tr><td class="id">NFR-7</td><td>السلاسة</td><td>اللمسات تمر عبر الأغطية، ولا يصبح الهاتف أبطأ.</td><td><span class="chip plan">حسب التصميم</span></td></tr>
+      <tr><td class="id">NFR-8</td><td>البطارية</td><td>لا عمل عندما تكون الشاشة ثابتة.</td><td><span class="chip plan">حسب التصميم</span><small>استهلاك البطارية لم يُقَس بعد.</small></td></tr>
+      <tr><td class="id">NFR-9</td><td>الذاكرة</td><td>v1 أقل من 50 ميغابايت. ومع نموذج النص (v1.1) أقل من 150 ميغابايت. ومع نموذج الأشخاص أيضًا أقل من 250 ميغابايت.</td><td><span class="chip ok">على الأرجح</span><small>نموذج الأشخاص وحده: نحو 98 ميغابايت.</small></td></tr>
+      <tr><td class="id">NFR-10</td><td>الخصوصية</td><td>نصوص الشاشة وصورها تبقى في الذاكرة فقط. لا يُحفظ شيء ولا يُرسل شيء. التطبيق ليس لديه إذن الإنترنت.</td><td><span class="chip plan">حسب التصميم</span></td></tr>
+      <tr><td class="id">NFR-11</td><td>الثبات</td><td>تعطل HaramBlurr يجب ألا يُغلق أو يجمّد أي تطبيق آخر.</td><td><span class="chip plan">حسب التصميم</span></td></tr>
+      <tr><td class="id">NFR-12</td><td>الأذونات</td><td>يمنح المستخدم الإذن <strong>مرة واحدة</strong>. لا يطلبه التطبيق من جديد عند كل استخدام أو بعد إعادة التشغيل.<small>شكوى شائعة من تطبيق منافس.</small></td><td><span class="chip plan">حسب التصميم</span><small>الإصدار v1 لا يحتاج تسجيل الشاشة. والإصدارات v2+ تستخدم صورة النافذة من خدمة إمكانية الوصول، ولا تحتاج طلب إذن في كل مرة.</small></td></tr>
+      <tr><td class="id">NFR-13</td><td>نموذج النص (v1.1)</td><td>لكل حزمة لغة، على هاتف الاختبار: ذاكرة فعلية 100 ميغابايت على الأكثر، و50 ملّي ثانية على الأكثر لكل رسالة (p95)، ونحو نواة معالج واحدة على الأكثر أثناء الفحص (أو معالج الرسوميات). أفضل من قائمة الكلمات وحدها ومن النماذج الصغيرة الجاهزة على مجموعة الاختبار نفسها.</td><td><span class="chip open">لم يُبنَ بعد</span><small>تُقاس النماذج المرشحة على الهاتف أولًا (الخطوة P0c).</small></td></tr>
+    </table></div>
+  </section>
+
+  <section id="scope">
+    <h2>5. خارج الخطة</h2>
+    <ul>
+      <li>آيفون: آبل لا تسمح للتطبيقات برؤية التطبيقات الأخرى أو تغطيتها.</li>
+      <li>اللهجات العربية والعربيزي (العربية المكتوبة بحروف لاتينية). ممكن بعد v1.</li>
+      <li>وضع للهواتف المفتوحة (root) يعمل داخل رسم الشاشة نفسه</li>
+      <li>نسخة سطح المكتب على لينكس: متوقفة كخطة بديلة، ونتائج اختباراتها ما زالت مفيدة.</li>
+      <li>إخفاء بعض الأشخاص فقط، مثلًا حسب الجنس. هذا أقل دقة بكثير، وأي خطأ يعني ظهور شخص.</li>
+      <li>منع المستخدم من إيقاف الفلتر. هو اختيار شخصي، وليس قفلًا.</li>
+    </ul>
+  </section>
+
+  <section id="status">
+    <h2>6. الوضع الحالي والخطة</h2>
+    <div class="table-wrap"><table>
+      <tr><th>الخطوة</th><th>العمل</th><th>المدة</th><th>الحالة</th></tr>
+      <tr><td class="id">v1-a</td><td>هيكل التطبيق: خدمة إمكانية الوصول، والأغطية، والإعدادات، والإشعار، وشاشة الموافقة</td><td>نحو أسبوع</td><td><span class="chip plan">التالي</span></td></tr>
+      <tr><td class="id">v1-b</td><td>فلتر النص: التنظيف، والمطابقة، وتحديد مكان الكلمة، والتغطية، وتتبع التمرير. قياس اللحظة قبل الغطاء.</td><td>1–2 أسبوع</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">v1-c</td><td>قوائم الكلمات: بناء القائمة العربية، ومراجعة القائمة الإنجليزية، والاختبار على تعليقات حقيقية</td><td>نحو أسبوع</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">v1.1</td><td>نموذج النص الخاص بنا: البيانات، والتوسيم بنماذج مفتوحة كبيرة، والتدريب، والمقارنة</td><td>4–5 أسابيع</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">P0</td><td>اختبار نموذج الأشخاص من حيث السرعة والدقة على حاسوب محمول وعلى شاشات هاتف تجريبية</td><td>أيام</td><td><span class="chip ok">تم</span></td></tr>
+      <tr><td class="id">P0b</td><td>إكمال اختبار السرعة على Redmi 12</td><td>مساء واحد</td><td><span class="chip open">نصفه تم</span></td></tr>
+      <tr><td class="id">v2</td><td>نموذج الأشخاص داخل التطبيق، الأشخاص الكبار</td><td>نحو أسبوعين</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">v3</td><td>المربعات وإعداد أسرع للنموذج، الأشخاص المتوسطون</td><td>1–2 أسبوع</td><td><span class="chip plan">مخطط</span></td></tr>
+      <tr><td class="id">v4</td><td>التدريب على لقطات حقيقية من شاشات الهواتف، الأشخاص الصغار</td><td>أسابيع</td><td><span class="chip plan">مخطط</span></td></tr>
+    </table></div>
+    <p class="note"><strong>ما أظهرته الاختبارات حتى الآن:</strong> نموذج الأشخاص يجد الكبار جيدًا. الأشخاص الصغار وسرعة الهاتف هما المشكلتان المفتوحتان، وموعدهما لاحقًا (v3 وv4). الإصدار v1 لا يعتمد عليهما.</p>
+  </section>
+
+  <section id="risks">
+    <h2>7. المخاطر</h2>
+    <div class="table-wrap"><table>
+      <tr><th>الخطر</th><th>الأثر</th><th>ما نفعله</th></tr>
+      <tr><td>لا توجد قائمة عربية مجانية كاملة (أفضل قائمة مجانية فيها 348 كلمة بالحروف العربية)</td><td>كثير من الكلمات العربية السيئة لا تُكتشف</td><td>نبدأ من القوائم المجانية (LDNOOBW V2 ومعجم Attia)، ثم يكمل الفريق القائمة ويختبرها على تعليقات عربية حقيقية.</td></tr>
+      <tr><td>الإهانات والكلام المسيء للدين يعتمدان على السياق</td><td>يُغطّى نص عادي بالخطأ</td><td>عبارات بدل كلمات منفردة، وقائمة إهانات صارمة، ومفتاح لكل نوع</td></tr>
+      <tr><td>بعض التطبيقات لا تشارك نصها</td><td>لا تُغطّى الكلمات السيئة في تلك التطبيقات</td><td>نوثّق التطبيقات التي تعمل، وقراءة النص من الصور (OCR) لاحقًا</td></tr>
+      <tr><td>عدم اكتشاف الأشخاص الصغار</td><td>يظهر بعض الأشخاص</td><td>المربعات، والتدريب على لقطات من الهواتف، والإخفاء عند الشك</td></tr>
+      <tr><td>الهاتف بطيء جدًا</td><td>انتظار طويل، ولا مجال للمربعات</td><td>أنواع نماذج أسرع، ومعالج الرسوميات، وصورة أصغر. وإلا فهاتف اختبار أقوى.</td></tr>
+      <tr><td>موفّر البطارية في شاومي يوقف التطبيق</td><td>يتوقف الفلتر دون تنبيه</td><td>شاشة إعداد تطلب التشغيل التلقائي وإلغاء قيود البطارية. والإشعار (FR-2) يوضح متى يتوقف.</td></tr>
+      <tr><td>"HaramBlur" موجود كإضافة متصفح وكتطبيق أندرويد (أكثر من 500 ألف تنزيل)</td><td>يجب أن يقدم مشروعنا شيئًا لا يقدمه، وهناك تشابه في الاسم</td><td>إخفاء الألفاظ السيئة، وتغطية الشخص فقط، والإخفاء أولًا دون مهلة، وكل التطبيقات. نذكره كعمل سابق، ونفكر في اسم جديد.</td></tr>
+    </table></div>
+  </section>
+
+  <section id="terms">
+    <h2>8. المصطلحات</h2>
+    <div class="table-wrap"><table>
+      <tr><td><strong>الإطار</strong></td><td>صورة واحدة على الشاشة. هاتف Redmi 12 يعرض حتى 90 إطارًا في الثانية، فالإطار نحو 11 ملّي ثانية.</td></tr>
+      <tr><td><strong>ملّي ثانية</strong></td><td>جزء من ألف من الثانية</td></tr>
+      <tr><td><strong>خدمة إمكانية الوصول</strong></td><td>نوع خاص من تطبيقات أندرويد يفعّله المستخدم من الإعدادات. يستطيع قراءة ما على الشاشة والرسم فوقه. قارئات الشاشة تستخدم الميزة نفسها.</td></tr>
+      <tr><td><strong>الغطاء</strong></td><td>المربع المصمت أو التقطيع القوي الذي نرسمه فوق كلمة سيئة أو فوق شخص</td></tr>
+      <tr><td><strong>قائمة الكلمات</strong></td><td>قائمتنا من الكلمات والعبارات السيئة، ولكل منها نوع</td></tr>
+      <tr><td><strong>التنظيف (التوحيد)</strong></td><td>إزالة حيل الكتابة قبل المطابقة، حتى تُعامَل "كلبببب" و"كلب" ككلمة واحدة</td></tr>
+      <tr><td><strong>OCR</strong></td><td>قراءة النص من صورة. نحتاجه للنص داخل الصور، وهذا لاحقًا (PaddleOCR).</td></tr>
+      <tr><td><strong>نموذج الذكاء الاصطناعي</strong></td><td>البرنامج المدرَّب الذي يجد الأشخاص في الصورة</td></tr>
+      <tr><td><strong>المربعات</strong></td><td>فحص الشاشة على أجزاء بدل فحصها كلها مرة واحدة، فيبدو الأشخاص الصغار أكبر للنموذج</td></tr>
+      <tr><td><strong>الإخفاء أولًا</strong></td><td>قاعدتنا للأشخاص: المحتوى الجديد يبقى مغطى حتى يُفحص (في الوثائق التقنية: "fail-closed")</td></tr>
+    </table></div>
+  </section>
+
+  <footer>HaramBlurr · مشروع تخرج · وثيقة المتطلبات الإصدار 2.1 مسودة (أندرويد) · النسخة الإنجليزية متوفرة · نسخة لينكس في srs-linux-ar.html</footer>
+</div>

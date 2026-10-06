@@ -1,0 +1,15 @@
+{
+ "spec": "ov-yolo:models/yolo11n-seg_int8_openvino_model/yolo11n-seg.xml:GPU",
+ "contended": false,
+ "frames": 1402,
+ "fps": 46.733333333333334,
+ "p50_ms": 20.38158499999554,
+ "p95_ms": 30.38872549586813,
+ "p99_ms": 34.61583571930532,
+ "max_ms": 38.116429997899104,
+ "proc_cpu_pct_of_one_core": 99.1,
+ "system_cpu_pct": 14.7,
+ "rss_mb": 282.13671875,
+ "gpu_mhz_median": 900.0,
+ "gpu_mhz_max_possible": 1300
+}

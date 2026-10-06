@@ -1,0 +1,60 @@
+{
+ "spec": "ov-rfdetr:models/rfdetrsegmedium_fp16/model.xml:GPU",
+ "contended": false,
+ "frames": 200,
+ "fps": 6.666666666666667,
+ "p50_ms": 148.11350550007774,
+ "p95_ms": 161.02284729786334,
+ "p99_ms": 181.19961496246017,
+ "max_ms": 355.57015100494027,
+ "proc_cpu_pct_of_one_core": 99.7,
+ "system_cpu_pct": 16.3,
+ "rss_mb": 263.44921875,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-rfdetr:models/rfdetrsegnano_fp16/model.xml:GPU",
+ "contended": false,
+ "frames": 361,
+ "fps": 12.033333333333333,
+ "p50_ms": 76.56445800239453,
+ "p95_ms": 133.03112799621886,
+ "p99_ms": 145.1180374002433,
+ "max_ms": 149.1743079968728,
+ "proc_cpu_pct_of_one_core": 99.4,
+ "system_cpu_pct": 25.1,
+ "rss_mb": 240.625,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-rfdetr:models/rfdetrsegnano_int8/model.xml:GPU",
+ "contended": false,
+ "frames": 217,
+ "fps": 7.233333333333333,
+ "p50_ms": 122.22076699981699,
+ "p95_ms": 198.58518860273762,
+ "p99_ms": 210.47213272191587,
+ "max_ms": 280.29863700066926,
+ "proc_cpu_pct_of_one_core": 99.5,
+ "system_cpu_pct": 26.1,
+ "rss_mb": 263.20703125,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}
+{
+ "spec": "ov-rfdetr:models/rfdetrsegsmall_fp16/model.xml:GPU",
+ "contended": false,
+ "frames": 250,
+ "fps": 8.333333333333334,
+ "p50_ms": 118.80399000074249,
+ "p95_ms": 137.48299874823712,
+ "p99_ms": 160.6791679120215,
+ "max_ms": 209.42722999461694,
+ "proc_cpu_pct_of_one_core": 99.1,
+ "system_cpu_pct": 23.8,
+ "rss_mb": 248.6171875,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}

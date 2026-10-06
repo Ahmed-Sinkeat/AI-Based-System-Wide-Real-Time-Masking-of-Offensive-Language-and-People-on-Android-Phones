@@ -1,0 +1,19 @@
+{
+ "gl": "Mesa Intel(R) Iris(R) Xe Graphics (TGL GT2)",
+ "contended": false,
+ "downscale_plus_sync_readback_ms": {
+  "p50": 2.998874995682854,
+  "p95": 3.895296944392612,
+  "max": 12.031019999994896
+ },
+ "downscale_plus_pbo_async_readback_ms": {
+  "p50": 2.5574130013410468,
+  "p95": 2.8552280979056377,
+  "max": 7.7705779985990375
+ },
+ "mask_upload_plus_pixelate_pass_1080p_ms": {
+  "p50": 3.630047500337241,
+  "p95": 3.957197247291334,
+  "max": 13.155660999473184
+ }
+}

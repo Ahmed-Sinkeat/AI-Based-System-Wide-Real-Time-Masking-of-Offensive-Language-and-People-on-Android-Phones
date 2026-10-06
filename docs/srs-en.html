@@ -1,0 +1,267 @@
+<title>HaramBlurr Requirements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: one reading column, document header with meta grid, requirement tables with status chips */
+:root {
+  --bg: #f4f6f7; --surface: #ffffff; --fg: #16212a; --muted: #5b6873; --line: #dbe1e5;
+  --accent: #1b5a6b; --accent-soft: #e2eef1;
+  --warn: #9a5800; --warn-soft: #fbeedb; --ok: #2c6a38; --ok-soft: #e3f0e2;
+  --font: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11171c; --surface: #172028; --fg: #e3e9ed; --muted: #97a4ae; --line: #2a3640;
+  --accent: #7cc2d4; --accent-soft: #1b3038; --warn: #f0b25c; --warn-soft: #33281a; --ok: #8dcc93; --ok-soft: #1c2e1f;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11171c; --surface: #172028; --fg: #e3e9ed; --muted: #97a4ae; --line: #2a3640;
+  --accent: #7cc2d4; --accent-soft: #1b3038; --warn: #f0b25c; --warn-soft: #33281a; --ok: #8dcc93; --ok-soft: #1c2e1f;
+  color-scheme: dark }
+
+body { background: var(--bg); color: var(--fg); font: 16px/1.65 var(--font); }
+.page { max-width: 820px; margin: 0 auto; padding-inline: 16px; padding-block: 40px 72px; display: grid; gap: 40px; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.25; margin: 0; }
+h1 { font-size: 2.1rem; font-weight: 700; }
+h2 { font-size: 1.35rem; font-weight: 700; padding-bottom: 8px; border-bottom: 2px solid var(--line); }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p, ul { margin: 0; max-width: 68ch; }
+ul { padding-inline-start: 1.2em; display: grid; gap: 6px; }
+section { display: grid; gap: 16px; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font: 500 .78rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.lead { font-size: 1.12rem; color: var(--muted); }
+header { display: grid; gap: 14px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 24px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.meta div { display: grid; gap: 2px; }
+.meta span { font-size: .78rem; color: var(--muted); letter-spacing: .03em; }
+.toc { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .92rem; }
+.note { padding: 14px 16px; background: var(--accent-soft); border-radius: 8px; max-width: none; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: start; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font-size: .78rem; font-weight: 600; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+td.id { font: 500 .85rem var(--mono); color: var(--accent); white-space: nowrap; }
+td small { display: block; color: var(--muted); font-size: .86rem; margin-top: 3px; }
+.chip { display: inline-block; font-size: .78rem; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.chip.ok { background: var(--ok-soft); color: var(--ok); }
+.chip.plan { background: var(--accent-soft); color: var(--accent); }
+.chip.open { background: var(--warn-soft); color: var(--warn); }
+
+/* the "hide first" timeline, the one picture this product needs */
+.flow { display: flex; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); font-size: .9rem; }
+.flow div { padding: 14px; display: grid; gap: 2px; min-width: 0; }
+.flow b { font-weight: 600; }
+.flow span { color: var(--muted); font-size: .84rem; }
+.flow .a { flex: 1; background: var(--surface); }
+.flow .b { flex: 1.3; background: repeating-linear-gradient(45deg, var(--warn-soft) 0 10px, var(--surface) 10px 20px); }
+.flow .c { flex: 1.6; background: var(--ok-soft); }
+@media (max-width: 560px) { .flow { flex-direction: column; } }
+footer { color: var(--muted); font-size: .88rem; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+
+<div class="page">
+  <header>
+    <div class="eyebrow">Software Requirements Specification</div>
+    <h1>HaramBlurr</h1>
+    <p class="lead">An Android app that hides bad language and images of people on the screen, in every app.</p>
+    <div class="meta">
+      <div><span>Version</span>2.1 (draft)</div>
+      <div><span>Date</span>6 October 2026</div>
+      <div><span>Scope</span>Android, v1 to v4</div>
+      <div><span>Status</span>For team review</div>
+    </div>
+    <nav class="toc" aria-label="Contents">
+      <a href="#intro">1. Introduction</a><a href="#overview">2. Overview</a><a href="#functional">3. Features</a>
+      <a href="#quality">4. Quality targets</a><a href="#scope">5. Not planned</a><a href="#status">6. Status &amp; plan</a>
+      <a href="#risks">7. Risks</a><a href="#terms">8. Terms</a>
+    </nav>
+  </header>
+
+  <section id="intro">
+    <h2>1. Introduction</h2>
+    <h3>1.1 Purpose</h3>
+    <p>This document explains what HaramBlurr must do and how well it must do it. It is written for the project team and supervisors, so it avoids deep technical detail. The full technical study and the test results live in <code>investigation-android-v1.md</code> and <code>p0-results-android-v1.md</code>.</p>
+    <h3>1.2 The problem</h3>
+    <p>Some people want to avoid bad language and images of people while they use their phone: in comments, chats, social apps, videos, ads and news. Today's tools have three problems:</p>
+    <ul>
+      <li>Most work only in <strong>one place</strong>, such as one browser or one website.</li>
+      <li>Tools that watch the whole screen show the content <strong>first</strong> and cover it <strong>after</strong>, so it flashes for a moment.</li>
+      <li>Some send screen content to a server, which is bad for privacy.</li>
+    </ul>
+    <h3>1.3 Our idea</h3>
+    <p>HaramBlurr is one Android app. It uses Android's accessibility feature (the same one screen readers use) to know what is on the screen, and it draws covers on top. Everything runs on the phone.</p>
+    <ul>
+      <li><strong>Bad language:</strong> the app reads the text that apps show, finds bad words with a word list, and covers them. From v1.1, our own small AI model on the phone adds context: it catches insults without bad words and avoids covering normal uses of words such as "dog".</li>
+      <li><strong>People:</strong> the app looks at a picture of the screen and finds people with an AI model on the phone, then covers them.</li>
+    </ul>
+    <h3>1.4 Release plan</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Version</th><th>Hides</th><th>Why in this order</th></tr>
+      <tr><td class="id">v1</td><td><strong>Bad-language text</strong> in standard Arabic and English: swearing, sexual words, insults, blasphemy</td><td>The easiest start. It builds the app that later versions reuse.</td></tr>
+      <tr><td class="id">v1.1</td><td><strong>Smarter text filter</strong>: our own small AI model adds context to the word list</td><td>Fixes what a word list cannot see; the team's main research contribution</td></tr>
+      <tr><td class="id">v2</td><td><strong>Big people</strong> (taller than about 96 screen pixels)</td><td>The AI model already finds most of them</td></tr>
+      <tr><td class="id">v3</td><td><strong>Medium people</strong> (about 32–96 pixels)</td><td>Needs a closer check in parts of the screen</td></tr>
+      <tr><td class="id">v4</td><td><strong>Small people</strong> (under about 32 pixels)</td><td>Needs our own training on phone screenshots</td></tr>
+    </table></div>
+    <p>Each version adds to the one before.</p>
+  </section>
+
+  <section id="overview">
+    <h2>2. Overview</h2>
+    <h3>2.1 How it works, simply</h3>
+    <p><strong>Bad language (v1):</strong></p>
+    <ul>
+      <li><strong>Listen:</strong> Android tells the app when the screen changes.</li>
+      <li><strong>Read:</strong> the app reads the text on the screen.</li>
+      <li><strong>Clean:</strong> it removes spelling tricks (for example tashkeel, stretched letters, symbols in place of letters).</li>
+      <li><strong>Match:</strong> it looks each word up in the bad-word list.</li>
+      <li><strong>Cover:</strong> it puts a solid block over the bad word or over the whole message (the user chooses).</li>
+    </ul>
+    <p><strong>People (v2–v4):</strong> the changed part of the screen is covered at once. The app takes a picture of the other app's window (the picture does not include our covers), the AI model finds the people, and the cover is removed everywhere except over the people.</p>
+    <div class="flow" role="img" aria-label="Timeline for people: content changes, stays covered for about 0.3 to 0.7 seconds while it is checked, then is shown with people hidden">
+      <div class="a"><b>Content changes</b><span>scroll, new page, new app</span></div>
+      <div class="b"><b>Covered while checked</b><span>people: about 0.3–0.7 s today</span></div>
+      <div class="c"><b>Shown</b><span>with every detected person hidden</span></div>
+    </div>
+    <p>Text needs no "covered while checked" step. The check takes less than a millisecond, so the cover appears right after the text.</p>
+    <h3>2.2 Users</h3>
+    <p>One kind of user: a person who chooses to install the filter on their own phone. It is a personal tool, not a parental-control or monitoring tool.</p>
+    <h3>2.3 Where it runs</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Item</th><th>Requirement</th></tr>
+      <tr><td>System</td><td>v1 (text): Android 8.0 or newer. v2–v4 (people): Android 14 or newer. Android 13 only with a weaker fallback (FR-16).</td></tr>
+      <tr><td>Test phone</td><td>Xiaomi Redmi 12: MediaTek Helio G88, 2 fast + 6 slow processor cores, small Mali-G52 graphics. A normal low-cost phone.</td></tr>
+      <tr><td>Internet</td><td>Not needed. The app does not even ask for internet access.</td></tr>
+      <tr><td>Install</td><td>From an APK file (not Google Play) for the graduation project</td></tr>
+    </table></div>
+    <h3>2.4 Assumptions</h3>
+    <ul>
+      <li>The user turns on HaramBlurr in the phone's accessibility settings and allows it to run in the background.</li>
+      <li>"Bad language" means the words and phrases on our list, in four categories: swearing, sexual words, insults and blasphemy.</li>
+      <li>"Person" means any human figure: real, drawn, animated or in a game.</li>
+      <li>Hiding something by mistake is acceptable. Showing a person or a bad word by mistake is not. When in doubt, hide.</li>
+    </ul>
+  </section>
+
+  <section id="functional">
+    <h2>3. Features (functional requirements)</h2>
+    <p>Priority: <strong>Must</strong> = needed for that version, <strong>Should</strong> = planned if time allows, <strong>Could</strong> = later.</p>
+    <h3>3.1 The app (built in v1, used by all versions)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>ID</th><th>Requirement</th><th>Ver.</th><th>Priority</th><th>Status</th></tr>
+      <tr><td class="id">FR-1</td><td>Before turning on, show a clear screen that explains what the app can see and that nothing leaves the phone.</td><td>v1</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-2</td><td>Show a small notification while the filter is on. If the filter stops or crashes, the notification goes away and the user can see that.</td><td>v1</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-3</td><td>Covers move with the page when the user scrolls, so covered content stays covered and the cover does not flicker.</td><td>v1</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-4</td><td>Let the user turn the filter on and off and skip chosen apps.</td><td>v1</td><td>Should</td><td><span class="chip plan">Planned</span></td></tr>
+    </table></div>
+    <h3>3.2 Bad-language text (v1)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>ID</th><th>Requirement</th><th>Ver.</th><th>Priority</th><th>Status</th></tr>
+      <tr><td class="id">FR-5</td><td>Read the text shown by every app that shares its text with Android: social apps, chats, browsers, news.</td><td>v1</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-6</td><td>Find bad words and phrases in standard Arabic and English, in four categories: swearing, sexual words, insults, blasphemy.</td><td>v1</td><td>Must</td><td><span class="chip open">List needed</span><small>The Arabic list must be built by the team.</small></td></tr>
+      <tr><td class="id">FR-7</td><td>Catch common spelling tricks: tashkeel, stretched letters (ـ), different alef and ya forms, repeated letters, symbols in place of letters.</td><td>v1</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-8</td><td>Match whole words only, so a normal word that contains a bad word is not covered.</td><td>v1</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-9</td><td>Cover with a solid block. The user chooses: cover only the bad word, or the whole message.</td><td>v1</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-10</td><td>Let the user turn each category on and off.</td><td>v1</td><td>Should</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-11</td><td>Do not cover text the user is typing.</td><td>v1</td><td>Should</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-12</td><td>Also read text inside images and videos (memes, thumbnails, subtitles).<small>Planned with PaddleOCR (Arabic mobile model, about 8 MB). Google's on-device OCR does not support Arabic.</small></td><td>later</td><td>Could</td><td><span class="chip plan">Later</span></td></tr>
+      <tr><td class="id">FR-20</td><td>Our own small on-phone AI text model as a second layer: it reads the whole message, decides the category with a confidence, and points at the offensive <strong>words</strong>. It handles context-dependent words and insults without bad words.<small>Trained by the team from large open "teacher" models (investigation §3.5). Compared with the word list and ready-made small models.</small></td><td>v1.1</td><td>Should</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-21</td><td>The user chooses which language(s) to filter: <strong>one by default</strong> (the phone's language), two if needed. Each language is a "pack" with its own word list and, from v1.1, its own model. Only the chosen packs use memory. Text is sent to the right pack by its letters (Arabic or Latin).</td><td>v1</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+    </table></div>
+    <h3>3.3 People (v2–v4)</h3>
+    <div class="table-wrap"><table>
+      <tr><th>ID</th><th>Requirement</th><th>Ver.</th><th>Priority</th><th>Status</th></tr>
+      <tr><td class="id">FR-13</td><td>Detect people in every app that shows images. Cover each one with a strong pixelation or solid fill, a little larger than the person.<small>A light blur still shows the body shape.</small></td><td>v2</td><td>Must</td><td><span class="chip ok">Tested offline</span></td></tr>
+      <tr><td class="id">FR-14</td><td>Cover changed content as soon as the phone reports the change, and keep it covered until it has been checked. The cover never lifts by itself.</td><td>v2</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-15</td><td>Some apps block screenshots (banking, some video apps). The user chooses to leave those apps alone or always cover them.</td><td>v2</td><td>Should</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-16</td><td>Fallback for Android 13: use screen capture instead of window pictures.<small>In this mode, new content can show for a moment before it is covered.</small></td><td>v2</td><td>Could</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-17</td><td>Do a closer check in parts of the screen (tiles) to find medium-size people.</td><td>v3</td><td>Must</td><td><span class="chip open">Needs work</span><small>Works offline. Too slow on the phone today.</small></td></tr>
+      <tr><td class="id">FR-18</td><td>Find small and far-away people, using a model trained on real phone screenshots.</td><td>v4</td><td>Must</td><td><span class="chip open">Needs work</span></td></tr>
+      <tr><td class="id">FR-19</td><td>A special mode for full-screen video that checks more often.</td><td>later</td><td>Could</td><td><span class="chip plan">Later</span></td></tr>
+    </table></div>
+  </section>
+
+  <section id="quality">
+    <h2>4. Quality targets (non-functional requirements)</h2>
+    <div class="table-wrap"><table>
+      <tr><th>ID</th><th>Area</th><th>Target</th><th>Today</th></tr>
+      <tr><td class="id">NFR-1</td><td>Text safety (v1)</td><td>Hide at least 95% of the bad words on our list in real comments and chats.</td><td><span class="chip open">Not measured</span></td></tr>
+      <tr><td class="id">NFR-2</td><td>Text false covers (v1)</td><td>No more than 1 wrong cover per 1 000 clean words (news, Quran, normal chats).</td><td><span class="chip open">Not measured</span></td></tr>
+      <tr><td class="id">NFR-3</td><td>Gap before the cover</td><td>New content shows for no more than about 3 frames (about 33 ms on a 90 Hz screen) before it is covered.</td><td><span class="chip open">Not measured</span><small>First measurement in v1.</small></td></tr>
+      <tr><td class="id">NFR-4</td><td>People safety (v2–v4)</td><td>Hide at least 95% of people of that version's size: big in v2, medium in v3, small in v4.</td><td><span class="chip open">Not yet</span><small>On test screens, one pass (with tiles): big 85–89% (91–95%), medium 60–76% (87–89%), small 24–27% (51–54%).</small></td></tr>
+      <tr><td class="id">NFR-5</td><td>Waiting time (people)</td><td>Changed content stays covered for no more than about 0.7 s.</td><td><span class="chip open">Not measured</span><small>Expected 0.3–0.7 s from the parts.</small></td></tr>
+      <tr><td class="id">NFR-6</td><td>Check speed (people)</td><td>One full-screen check takes 150 ms or less on the test phone.</td><td><span class="chip open">Not yet</span><small>295 ms on the processor. The faster options are not measured yet.</small></td></tr>
+      <tr><td class="id">NFR-7</td><td>Smoothness</td><td>Touches pass through the covers. The phone does not feel slower.</td><td><span class="chip plan">By design</span></td></tr>
+      <tr><td class="id">NFR-8</td><td>Battery</td><td>No work while the screen is still.</td><td><span class="chip plan">By design</span><small>Battery use not measured yet.</small></td></tr>
+      <tr><td class="id">NFR-9</td><td>Memory</td><td>v1 under 50 MB. With the text model (v1.1) under 150 MB. With the people model too, under 250 MB.</td><td><span class="chip ok">Likely</span><small>People model alone: about 98 MB.</small></td></tr>
+      <tr><td class="id">NFR-10</td><td>Privacy</td><td>Screen text and images stay in memory only. Nothing is saved and nothing is sent. The app has no internet permission.</td><td><span class="chip plan">By design</span></td></tr>
+      <tr><td class="id">NFR-11</td><td>Stability</td><td>A crash in HaramBlurr must never close or freeze other apps.</td><td><span class="chip plan">By design</span></td></tr>
+      <tr><td class="id">NFR-12</td><td>Permissions</td><td>The user grants access <strong>once</strong>. The app never asks again on every use or after a restart.<small>A common complaint about a competing app.</small></td><td><span class="chip plan">By design</span><small>v1 needs no screen capture. v2+ uses the accessibility window picture, which needs no per-session prompt.</small></td></tr>
+      <tr><td class="id">NFR-13</td><td>Text model (v1.1)</td><td>Per language pack, on the test phone: real RAM at most 100 MB, at most 50 ms per message (p95), about one CPU core at most while checking (or the GPU). Better than the word list alone and than ready-made small models on the same test set.</td><td><span class="chip open">Not built</span><small>Candidates are measured on the phone first (step P0c).</small></td></tr>
+    </table></div>
+  </section>
+
+  <section id="scope">
+    <h2>5. Not planned</h2>
+    <ul>
+      <li>iPhone. Apple does not let apps see or cover other apps.</li>
+      <li>Arabic dialects and Arabizi (Arabic written in Latin letters). Possible after v1.</li>
+      <li>A root mode that works inside Android's screen drawing</li>
+      <li>The Linux desktop version. It is paused as plan B, and its test results still help.</li>
+      <li>Hiding only some people, for example by gender. This is much less accurate, and a mistake means a person is shown.</li>
+      <li>Blocking the user from turning the filter off. It is a personal choice, not a lock.</li>
+    </ul>
+  </section>
+
+  <section id="status">
+    <h2>6. Status and plan</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Step</th><th>What</th><th>Time</th><th>Status</th></tr>
+      <tr><td class="id">v1-a</td><td>App skeleton: accessibility service, covers, settings, notification, consent screen</td><td>~1 week</td><td><span class="chip plan">Next</span></td></tr>
+      <tr><td class="id">v1-b</td><td>Text filter: clean, match, locate the word, cover, follow scrolling. Measure the gap.</td><td>1–2 weeks</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">v1-c</td><td>Word lists: build the Arabic list, review the English list, test on real comments</td><td>~1 week</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">v1.1</td><td>Own text model: data, labels from large open models, training, comparison</td><td>4–5 weeks</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">P0</td><td>Test the people model for speed and accuracy on a laptop and on test phone screens</td><td>days</td><td><span class="chip ok">Done</span></td></tr>
+      <tr><td class="id">P0b</td><td>Finish the speed test on the Redmi 12</td><td>1 evening</td><td><span class="chip open">Half done</span></td></tr>
+      <tr><td class="id">v2</td><td>People model in the app, big people</td><td>~2 weeks</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">v3</td><td>Tiles and a faster model setup, medium people</td><td>1–2 weeks</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">v4</td><td>Train on real phone screenshots, small people</td><td>weeks</td><td><span class="chip plan">Planned</span></td></tr>
+    </table></div>
+    <p class="note"><strong>What the tests showed so far:</strong> the people model finds big people well. Small people and phone speed are the open problems, and they come later (v3, v4). v1 does not depend on them.</p>
+  </section>
+
+  <section id="risks">
+    <h2>7. Risks</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Risk</th><th>Effect</th><th>What we do</th></tr>
+      <tr><td>No complete free Arabic word list (the best free one has 348 Arabic-script entries)</td><td>Many Arabic bad words are missed</td><td>Start from free lists (LDNOOBW V2, Attia's lexicon). The team completes the list, then tests it on real Arabic comments.</td></tr>
+      <tr><td>Insults and blasphemy depend on context</td><td>Normal text gets covered</td><td>Phrases instead of single words, a strict insult list, a switch per category</td></tr>
+      <tr><td>Some apps do not share their text</td><td>Bad words in those apps are not covered</td><td>List the apps that work. Text from pixels (OCR) later.</td></tr>
+      <tr><td>Small people are missed</td><td>Some people are shown</td><td>Tiles, training on phone screenshots, hide when unsure</td></tr>
+      <tr><td>The phone is too slow</td><td>Long waiting time, no tiles</td><td>Faster model types, graphics chip, smaller input. Otherwise a stronger test phone.</td></tr>
+      <tr><td>Xiaomi's battery saver stops the app</td><td>The filter stops without warning</td><td>A setup screen that asks for Autostart and no battery limits. The notification (FR-2) shows when it stops.</td></tr>
+      <tr><td>"HaramBlur" already exists as a browser extension and an Android app (500K+ downloads)</td><td>Our project must offer something it does not. Name confusion.</td><td>Bad-language text, cover only the person, hide first without a timeout, every app. Cite it as related work. Consider a new name.</td></tr>
+    </table></div>
+  </section>
+
+  <section id="terms">
+    <h2>8. Terms</h2>
+    <div class="table-wrap"><table>
+      <tr><td><strong>Frame</strong></td><td>One picture on the screen. The Redmi 12 shows up to 90 per second, so one frame is about 11 ms.</td></tr>
+      <tr><td><strong>ms / s</strong></td><td>Millisecond (one thousandth of a second) / second</td></tr>
+      <tr><td><strong>Accessibility service</strong></td><td>A special kind of Android app that the user turns on in settings. It can read what is on the screen and draw on top of it. Screen readers use the same feature.</td></tr>
+      <tr><td><strong>Cover</strong></td><td>The solid block or strong pixelation that we draw over a bad word or a person</td></tr>
+      <tr><td><strong>Word list</strong></td><td>Our list of bad words and phrases, each tagged with a category</td></tr>
+      <tr><td><strong>Cleaning (normalization)</strong></td><td>Removing spelling tricks before matching, so "كلبببب" and "كلب" count as the same word</td></tr>
+      <tr><td><strong>OCR</strong></td><td>Reading text from a picture. Needed for text inside images, which comes later (PaddleOCR).</td></tr>
+      <tr><td><strong>AI model</strong></td><td>The trained program that finds people in a picture</td></tr>
+      <tr><td><strong>Tiles</strong></td><td>Checking the screen in a few parts instead of all at once, so small people look bigger to the model</td></tr>
+      <tr><td><strong>Hide first</strong></td><td>Our rule for people: new content stays covered until it is checked (in technical documents: "fail-closed")</td></tr>
+    </table></div>
+  </section>
+
+  <footer>HaramBlurr · Graduation project · SRS v2.1 draft (Android) · Arabic version available · The Linux version is in srs-linux-en.html</footer>
+</div>

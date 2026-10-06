@@ -1,0 +1,209 @@
+<title>HaramBlurr Requirements</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: one reading column, document header with meta grid, requirement tables with status chips */
+:root {
+  --bg: #f4f6f7; --surface: #ffffff; --fg: #16212a; --muted: #5b6873; --line: #dbe1e5;
+  --accent: #1b5a6b; --accent-soft: #e2eef1;
+  --warn: #9a5800; --warn-soft: #fbeedb; --ok: #2c6a38; --ok-soft: #e3f0e2;
+  --font: "IBM Plex Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11171c; --surface: #172028; --fg: #e3e9ed; --muted: #97a4ae; --line: #2a3640;
+  --accent: #7cc2d4; --accent-soft: #1b3038; --warn: #f0b25c; --warn-soft: #33281a; --ok: #8dcc93; --ok-soft: #1c2e1f;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11171c; --surface: #172028; --fg: #e3e9ed; --muted: #97a4ae; --line: #2a3640;
+  --accent: #7cc2d4; --accent-soft: #1b3038; --warn: #f0b25c; --warn-soft: #33281a; --ok: #8dcc93; --ok-soft: #1c2e1f;
+  color-scheme: dark }
+
+body { background: var(--bg); color: var(--fg); font: 16px/1.65 var(--font); }
+.page { max-width: 820px; margin: 0 auto; padding-inline: 16px; padding-block: 40px 72px; display: grid; gap: 40px; }
+h1, h2, h3 { text-wrap: balance; line-height: 1.25; margin: 0; }
+h1 { font-size: 2.1rem; font-weight: 700; }
+h2 { font-size: 1.35rem; font-weight: 700; padding-bottom: 8px; border-bottom: 2px solid var(--line); }
+h3 { font-size: 1.05rem; font-weight: 600; }
+p, ul { margin: 0; max-width: 68ch; }
+ul { padding-inline-start: 1.2em; display: grid; gap: 6px; }
+section { display: grid; gap: 16px; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.eyebrow { font: 500 .78rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.lead { font-size: 1.12rem; color: var(--muted); }
+header { display: grid; gap: 14px; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px 24px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.meta div { display: grid; gap: 2px; }
+.meta span { font-size: .78rem; color: var(--muted); letter-spacing: .03em; }
+.toc { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .92rem; }
+.note { padding: 14px 16px; background: var(--accent-soft); border-radius: 8px; max-width: none; }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: start; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font-size: .78rem; font-weight: 600; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+td.id { font: 500 .85rem var(--mono); color: var(--accent); white-space: nowrap; }
+td small { display: block; color: var(--muted); font-size: .86rem; margin-top: 3px; }
+.chip { display: inline-block; font-size: .78rem; font-weight: 600; padding: 2px 9px; border-radius: 999px; white-space: nowrap; }
+.chip.ok { background: var(--ok-soft); color: var(--ok); }
+.chip.plan { background: var(--accent-soft); color: var(--accent); }
+.chip.open { background: var(--warn-soft); color: var(--warn); }
+
+/* the "hide first" timeline, the one picture this product needs */
+.flow { display: flex; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); font-size: .9rem; }
+.flow div { padding: 14px; display: grid; gap: 2px; min-width: 0; }
+.flow b { font-weight: 600; }
+.flow span { color: var(--muted); font-size: .84rem; }
+.flow .a { flex: 1; background: var(--surface); }
+.flow .b { flex: 1.3; background: repeating-linear-gradient(45deg, var(--warn-soft) 0 10px, var(--surface) 10px 20px); }
+.flow .c { flex: 1.6; background: var(--ok-soft); }
+@media (max-width: 560px) { .flow { flex-direction: column; } }
+footer { color: var(--muted); font-size: .88rem; border-top: 1px solid var(--line); padding-top: 16px; }
+</style>
+
+<div class="page">
+  <header>
+    <div class="eyebrow">Software Requirements Specification</div>
+    <h1>HaramBlurr</h1>
+    <p class="lead">A filter for your desktop that hides people on screen as they appear, in every app.</p>
+    <p class="note"><strong>Paused, plan B (6 October 2026).</strong> The project moved to Android first. The current SRS is <code>srs-en.html</code>.</p>
+    <div class="meta">
+      <div><span>Version</span>1.0 (draft)</div>
+      <div><span>Date</span>3 October 2026</div>
+      <div><span>Scope</span>Linux v1</div>
+      <div><span>Status</span>For team review</div>
+    </div>
+    <nav class="toc" aria-label="Contents">
+      <a href="#intro">1. Introduction</a><a href="#overview">2. Overview</a><a href="#functional">3. Features</a>
+      <a href="#quality">4. Quality targets</a><a href="#scope">5. Not in v1</a><a href="#status">6. Status &amp; plan</a>
+      <a href="#risks">7. Risks</a><a href="#terms">8. Terms</a>
+    </nav>
+  </header>
+
+  <section id="intro">
+    <h2>1. Introduction</h2>
+    <h3>1.1 Purpose</h3>
+    <p>This document explains what HaramBlurr must do and how well it must do it. It is written for the project team and supervisors, so it avoids deep technical detail. The full technical study and the test results live in <code>investigation-linux-v1.md</code> and <code>p0-results-linux-v1.md</code>.</p>
+    <h3>1.2 The problem</h3>
+    <p>Some people want to avoid seeing images of people while they use a computer: in social feeds, videos, ads, news and games. Today's tools record the screen, look at it, then draw a blur on top. That has three problems:</p>
+    <ul>
+      <li>The content is shown <strong>before</strong> it is checked, so it flashes on screen for a moment.</li>
+      <li>They work like screen recording, which is heavy and asks for screen-sharing permission.</li>
+      <li>They often work only in one app or one website.</li>
+    </ul>
+    <h3>1.3 Our idea</h3>
+    <p>HaramBlurr sits inside the part of Linux that draws all windows on the screen. It sees each window's picture <strong>before</strong> it reaches the screen. Anything new stays hidden until it has been checked. Only then is it shown, with any people covered.</p>
+  </section>
+
+  <section id="overview">
+    <h2>2. Overview</h2>
+    <h3>2.1 How it works, simply</h3>
+    <ul>
+      <li><strong>The display part</strong> runs inside the desktop. It takes a small copy of each window when it changes and applies the cover.</li>
+      <li><strong>The detection part</strong> is a separate background program. An AI model finds the people in that copy and sends back where they are.</li>
+      <li>The two are separate on purpose. If detection crashes, the desktop keeps running and new content stays hidden.</li>
+    </ul>
+    <div class="flow" role="img" aria-label="Timeline: content changes, stays covered for about 40 to 50 milliseconds while it is checked, then is shown with people hidden">
+      <div class="a"><b>Content changes</b><span>new image, scroll, video frame</span></div>
+      <div class="b"><b>Covered while checked</b><span>about 40–50 ms (2–3 frames)</span></div>
+      <div class="c"><b>Shown</b><span>with every detected person hidden</span></div>
+    </div>
+    <h3>2.2 Users</h3>
+    <p>One kind of user: a person who chooses to install the filter on their own computer. It is a personal tool, not a parental-control or monitoring tool.</p>
+    <h3>2.3 Where it runs</h3>
+    <div class="table-wrap"><table>
+      <tr><th>Item</th><th>Version 1</th></tr>
+      <tr><td>System</td><td>Linux, with the Hyprland desktop (version 0.56)</td></tr>
+      <tr><td>Target laptop</td><td>Intel Core i5 (11th gen), built-in Intel Iris Xe graphics, 8 GB memory. A normal student laptop, no gaming graphics card.</td></tr>
+      <tr><td>Internet</td><td>Not needed. Everything runs on the device.</td></tr>
+    </table></div>
+    <h3>2.4 Assumptions</h3>
+    <ul>
+      <li>The user runs Hyprland and agrees to install a plugin for it.</li>
+      <li>"Person" means any human figure: real, drawn, animated or in a game.</li>
+      <li>Hiding something by mistake is acceptable. Showing a person by mistake is not. When in doubt, hide.</li>
+    </ul>
+  </section>
+
+  <section id="functional">
+    <h2>3. Features (functional requirements)</h2>
+    <p>Priority: <strong>Must</strong> = needed for v1, <strong>Should</strong> = planned for v1 if time allows, <strong>Could</strong> = later.</p>
+    <div class="table-wrap"><table>
+      <tr><th>ID</th><th>Requirement</th><th>Priority</th><th>Status</th></tr>
+      <tr><td class="id">FR-1</td><td>Detect people in every open window: browser, video player, image viewer, games, chat apps, and the wallpaper.</td><td>Must</td><td><span class="chip ok">Tested offline</span></td></tr>
+      <tr><td class="id">FR-2</td><td>Cover each detected person with a strong pixelation or solid fill, not a light blur.<small>A light blur still shows the body shape.</small></td><td>Must</td><td><span class="chip ok">Tested offline</span></td></tr>
+      <tr><td class="id">FR-3</td><td>Keep any new or changed content covered until it has been checked. Never show unchecked content.</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-4</td><td>Make the cover a little larger than the person so no edges show.</td><td>Must</td><td><span class="chip ok">Tested offline</span></td></tr>
+      <tr><td class="id">FR-5</td><td>Do a closer second check on large windows (such as a full-screen feed) to find small or far-away people.</td><td>Must</td><td><span class="chip open">Needs work</span></td></tr>
+      <tr><td class="id">FR-6</td><td>Keep a person covered across frames even if the model misses them for a moment, so the cover does not flicker.</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-7</td><td>When the scene changes completely (a video cut, a new page), cover the whole window until it is checked.</td><td>Should</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-8</td><td>If the detection program stops, cover all new content and show a small warning sign.</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-9</td><td>Apply the filter to screenshots and screen sharing too, so nothing leaks through them.</td><td>Must</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-10</td><td>Let the user turn the filter on and off and choose how strong the cover is.</td><td>Should</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">FR-11</td><td>For video, delay the picture very slightly (up to 40 ms, too short to notice against the sound) instead of covering it.</td><td>Could</td><td><span class="chip plan">v1.1</span></td></tr>
+    </table></div>
+  </section>
+
+  <section id="quality">
+    <h2>4. Quality targets (non-functional requirements)</h2>
+    <div class="table-wrap"><table>
+      <tr><th>ID</th><th>Area</th><th>Target</th><th>Today</th></tr>
+      <tr><td class="id">NFR-1</td><td>Safety</td><td>Hide at least 95% of people in normal screen content.<small>This is the most important number.</small></td><td><span class="chip open">Not yet</span><small>Large people: 86–95%. Small people in a busy feed: 35–69% with the closer check.</small></td></tr>
+      <tr><td class="id">NFR-2</td><td>Speed</td><td>Changed content stays covered for no more than about 4 frames (about 65 ms).</td><td><span class="chip ok">Met</span><small>About 40–50 ms in tests.</small></td></tr>
+      <tr><td class="id">NFR-3</td><td>Smoothness</td><td>The desktop must not feel slower. Extra drawing work fits inside one screen frame.</td><td><span class="chip ok">Met in tests</span><small>About 6 ms per frame. Not yet tested inside Hyprland.</small></td></tr>
+      <tr><td class="id">NFR-4</td><td>Light on resources</td><td>No work when the screen is still. About 1 processor core and under 300 MB memory while content changes.</td><td><span class="chip ok">Met</span><small>Battery use not measured yet.</small></td></tr>
+      <tr><td class="id">NFR-5</td><td>Stability</td><td>A crash in detection must never freeze or close the desktop. Detection restarts by itself.</td><td><span class="chip plan">By design</span></td></tr>
+      <tr><td class="id">NFR-6</td><td>Privacy</td><td>Screen images stay in memory only. Nothing is saved to disk and nothing is sent over the internet.</td><td><span class="chip plan">By design</span></td></tr>
+      <tr><td class="id">NFR-7</td><td>Works on weak hardware</td><td>Still works, more slowly, on a laptop without usable graphics (processor only).</td><td><span class="chip ok">Met</span><small>About 25 ms per check.</small></td></tr>
+      <tr><td class="id">NFR-8</td><td>Future-ready</td><td>The AI model uses a standard format so it can move to Android later without retraining.</td><td><span class="chip plan">By design</span></td></tr>
+    </table></div>
+  </section>
+
+  <section id="scope">
+    <h2>5. Not in version 1</h2>
+    <ul>
+      <li>Android and other phones</li>
+      <li>Other Linux desktops (GNOME, KDE Plasma) and old X11 sessions</li>
+      <li>Hiding only some people, for example by gender. This is much less accurate, and a mistake means a person is shown.</li>
+      <li>Blocking the user from turning the filter off. It is a personal choice, not a lock.</li>
+      <li>HDR screens and computers with more than one graphics card</li>
+    </ul>
+  </section>
+
+  <section id="status">
+    <h2>6. Status and plan</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Stage</th><th>What</th><th>Time</th><th>Status</th></tr>
+      <tr><td class="id">P0</td><td>Test AI models on the target laptop for speed and accuracy</td><td>days</td><td><span class="chip ok">Done</span></td></tr>
+      <tr><td class="id">P1</td><td>Build the display part (Hyprland plugin) with fake detections</td><td>1–2 weeks</td><td><span class="chip plan">Next</span></td></tr>
+      <tr><td class="id">P2</td><td>Build the detection program and connect the two parts</td><td>1–2 weeks</td><td><span class="chip plan">Planned</span></td></tr>
+      <tr><td class="id">P3</td><td>Collect real screen recordings, label them with a large AI model, and train our model on them</td><td>weeks</td><td><span class="chip plan">Planned</span></td></tr>
+    </table></div>
+    <p class="note"><strong>What P0 showed:</strong> the laptop is fast enough. The open problem is accuracy on <strong>small people</strong>, such as thumbnails in a feed. Training on real screen content (P3) is the main fix.</p>
+  </section>
+
+  <section id="risks">
+    <h2>7. Risks</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Risk</th><th>Effect</th><th>What we do</th></tr>
+      <tr><td>Small people are missed</td><td>Some people are shown</td><td>Closer second check, training on screen content, hide when unsure</td></tr>
+      <tr><td>Hyprland updates break the plugin</td><td>Filter stops working</td><td>Fix one Hyprland version. Keep the plugin very small.</td></tr>
+      <tr><td>A plugin bug</td><td>The whole desktop can crash</td><td>Put all heavy logic in the separate detection program</td></tr>
+      <tr><td>Weak laptop limits model size</td><td>Lower accuracy</td><td>Use a stronger model on stronger laptops</td></tr>
+    </table></div>
+  </section>
+
+  <section id="terms">
+    <h2>8. Terms</h2>
+    <div class="table-wrap"><table>
+      <tr><td><strong>Frame</strong></td><td>One picture on the screen. A normal screen shows 60 per second, so one frame is about 17 ms.</td></tr>
+      <tr><td><strong>ms</strong></td><td>Millisecond, one thousandth of a second.</td></tr>
+      <tr><td><strong>Hyprland</strong></td><td>The Linux desktop program that draws all windows on the screen. Our display part is a plugin for it.</td></tr>
+      <tr><td><strong>AI model</strong></td><td>The trained program that finds people in a picture.</td></tr>
+      <tr><td><strong>Hide first</strong></td><td>Our rule: new content stays covered until it is checked (in technical documents: "fail-closed").</td></tr>
+    </table></div>
+  </section>
+
+  <footer>HaramBlurr · Graduation project · SRS v1.0 draft · Arabic version available</footer>
+</div>

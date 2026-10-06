@@ -1,0 +1,15 @@
+{
+ "spec": "ov-rfdetr:models/rfdetrsegnano_int8/model.xml:GPU",
+ "contended": false,
+ "frames": 288,
+ "fps": 9.6,
+ "p50_ms": 103.87635250299354,
+ "p95_ms": 113.94781210146903,
+ "p99_ms": 119.6813764997205,
+ "max_ms": 122.68732599477516,
+ "proc_cpu_pct_of_one_core": 99.7,
+ "system_cpu_pct": 13.8,
+ "rss_mb": 265.4921875,
+ "gpu_mhz_median": 1300.0,
+ "gpu_mhz_max_possible": 1300
+}

@@ -1,0 +1,26 @@
+# Python environment and caches
+.venv/
+__pycache__/
+*.pyc
+
+# Large or rebuildable data (see README "Getting the data")
+bench/data/
+bench/datasets/
+bench/ovcache/
+bench/neo/
+bench/tflite_work/
+
+# Model weights and exports (downloaded or rebuilt by the bench scripts)
+bench/models/
+bench/models_tflite/
+bench/*.pt
+bench/*.onnx
+
+# Third-party binaries
+bench/phone_tools/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/

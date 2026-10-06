@@ -1,0 +1,77 @@
+# HaramBlurr — Issues
+
+Open problems, risks to check, and decisions still needed. Closed issues stay at the bottom with how they were solved.
+Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** Android app · **B** language and data · **C** AI models (see [`roadmap.md`](roadmap.md)).
+
+**Priority:** 🔴 blocks the next step · 🟠 needed soon · 🟢 later or nice to have
+**How to add one:** next free number, one row, a clear "next action". When closed, move it to "Closed" with the date and the fix.
+
+---
+
+## Open
+
+### Setup and housekeeping
+
+| # | Pri | Issue | Next action | Stream | Since |
+|---|---|---|---|---|---|
+| 3 | 🟠 | **Developer verification** may reach our country before the defense | Register a student "limited distribution" account; keep ADB installs for development | A | 2026-10-07 |
+| 4 | 🟢 | Name clash: "HaramBlur" already exists (extension and Android app) | Team decides: keep "HaramBlurr" or rename | all | 2026-10-06 |
+| 5 | 🟢 | `docs/ha.pdf` is an old proposal draft | Keep as history or delete | all | 2026-10-06 |
+
+### People model and phone tests (needed before v2)
+
+| # | Pri | Issue | Next action | Stream | Since |
+|---|---|---|---|---|---|
+| 6 | 🟠 | **Phone speed test incomplete (P0b):** only fp32 CPU 4 / 2 threads measured | Phone on USB: `bench/bench_phone.py` for fp32 / fp16 / dynamic-range, CPU / GPU / NNAPI, 640 and 480 px | C | 2026-10-03 |
+| 7 | 🟢 | Full-INT8 export of the people model is broken (boxes and scores share one scale) | Only if more CPU speed is needed: export with boxes divided by the input size | C | 2026-10-06 |
+| 8 | 🟢 | TFLite export stopped after 640 px: 320 px, yolo11n and yolo26s were never exported | Re-run `bench/export_tflite.py` when needed | C | 2026-10-03 |
+| 9 | 🟢 | `bench/yolo26n-seg.onnx` is the **480 px** export (each export overwrites it) | Do not use it as "the 640 model"; name exports by size if it matters | C | 2026-10-06 |
+
+### Text filter (v1) and word lists
+
+| # | Pri | Issue | Next action | Stream | Since |
+|---|---|---|---|---|---|
+| 10 | 🟠 | **Attia's lexicon has no license** | Email the author for permission; if no, drop the 239 entries that only come from him | B | 2026-10-06 |
+| 11 | 🟠 | **Arabic list needs review:** 947 Arabic-script terms, mostly dialect; context-dependent words (كلب، كافر، حمار، عورة); **no blasphemy entries** | Two people review independently (Cohen's kappa); sort into 4 categories; write blasphemy phrases | B | 2026-10-06 |
+| 12 | 🟠 | English list (LDNOOBW) mixes categories and includes neutral or medical words | Review before use | B | 2026-10-06 |
+| 13 | 🟠 | **Gap before the cover is not measured** (target ≤ 3 frames) | v1-b: slow-motion filming at 240 fps, ≥ 30 trials per app | A + B | 2026-10-06 |
+| 14 | 🟠 | Unknown which apps share their text and **per-letter word boxes** (Chrome is confirmed in its source code; others are not) | v1-a: log what the service sees in Chrome, WhatsApp, Facebook, X, YouTube, Instagram, TikTok | A | 2026-10-07 |
+| 15 | 🟠 | The status notification may **stay visible after the app is killed**, so "notification gone = filter stopped" may be wrong | v1-a: kill the process and watch; then a foreground service or a 15-minute health check | A | 2026-10-07 |
+| 16 | 🟢 | Do our covers appear in the user's own screenshots? | v1-a: take a screenshot with covers visible | A | 2026-10-07 |
+| 17 | 🟢 | Does the overlay slow scrolling (NFR-7)? | v1-a: scroll with the overlay on and off, watch frame drops | A | 2026-10-07 |
+| 18 | 🟢 | Restricted-settings steps on HyperOS may differ from stock Android | v1-a: install from a file and follow setup step 5 on the Redmi 12 | A | 2026-10-07 |
+| 19 | 🟢 | Play Protect may warn about an app that reads the screen and draws over it | Install early builds from a file and watch for warnings | A | 2026-10-07 |
+| 20 | 🟢 | Shared test vectors (Python list builder vs Kotlin app cleaning) not created yet | Create the file when v1-b starts; use it in both test suites | A + B | 2026-10-07 |
+
+### Text model (v1.1)
+
+| # | Pri | Issue | Next action | Stream | Since |
+|---|---|---|---|---|---|
+| 21 | 🟠 | **Licenses to check** before using: Gemma models (Gemma terms), LFM2 (LFM license), MARBERTv2, AraBERT, ArabicBERT (not stated), HAYAA-student (research only), ArabicDialectSafety and OSACT data | Read each license; record it in research-methods §4.7 | C | 2026-10-07 |
+| 22 | 🟠 | Teachers' Arabic quality unknown (Laya never tested on Arabic; Jev mentions no Arabic) | Week 5: human-checked sample, Cohen's kappa with teacher labels | B + C | 2026-10-07 |
+| 23 | 🟢 | Jev / other API terms: may their answers be used to train our model? | Read the terms before using any API teacher | C | 2026-10-07 |
+| 24 | 🟢 | Token count for trimming came from a **small sample** (4 276 tokens, 1.7%) | Recount over the full training data per language | C | 2026-10-07 |
+| 25 | 🟢 | Real RAM of memory-mapped models may differ from estimates | P0c step 1 measures real RAM per process on the phone | C | 2026-10-07 |
+
+### Research and documentation
+
+| # | Pri | Issue | Next action | Stream | Since |
+|---|---|---|---|---|---|
+| 26 | 🟢 | Reason for moving to Android first is not written down in detail | Add it to `asbuild.md` (2026-10-06 entry) | all | 2026-10-07 |
+| 27 | 🟢 | "HaramBlur's app uses screen capture" is an **inference**, not confirmed | Keep it labelled as an inference in the report | B | 2026-10-06 |
+| 28 | 🟢 | Department rules on AI-tool use and reference style unknown | Ask the supervisor; adjust research-methods §8 and the reference style | all | 2026-10-06 |
+
+---
+
+## Closed
+
+| # | Issue | Fixed on | How |
+|---|---|---|---|
+| C1 | Docs disagreed on platform (Linux vs Android) and target (people vs sensitive regions) | 2026-10-06 | Android first, people as target; Linux docs marked paused; proposal and cover aligned |
+| C2 | Phone speed test lost all results when it stopped | 2026-10-06 | `bench_phone.py` saves after every run; 2 rows recovered into `results/phone_latency.csv` |
+| C3 | Full-INT8 phone model used for testing found nobody | 2026-10-06 | Moved to `models_tflite/broken/`; export now makes fp32 / fp16 / dynamic-range, all checked against fp32 (open follow-up: #7) |
+| C4 | Proposal PDF grew to 2 pages | 2026-10-06 | Student names on one line, shorter goal lines; back to 1 page |
+| C5 | Downloaded word lists were lost from a temporary folder | 2026-10-06 | Sources saved in `wordlists/sources/` with their URLs |
+| C6 | Model shortlist excluded candidates by assumption | 2026-10-07 | Full candidate list; only two hard rules; choice by phone measurement (P0c) |
+| C7 | Project not in git (#1) | 2026-10-07 | Git repository + private GitHub repository; large and rebuildable files ignored |
+| C8 | Android version of the Redmi 12 unknown (#2) | 2026-10-07 | Android 15 (SDK 35), HyperOS 2.0, 8 GB RAM: meets Android 14+ |
