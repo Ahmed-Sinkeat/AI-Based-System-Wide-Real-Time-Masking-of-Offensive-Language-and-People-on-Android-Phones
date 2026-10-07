@@ -125,3 +125,11 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **Why:** History, backup, and one place for the team.
 - **Left out of git:** the Python environment, COCO data, model weights and exports, caches, the Intel GPU runtime, and the phone benchmark binary (large or rebuildable; see the root README).
 - **Also:** the "Use of AI tools" note in research-methods §8 was kept, without naming a product or company.
+
+### 2026-10-07 — Full phone speed test (P0b) and 480 px / fp16 accuracy
+- **What:** All 6 model files (640 and 480 px; fp32, fp16, dynamic-range) × CPU 1/2/4 threads, CPU with fp16 math, GPU, NNAPI on the Redmi 12 (36 runs); accuracy of the fp16 and 480 px files on the synthetic phone screens.
+- **Result:** At 640 px the **GPU is fastest (~205 ms)**; the best CPU setting is **2 fast cores with fp16 math (277 ms)**; **NNAPI gives nothing**. 480 px is faster (~121 ms) but **loses a lot of accuracy** (grid, medium people 64% → 41%), so **we keep 640**. fp16 is as accurate as fp32.
+- **Decision:** No setting meets the "≤ 150 ms per full screen" rule at 640, so tiles cannot run on every change: v2 uses the GPU at 640; v3 checks tiles only where the screen changed.
+- **What got in the way:** (1) The phone was warm (38–41 °C, on the charger) and the CPU was ~30% slower than on 2026-10-03; re-checked: 301 ms at 37 °C, 357 ms at 38 °C, so it is heat, not a mistake. (2) On the GPU, the 480 px files need **~52–60 s and ~470 MB to start** (640: ~4 s); repeated twice with the same result. (3) The accuracy script only handled 640 px files; it now takes the size from the file name.
+- **Evidence:** [`p0-results-android-v1.md`](p0-results-android-v1.md) §2–§4, `bench/results/phone_latency.csv`, `bench/results/phone_tflite_*`; closes issue #6
+

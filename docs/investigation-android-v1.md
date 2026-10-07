@@ -303,15 +303,14 @@ This is a real trade-off for the user:
 | Step | Today | Note |
 |---|---|---|
 | Window picture | max 3/s (333 ms gap) [5] | Android limit, not our code |
-| Model, full screen, CPU fp32, 4 threads | **295 ms** (p95 310) | Measured on the Redmi 12 |
-| Model, CPU fp32, 2 threads | 463 ms | Measured |
-| Model, CPU dynamic-range (int8 weights) | **not measured** | Test stopped early. The full-INT8 file was broken (finds nobody), see results §4. |
-| Model, GPU (Mali-G52), fp16 | **not measured** | |
-| Model, NNAPI | **not measured** | The Helio G88 has no strong AI unit, so expect little |
-| Memory (model run) | ~98 MB peak | Measured, fp32 |
-| 3 tiles (for small people) | ≈ 3 × one check | At 295 ms, that is ~0.9 s. Too slow unless INT8 or GPU is much faster. |
+| Model, full screen, **GPU** (Mali-G52), 640 px | **~205 ms**, ~180 MB peak, ~4 s start-up | Measured 2026-10-07, same for fp32 / fp16 / dynamic-range |
+| Model, CPU, 2 fast cores with fp16 math, 640 px | **277 ms**, 87 MB | Best CPU setting |
+| Model, CPU fp32, 4 threads, 640 px | 295 ms cool (35 °C) → 388 ms warm (41 °C) | Heat slows the CPU by up to ~30% |
+| Model, NNAPI | ≈ 1 CPU thread (761–1187 ms) | No help on this phone |
+| Model at 480 px | GPU ~121 ms, CPU drq 122 ms | Fast, but loses a lot of accuracy, and the GPU needs ~52 s and ~470 MB to start |
+| 3 tiles (for small people) | ≈ 3 × 205 ms ≈ 0.6 s on the GPU | Too slow for every change |
 
-**Go / no-go for the phone:** if no option (dynamic-range CPU, fp16 GPU, smaller input, a fixed full-INT8 export) gets one full-screen check under about **150 ms**, the tiles do not fit. Then small people stay the weak spot on this phone, or we need a faster target phone.
+**Go / no-go (measured 2026-10-07):** at 640 px no setting reaches **150 ms** per full screen; only 480 px does, and it loses too much accuracy. So **640 stays, the GPU is the main path, and tiles (v3) are used only where the screen changed**, not on every full screen. Details: [`p0-results-android-v1.md`](p0-results-android-v1.md) §2.
 
 ---
 

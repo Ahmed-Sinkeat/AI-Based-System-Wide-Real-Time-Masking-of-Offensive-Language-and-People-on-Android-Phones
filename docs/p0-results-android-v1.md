@@ -1,6 +1,6 @@
 # HaramBlurr — P0 Results on the Phone (Android v1)
 
-Date: 2026-10-03 (phone runs) and 2026-10-06 (checks and fixes) · Phone: Xiaomi Redmi 12 (Helio G88) · Laptop for offline runs: i5-1135G7
+Date: 2026-10-03 (first phone runs), 2026-10-06 (checks and fixes), 2026-10-07 (full phone speed test, 480 px and fp16 accuracy) · Phone: Xiaomi Redmi 12 (Helio G88, Android 15, 8 GB) · Laptop for offline runs: i5-1135G7
 Scope: the **people** model, used in v2–v4 ([`investigation-android-v1.md`](investigation-android-v1.md) §10). Offline tests only. No app code exists yet.
 
 > **v1 hides bad-language text and needs no AI model**, so nothing here blocks v1. These results matter from v2 (big people) onward. Text tests are planned in the investigation §3.4.
@@ -13,26 +13,37 @@ Raw data: `bench/results/phone/`, `bench/results/phone_tflite_*/`, `bench/result
 
 | Question | Answer |
 |---|---|
-| How fast is the model on the Redmi 12? | **295 ms** per full-screen check (fp32, CPU, 4 threads). About **3 checks per second**. The faster options were **not measured**: the test stopped after 2 of about 12 runs. |
+| How fast is the model on the Redmi 12? | **GPU: ~205 ms** per full-screen check at 640 px (about 5 per second). **CPU: 277 ms** at best (2 fast cores, fp16 math). NNAPI does not help. Warm phones are up to ~30% slower on the CPU (§2). |
 | Is the phone model file correct? | **fp32: yes.** It finds the same people as the laptop model. **INT8: no, it was broken.** It found **nobody** (0 of 448 people), so it was moved to `models_tflite/broken/` (§4). |
-| Does it hide people on phone-like screens? | **Large people: yes** (85–95%). **Small people: no.** One pass hides 24–27% of them. Three tiles hide 52–54%. |
-| What next? | v1 (text) does not need this model, so the app work can start now. Re-run the phone speed test (§5) **before v2**. |
+| Does it hide people on phone-like screens? | **Large people: yes** (85–95%). **Small people: no.** One pass hides 24–27% of them. Three tiles hide 52–54%. **480 px is faster but loses a lot** (e.g. medium people in the grid 64% → 41%), so **640 stays**. fp16 is as accurate as fp32. |
+| What next? | P0b is done. **The ≤ 150 ms rule for tiles is not met at 640** (§2): v3 must check tiles only where the screen changed. Fix the slow GPU start-up at 480 only if 480 is ever used (§4). |
 
 ---
 
 ## 2. Speed on the Redmi 12 (LiteRT `benchmark_model` over adb)
 
-| Model | Input | Run on | avg ms | p95 ms | Peak memory | Status |
-|---|---|---|---|---|---|---|
-| yolo26n-seg fp32 | 640 | CPU, 4 threads | **295** | 310 | 98 MB | measured |
-| yolo26n-seg fp32 | 640 | CPU, 2 threads | 463 | 481 | 98 MB | measured |
-| yolo26n-seg fp32 | 640 | CPU 1 thread, GPU, NNAPI, CPU forced-fp16 | — | — | — | **not run** (test stopped) |
-| yolo26n-seg INT8 | 640 | all | — | — | — | **not run**, and the file was broken anyway |
-| yolo26n-seg (any) | 480 / 320 | all | — | — | — | **not exported** (export stopped too) |
+Full run 2026-10-07: every file × every setting, 10 warm-up + 60 timed runs, 20 s pause between runs. Phone: Android 15, on the charger, screen on, battery **38–41 °C**. Raw: `bench/results/phone_latency.csv`, log `bench/results/bench_phone_all.log`.
 
-- **Why it stopped is unknown.** The log ends after the second run, with no error. The likely causes are an unplugged phone or a closed terminal. The script only saved its results file **at the very end**, so nothing was written. **Fixed:** `bench/bench_phone.py` now saves after every run. The 2 finished rows were recovered from the log into `results/phone_latency.csv`.
-- 4 threads is only 1.6× faster than 2 threads. The Helio G88 has only 2 fast cores, so threads 3 and 4 run on slow cores.
-- The phone has no fan. The script waits 20 s between runs. Battery temperature was 35–36 °C.
+**ms per full-screen check (average; p95 within ~5%) · peak memory in MB**
+
+| Model file | CPU 4 thr | CPU 2 thr | CPU 1 thr | **CPU 2 thr, fp16 math** | **GPU** | NNAPI |
+|---|---|---|---|---|---|---|
+| 640 fp32 (10.6 MB) | 388 · 99 | 621 · 99 | 1141 · 99 | **277 · 87** | **205 · 182** | 1061 · 130 |
+| 640 fp16 (5.4 MB) | 389 · 94 | 624 · 94 | 1187 · 95 | 310 · 83 | 207 · 177 | 1187 · 126 |
+| 640 dynamic-range (3.0 MB) | 280 · 88 | 437 · 89 | 759 · 89 | — | 207 · 174 | 761 · 120 |
+| 480 fp32 | 194 · 71 | 319 · 71 | 657 · 71 | **173 · 62** | **124 · 477** ⚠ | 658 · 102 |
+| 480 fp16 | 196 · 67 | 311 · 67 | 590 · 67 | 154 · 58 | 121 · 473 ⚠ | 590 · 96 |
+| 480 dynamic-range | 122 · 59 | 205 · 59 | 377 · 60 | — | 122 · 466 ⚠ | 380 · 88 |
+
+GPU start-up time: **~4 s at 640**, but **~52–60 s at 480** with **~470 MB** peak memory (⚠, see §4). CPU start-up: 0.1–0.3 s.
+
+**What this means**
+
+- **The GPU (Mali-G52) is the fastest at 640: ~205 ms**, for every file type. On the CPU the best is **2 fast cores with fp16 math: 277 ms** (and lower memory, 87 MB).
+- **NNAPI is useless on this phone**: as slow as 1 CPU thread. The Helio G88 has no AI unit that helps.
+- **Heat slows the CPU a lot.** The same test (640 fp32, 4 threads) gave **295 ms at 35 °C** (2026-10-03), **301 ms at 37 °C** and **357 ms at 38 °C** (re-checked 2026-10-07), and **388 ms** in the warm full run. A filter that runs all day will run warm: plan with the warm numbers, and prefer the GPU or 2 threads.
+- 4 threads use slow cores too: 2 threads with fp16 math are faster than 4 threads with fp32.
+- **Decision rule (≤ 150 ms per full screen, so tiles fit): not met at 640.** Only 480 meets it (GPU 121 ms, CPU drq 122 ms), but 480 loses a lot of accuracy (§3). Consequence for v3: tiles at 640 cost ~3 × 205 ms ≈ 0.6 s on the GPU; check tiles only where the screen changed, or accept a longer wait in strict mode.
 
 ---
 
@@ -60,13 +71,23 @@ Raw data: `bench/results/phone/`, `bench/results/phone_tflite_*/`, `bench/result
 | | feed | 3 tiles | **50.9** | 87.4 | 92.7 | 91.2 | 25.7 |
 | | grid | whole screen | 26.0 | 61.1 | 88.0 | 88.1 | 42.9 |
 | | grid | 3 tiles | **53.8** | 86.9 | 95.3 | 95.5 | 39.9 |
+| phone file, fp16 (640) | feed | whole / 3 tiles | 23.7 / **53.5** | 75.6 / 88.2 | 88.4 / 91.4 | | |
+| | grid | whole / 3 tiles | 27.4 / **54.4** | 63.7 / 88.1 | 89.5 / 94.9 | | |
+| phone file, fp32 (**480**) | feed | whole / 3 tiles | 22.8 / 39.5 | 63.0 / 84.3 | 78.9 / 90.1 | | |
+| | grid | whole / 3 tiles | 15.8 / 42.7 | 40.8 / 81.2 | 76.8 / 93.2 | | |
+| phone file, fp16 (480) | feed | whole / 3 tiles | 22.8 / 39.5 | 62.2 / 84.3 | 78.4 / 90.1 | | |
+| | grid | whole / 3 tiles | 15.7 / 42.6 | 40.5 / 81.2 | 76.8 / 93.3 | | |
+| phone file, dynamic-range (480) | feed | whole / 3 tiles | 22.8 / 37.7 | 56.7 / 82.7 | 77.2 / 89.2 | | |
+| | grid | whole / 3 tiles | 14.4 / 42.3 | 38.7 / 80.8 | 77.2 / 93.3 | | |
 
 ### 3.2 What this means
 
 - **The phone fp32 file works.** It matches the laptop model and is 1–4 points better (fp32 vs INT8).
+- **fp16 is as accurate as fp32** (within 1 point), so the GPU can use the half-size file.
+- **480 px loses a lot of accuracy**: in the grid, small 27 → 16%, medium 64 → 41%, large 89 → 77% (one pass). Even with tiles it stays below 640. **We keep 640.**
 - **The dynamic-range file (3 MB, for the phone CPU) is almost as good as fp32**: within about 2 points, except small people in the feed with one pass (19.3 vs 23.7). With tiles the gap is under 3 points. If it is faster on the phone, it is the CPU choice.
 - **Small people are the problem, as on Linux.** Half of the missed people are under about **40 px tall** on screen (38–44 px median, about 2.5 mm on a ~400 ppi screen). The model input is 640 px for a 2340 px tall screen, so the model sees them 3.7× smaller still: about 10 px. See `results/phone/missed_people_sheet.jpg`.
-- **3 tiles roughly double small-person recall.** But they cost 3 checks, about 0.9 s on the CPU today.
+- **3 tiles roughly double small-person recall.** But they cost 3 checks: about 0.6 s on the GPU, more on the CPU.
 - **Over-cover is high in the grid layout (≈40%)**, because small people get a cover that is big compared to them. That is acceptable: hiding too much is fine, showing a person is not.
 - These are COCO photos on fake screens. Real app screenshots are still untested (v4).
 
@@ -83,19 +104,21 @@ Pictures of what the user would see: `results/phone/feed_*.jpg`, `grid_*.jpg` (g
 | **Phone speed test stopped after 2 of ~12 runs**, with no results file | `results/bench_phone_640.log` ends after `cpu2`. `phone_latency.csv` missing. | `bench_phone.py` now saves after each run. Rows recovered. |
 | **TFLite export stopped after the 640 model** | `results/export_tflite.log` ends at 640. The 480 folder has float files only. 320, yolo11n and yolo26s were never exported. | 480 fp32/fp16/drq copied into `models_tflite/`. Re-run `export_tflite.py` for the rest when needed. |
 | `bench/yolo26n-seg.onnx` is the **480** export, not 640 | ONNX input 480 × 480 | Each export overwrites it. Do not use that file as "the 640 model". |
+| **GPU start-up at 480 px takes ~52–60 s and ~470 MB** (at 640: ~4 s, ~180 MB) | Every 480 file on the GPU; repeated twice on 2026-10-07 with the same result (52 s, 472 MB), so it is not a one-time effect | Do not use 480 on the GPU as is. If 480 is ever needed, try the GPU delegate's serialization cache (compiled kernels stored on disk) and re-measure. |
+| **CPU speed drops with heat** | 640 fp32, 4 threads: 295 ms (35 °C) → 301 (37 °C) → 357 (38 °C) → 388 (warm full run) | Report warm numbers; record battery temperature with every phone result; prefer the GPU or 2 threads in the app |
+| NNAPI gives no speed-up | NNAPI ≈ 1 CPU thread for every file | Do not use NNAPI on this phone |
 | Phone model needs its own NMS | Output is 116 × 8400 boxes (the export does not include the de-duplication step) | The app must do NMS (a few lines). Same decode as `bench/ov_seg.py`. |
 
 ---
 
-## 5. To do before v2 (phone plugged in, about 1 evening)
+## 5. Done and still to do
 
-```
-cd bench && source env.sh
-python bench_phone.py 640          # fp32, fp16, drq on CPU 1/2/4 threads, GPU, NNAPI
-python bench_phone.py 480          # smaller input: faster, but small people get worse
-```
+**Done (2026-10-07):** full phone speed test (36 runs), accuracy of fp16 and 480 px files.
 
-Then also measure accuracy at 480 with `phone.py` / `phone_tflite.py`. Decision rule from the investigation: **one full-screen check must take ≤ about 150 ms**, otherwise tiles do not fit on this phone.
+**Still to do (not blocking v1):**
+- A **sustained** test: 10–15 minutes of continuous checks, to see how far speed falls when the phone heats up (the app will run for hours).
+- GPU delegate serialization cache, only if 480 px or a new model shows the same slow GPU start-up.
+- P0c (text models, v1.1): separate, see investigation §3.5.
 
 ---
 

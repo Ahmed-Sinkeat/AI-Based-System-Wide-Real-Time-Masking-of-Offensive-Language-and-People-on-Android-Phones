@@ -1,7 +1,8 @@
 """phone.py's fake-phone-screen accuracy test, but with the actual phone .tflite file (run on the laptop with LiteRT).
 Checks that the exported phone model finds the same people as the OpenVINO model.  Decode = ov_seg.yolo (same NMS).
 
-  python phone_tflite.py <variant> [n_screens]     variant = fp32 | fp16 | drq   (models_tflite/yolo26n-seg_640_<variant>.tflite)
+  python phone_tflite.py <variant> [n_screens]     variant = fp32 | fp16 | drq (640 px) or 480_fp32 | 480_fp16 | 480_drq
+                                                   (models_tflite/yolo26n-seg_<size>_<type>.tflite)
 Writes results/phone_tflite_<variant>/ (does not touch results/phone/)."""
 import sys, numpy as np
 from pathlib import Path
@@ -20,8 +21,9 @@ def tflite_compile(path, dev):  # stands in for ov_seg.compile: NCHW in, [boxes 
 
 
 if __name__ == "__main__":
-    k = sys.argv[1]
+    k = sys.argv[1] if "_" in sys.argv[1] else f"640_{sys.argv[1]}"
+    sz = int(k.split("_")[0])
     ov_seg.compile = tflite_compile
-    phone.make_predictor = lambda spec: ov_seg.yolo(f"models_tflite/yolo26n-seg_640_{k}.tflite", "CPU")
+    phone.make_predictor = lambda spec: ov_seg.yolo(f"models_tflite/yolo26n-seg_{k}.tflite", "CPU", sz=sz)
     phone.OUT = Path(f"results/phone_tflite_{k}"); phone.OUT.mkdir(parents=True, exist_ok=True)
     phone.main(f"tflite-{k}", int(sys.argv[2]) if len(sys.argv) > 2 else 60)

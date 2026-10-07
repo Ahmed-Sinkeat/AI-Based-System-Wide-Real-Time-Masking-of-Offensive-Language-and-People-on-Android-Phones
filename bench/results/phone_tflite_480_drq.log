@@ -1,0 +1,259 @@
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+loading annotations into memory...
+Done (t=0.24s)
+creating index...
+index created!
+feed 1/60
+feed 2/60
+feed 3/60
+feed 4/60
+feed 5/60
+feed 6/60
+feed 7/60
+feed 8/60
+feed 9/60
+feed 10/60
+feed 11/60
+feed 12/60
+feed 13/60
+feed 14/60
+feed 15/60
+feed 16/60
+feed 17/60
+feed 18/60
+feed 19/60
+feed 20/60
+feed 21/60
+feed 22/60
+feed 23/60
+feed 24/60
+feed 25/60
+feed 26/60
+feed 27/60
+feed 28/60
+feed 29/60
+feed 30/60
+feed 31/60
+feed 32/60
+feed 33/60
+feed 34/60
+feed 35/60
+feed 36/60
+feed 37/60
+feed 38/60
+feed 39/60
+feed 40/60
+feed 41/60
+feed 42/60
+feed 43/60
+feed 44/60
+feed 45/60
+feed 46/60
+feed 47/60
+feed 48/60
+feed 49/60
+feed 50/60
+feed 51/60
+feed 52/60
+feed 53/60
+feed 54/60
+feed 55/60
+feed 56/60
+feed 57/60
+feed 58/60
+feed 59/60
+feed 60/60
+grid 1/60
+grid 2/60
+grid 3/60
+grid 4/60
+grid 5/60
+grid 6/60
+grid 7/60
+grid 8/60
+grid 9/60
+grid 10/60
+grid 11/60
+grid 12/60
+grid 13/60
+grid 14/60
+grid 15/60
+grid 16/60
+grid 17/60
+grid 18/60
+grid 19/60
+grid 20/60
+grid 21/60
+grid 22/60
+grid 23/60
+grid 24/60
+grid 25/60
+grid 26/60
+grid 27/60
+grid 28/60
+grid 29/60
+grid 30/60
+grid 31/60
+grid 32/60
+grid 33/60
+grid 34/60
+grid 35/60
+grid 36/60
+grid 37/60
+grid 38/60
+grid 39/60
+grid 40/60
+grid 41/60
+grid 42/60
+grid 43/60
+grid 44/60
+grid 45/60
+grid 46/60
+grid 47/60
+grid 48/60
+grid 49/60
+grid 50/60
+grid 51/60
+grid 52/60
+grid 53/60
+grid 54/60
+grid 55/60
+grid 56/60
+grid 57/60
+grid 58/60
+grid 59/60
+grid 60/60
+{
+ "feed": {
+  "full/0.1": {
+   "small": {
+    "n": 114,
+    "rec50": 0.23684210526315788,
+    "rec90": 0.22807017543859648
+   },
+   "medium": {
+    "n": 127,
+    "rec50": 0.6614173228346457,
+    "rec90": 0.5669291338582677
+   },
+   "large": {
+    "n": 232,
+    "rec50": 0.9051724137931034,
+    "rec90": 0.771551724137931
+   },
+   "pixel_recall": 0.8712269456011839,
+   "overblur": 0.25433994334881077
+  },
+  "tiled3/0.1": {
+   "small": {
+    "n": 114,
+    "rec50": 0.39473684210526316,
+    "rec90": 0.37719298245614036
+   },
+   "medium": {
+    "n": 127,
+    "rec50": 0.889763779527559,
+    "rec90": 0.8267716535433071
+   },
+   "large": {
+    "n": 232,
+    "rec50": 0.9741379310344828,
+    "rec90": 0.8922413793103449
+   },
+   "pixel_recall": 0.9030207928270456,
+   "overblur": 0.24686865562464697
+  },
+  "height_px": {
+   "full": {
+    "hidden": [
+     56.0,
+     251.0,
+     668.0
+    ],
+    "missed": [
+     16.0,
+     61.0,
+     350.0
+    ]
+   },
+   "tiled3": {
+    "hidden": [
+     51.0,
+     216.0,
+     603.0
+    ],
+    "missed": [
+     9.0,
+     32.0,
+     348.0
+    ]
+   }
+  }
+ },
+ "grid": {
+  "full/0.1": {
+   "small": {
+    "n": 1667,
+    "rec50": 0.1817636472705459,
+    "rec90": 0.14397120575884823
+   },
+   "medium": {
+    "n": 1254,
+    "rec50": 0.46730462519936206,
+    "rec90": 0.386762360446571
+   },
+   "large": {
+    "n": 749,
+    "rec50": 0.842456608811749,
+    "rec90": 0.7716955941255007
+   },
+   "pixel_recall": 0.7801846127216374,
+   "overblur": 0.435231811826638
+  },
+  "tiled3/0.1": {
+   "small": {
+    "n": 1667,
+    "rec50": 0.46610677864427114,
+    "rec90": 0.42291541691661666
+   },
+   "medium": {
+    "n": 1254,
+    "rec50": 0.8692185007974481,
+    "rec90": 0.8078149920255183
+   },
+   "large": {
+    "n": 749,
+    "rec50": 0.9706275033377837,
+    "rec90": 0.9332443257676902
+   },
+   "pixel_recall": 0.9393334887410231,
+   "overblur": 0.4086967564251367
+  },
+  "height_px": {
+   "full": {
+    "hidden": [
+     36.0,
+     165.0,
+     329.0
+    ],
+    "missed": [
+     11.0,
+     46.0,
+     161.0
+    ]
+   },
+   "tiled3": {
+    "hidden": [
+     28.0,
+     109.0,
+     302.0
+    ],
+    "missed": [
+     8.0,
+     28.0,
+     114.0
+    ]
+   }
+  }
+ }
+}

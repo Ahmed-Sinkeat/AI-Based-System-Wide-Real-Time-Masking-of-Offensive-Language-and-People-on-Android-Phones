@@ -6,7 +6,7 @@
 
 **Project rule:** every decision, change, or obstacle gets a dated entry in [`asbuild.md`](asbuild.md).
 
-**Status (2026-10-07):** research done, people-model tests done (the phone speed test is half done). App design agreed (`app-design-v1.md`). No app code yet. **Next step: Phase 0 housekeeping, then v1-a, the app skeleton** (see `issue.md` for blockers).
+**Status (2026-10-07):** research done, people-model tests done on laptop and phone (GPU ~205 ms per screen at 640 px). App design agreed (`app-design-v1.md`). No app code yet. **Next step: Phase 0 housekeeping, then v1-a, the app skeleton** (see `issue.md` for blockers).
 
 ## Current (Android)
 

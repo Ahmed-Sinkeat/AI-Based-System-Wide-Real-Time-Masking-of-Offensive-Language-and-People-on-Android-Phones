@@ -22,7 +22,8 @@ Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** And
 
 | # | Pri | Issue | Next action | Stream | Since |
 |---|---|---|---|---|---|
-| 6 | 🟠 | **Phone speed test incomplete (P0b):** only fp32 CPU 4 / 2 threads measured | Phone on USB: `bench/bench_phone.py` for fp32 / fp16 / dynamic-range, CPU / GPU / NNAPI, 640 and 480 px | C | 2026-10-03 |
+| 29 | 🟠 | **Speed falls with heat** (CPU ~30% slower at 41 °C than at 35 °C); the app will run for hours | Sustained test: 10–15 min of continuous checks on CPU and GPU, record ms and battery temperature over time | C | 2026-10-07 |
+| 30 | 🟢 | GPU start-up at 480 px takes ~52–60 s and ~470 MB (640: ~4 s, ~180 MB) | Only if 480 px is ever used: try the GPU delegate's serialization cache and re-measure | C | 2026-10-07 |
 | 7 | 🟢 | Full-INT8 export of the people model is broken (boxes and scores share one scale) | Only if more CPU speed is needed: export with boxes divided by the input size | C | 2026-10-06 |
 | 8 | 🟢 | TFLite export stopped after 640 px: 320 px, yolo11n and yolo26s were never exported | Re-run `bench/export_tflite.py` when needed | C | 2026-10-03 |
 | 9 | 🟢 | `bench/yolo26n-seg.onnx` is the **480 px** export (each export overwrites it) | Do not use it as "the 640 model"; name exports by size if it matters | C | 2026-10-06 |
@@ -75,3 +76,4 @@ Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** And
 | C6 | Model shortlist excluded candidates by assumption | 2026-10-07 | Full candidate list; only two hard rules; choice by phone measurement (P0c) |
 | C7 | Project not in git (#1) | 2026-10-07 | Git repository + private GitHub repository; large and rebuildable files ignored |
 | C8 | Android version of the Redmi 12 unknown (#2) | 2026-10-07 | Android 15 (SDK 35), HyperOS 2.0, 8 GB RAM: meets Android 14+ |
+| C9 | Phone speed test incomplete (#6) | 2026-10-07 | Full run: 36 settings on the Redmi 12; GPU ~205 ms at 640, best CPU 277 ms, NNAPI useless (p0-results-android §2) |
