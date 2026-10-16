@@ -8,7 +8,7 @@ An Android app that hides offensive language and images of people on the phone s
 
 **Release order:** v1 bad-language text (Arabic + English) → v1.1 our own small text model → v2 big people → v3 medium people → v4 small people.
 
-**Team:** Ahmed Mohammed Omer · Omer Abd Almonim · Momin Kamal
+**Team:** Ahmed Mohammed Omer · Omer Abd Almonim · Momen Kamal
 
 ---
 
