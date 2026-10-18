@@ -2,7 +2,7 @@
 
 **Project:** an Android app that hides bad language and images of people on the screen, in every app. Everything runs on the phone.
 
-**Release order:** v1 bad-language text (Arabic + English) → v1.1 our own small text model → v2 text inside images → v3 big people → v4 medium people → v5 small people → v6 video.
+**Release order:** v1 bad-language text (Arabic + English: word list + our own small text model) → v2 text inside images → v3 big people → v4 medium people. **Graduation scope is v1–v4**; v5 small people is a bonus; v6 video is after graduation.
 
 **Project rule:** every decision, change, or obstacle gets a dated entry in [`asbuild.md`](asbuild.md).
 
@@ -14,6 +14,7 @@
 |---|---|
 | [`roadmap.md`](roadmap.md) | **Plan by week**: phases v1 → v6, workstreams, exit criteria, report plan, schedule risks |
 | [`research-methods.md`](research-methods.md) | **Research questions, methods (M1–M7), evaluation plan, validity, ethics, AI-tool use, references (IEEE)** |
+| [`research-en.html`](research-en.html) | **Research and related work as one readable page** (PDF: `research-en.pdf`) |
 | [`app-design-v1.md`](app-design-v1.md) | **App design (agreed)**: tech stack, architecture, screens inside the app, covers / notification / tile outside it, data, errors, testing, things to verify early |
 | [`asbuild.md`](asbuild.md) | **As-built log**: every decision, why, alternatives, and what got in the way (add an entry each time) |
 | [`issue.md`](issue.md) | **Issues**: open problems and checks with next actions, by priority and stream; closed issues with their fix |

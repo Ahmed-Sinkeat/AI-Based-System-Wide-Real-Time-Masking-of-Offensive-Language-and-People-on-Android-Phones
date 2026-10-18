@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research and Related Work</title>
+<style>
+:root{--ink:#1E2B2F;--deep:#12343B;--teal:#1F5C63;--sage:#7FA7A9;--mist:#D5E4E5;--paper:#EEF3F3;--amber:#E8A33D;--red:#C4513B;--grey:#5B6B70;--bg:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans","Segoe UI",Calibri,Arial,sans-serif}
+main{max-width:980px;margin:0 auto;padding:32px 20px 64px}
+h1,h2,h3{color:var(--deep);line-height:1.25}
+h1{font-size:34px;margin:0 0 6px}
+h2{font-size:26px;margin:52px 0 14px}
+h2 .n{display:inline-block;min-width:38px;height:38px;border-radius:50%;background:var(--teal);color:#fff;text-align:center;line-height:38px;font-size:18px;margin-inline-end:10px;vertical-align:middle}
+h3{font-size:19px;margin:28px 0 8px}
+p{margin:8px 0}
+a{color:var(--teal)}
+.lead{font-size:18px;color:var(--grey)}
+.cover{background:var(--deep);color:#fff;border-radius:16px;padding:32px;margin-bottom:24px}
+.cover h1{color:#fff}.cover p{color:var(--mist);margin:4px 0}
+.note{background:var(--paper);border-radius:12px;padding:14px 18px;margin:14px 0}
+.gap{background:#fbefdc;border-inline-start:5px solid var(--amber);border-radius:10px;padding:12px 16px;margin:14px 0}
+.gap b:first-child{color:#8a5a12}
+.rule{background:var(--deep);color:#fff;border-radius:12px;padding:14px 18px;margin:14px 0;font-weight:600}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:15px}
+th{background:var(--deep);color:#fff;text-align:start;padding:9px 10px;vertical-align:bottom}
+td{border-bottom:1px solid var(--mist);padding:9px 10px;vertical-align:top}
+tr:nth-child(even) td{background:#f7fafa}
+td.c,th.c{text-align:center}
+.y{color:var(--teal);font-weight:700}.x{color:var(--red);font-weight:700}.p{color:#a06a12;font-weight:700}
+tr.ours td{background:#e4efef!important;font-weight:600}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin:14px 0}
+.card{background:var(--paper);border-radius:12px;padding:14px 16px;break-inside:avoid}
+.card b.t{display:block;color:var(--deep);font-size:17px;margin-bottom:4px}
+.card .big{display:block;font-size:30px;font-weight:700;color:var(--teal);line-height:1.1}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:6px;margin:16px 0}
+.flow .s{flex:1 1 140px;background:var(--paper);border-radius:12px;padding:12px;text-align:center;break-inside:avoid}
+.flow .s.hl{background:var(--amber)}.flow .s.dk{background:var(--deep);color:#fff}
+.flow .s b{display:block;font-size:16px}
+.flow .a{align-self:center;color:var(--grey);font-size:22px}.flow .a::after{content:"→"}
+.bars{margin:14px 0}
+.bars .row{display:grid;grid-template-columns:90px 1fr;gap:10px;align-items:center;margin:8px 0}
+.bars .lbl{font-weight:600;color:var(--deep)}
+.bars .bar{height:22px;border-radius:6px;color:#fff;font-size:13px;line-height:22px;padding-inline-start:8px;white-space:nowrap;margin:2px 0}
+.bars .one{background:var(--sage)}.bars .tiles{background:var(--teal)}
+.legend{font-size:13px;color:var(--grey)}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:middle;margin:0 4px 0 12px}
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:14px 0}
+.map .card ul{margin:4px 0}
+ul,ol{margin:6px 0;padding-inline-start:22px}li{margin:3px 0}
+.toc{columns:2;font-size:15px}.toc a{text-decoration:none}
+.small{font-size:13px;color:var(--grey)}
+.refs p{margin:6px 0;padding-inline-start:44px;text-indent:-44px;font-size:14px}
+.refs .new{color:var(--teal);font-weight:700;font-size:11px;margin-inline-start:4px}
+.ar{unicode-bidi:isolate;direction:rtl}
+@media print{body{font-size:12.5px}main{padding:0}h2{break-after:avoid}.card,.flow,table,.note,.gap,.rule,.bars{break-inside:avoid}a{color:var(--ink);text-decoration:none}}
+</style>
+</head>
+<body>
+<main>
+
+<div class="cover">
+  <h1>Research and Related Work</h1>
+  <p><b>AI-Based System-Wide Real-Time Masking of Offensive Language and People on Android Phones</b></p>
+  <p>Ahmed Mohammed Omer · Omer Abd Almonim · Momen Kamal — Software Engineering graduation project</p>
+  <p>18 October 2026 · Companion to <a href="research-methods.md" style="color:#fff">research-methods.md</a> (full procedures) · References in IEEE style</p>
+</div>
+
+<p class="lead">This document collects the research behind the project: the questions we ask, how we answer them, what earlier work already exists, where it falls short, and what we have found so far. Section 4 is the related-work review; it is the base of the report's background chapter.</p>
+
+<div class="note toc">
+<a href="#s1">1. Summary</a><br>
+<a href="#s2">2. Research questions</a><br>
+<a href="#s3">3. Research design and methods</a><br>
+<a href="#s4">4. Related work</a><br>
+&nbsp;&nbsp;<a href="#s4-1">4.1 Offensive language detection</a><br>
+&nbsp;&nbsp;<a href="#s4-2">4.2 Arabic offensive language</a><br>
+&nbsp;&nbsp;<a href="#s4-3">4.3 Small text models for phones</a><br>
+&nbsp;&nbsp;<a href="#s4-4">4.4 Text inside images</a><br>
+&nbsp;&nbsp;<a href="#s4-5">4.5 Finding and segmenting people</a><br>
+&nbsp;&nbsp;<a href="#s4-6">4.6 Hiding sensitive images</a><br>
+&nbsp;&nbsp;<a href="#s4-7">4.7 The Android platform</a><br>
+&nbsp;&nbsp;<a href="#s4-8">4.8 Existing products</a><br>
+&nbsp;&nbsp;<a href="#s4-9">4.9 The gap we address</a><br>
+<a href="#s5">5. Findings so far</a><br>
+<a href="#s6">6. Planned evaluation</a><br>
+<a href="#s7">7. Threats to validity</a><br>
+<a href="#s8">8. Ethics, privacy and AI use</a><br>
+<a href="#refs">References</a>
+</div>
+
+<h2 id="s1"><span class="n">1</span>Summary</h2>
+<p>We build an Android app that covers offensive words and images of people on the screen, <b>in every app</b>, with all AI running <b>on the phone</b>, and that covers new content <b>before</b> the user sees it. Research so far shows this is possible on a normal, not rooted, Android 14+ phone, and that no existing product or published system does all of it.</p>
+<div class="grid">
+  <div class="card"><span class="big">0</span>existing tools that filter <b>text</b> across all apps on a phone (§4.8)</div>
+  <div class="card"><span class="big">163 + 364</span>competitor issues and reviews analysed; top complaint: content shows before the blur (§5.2)</div>
+  <div class="card"><span class="big">~189 ms</span>one full-screen people check on a low-cost phone's GPU, sustained for 15 minutes (§5.3)</div>
+  <div class="card"><span class="big">88–91%</span>of big people covered on test phone screens; small people only 24–54% (§5.3)</div>
+  <div class="card"><span class="big">1 906</span>Arabic offensive terms combined from 7 open lists (§5.4)</div>
+</div>
+<div class="rule">Contribution: a system-wide, on-device, Arabic-first filter that covers offensive words (in text and in images) and people, and hides new content until it is checked.</div>
+
+<h2 id="s2"><span class="n">2</span>Research questions</h2>
+<table>
+<tr><th>ID</th><th>Question</th><th>Versions</th></tr>
+<tr><td><b>RQ1</b></td><td>Can a normal (not rooted) Android app hide offensive text and images of people in every app, without first showing them to the user? What are the platform limits?</td><td>all</td></tr>
+<tr><td><b>RQ2</b></td><td>How well does a word list with Arabic text normalization find offensive Arabic and English words on screen, and how many normal words does it cover by mistake?</td><td>v1</td></tr>
+<tr><td><b>RQ3</b></td><td>How fast and how accurate are real-time person-segmentation models on a low-cost phone, for people of different sizes?</td><td>v3–v5</td></tr>
+<tr><td><b>RQ4</b></td><td>What problems do users report with existing tools, and which can a different design avoid?</td><td>all</td></tr>
+<tr><td><b>RQ5</b></td><td>Can a small phone model, trained with labels from large open models ("teachers"), find offensive messages <b>and the offensive words in them</b> better than a word list, within the phone's limits?</td><td>v1</td></tr>
+<tr><td><b>RQ6</b></td><td>Can on-phone OCR read Arabic and English text inside images fast enough to cover the offensive words in it?</td><td>v2</td></tr>
+</table>
+
+<h2 id="s3"><span class="n">3</span>Research design and methods</h2>
+<p>The project follows <b>engineering design research</b>: build the app in stages and evaluate each stage against measurable requirements (SRS v2.2). Seven methods feed it.</p>
+<div class="flow">
+  <div class="s"><b>Questions</b>RQ1–RQ6</div><span class="a"></span>
+  <div class="s"><b>Review</b>papers, docs, source code, competitors</div><span class="a"></span>
+  <div class="s"><b>Experiments</b>models measured on laptop and phone</div><span class="a"></span>
+  <div class="s hl"><b>Design</b>choices backed by evidence</div><span class="a"></span>
+  <div class="s dk"><b>Evaluate</b>each version against the SRS</div>
+</div>
+<table>
+<tr><th>#</th><th>Method</th><th>Answers</th><th>Status</th></tr>
+<tr><td>M1</td><td>Literature and technical documentation review</td><td>RQ1–RQ3, RQ6</td><td>Done; updated as needed</td></tr>
+<tr><td>M2</td><td>Source-code analysis (Android, Chromium, a competitor)</td><td>RQ1, RQ4</td><td>Done</td></tr>
+<tr><td>M3</td><td>Competitor and user-feedback analysis (thematic coding)</td><td>RQ4</td><td>Done</td></tr>
+<tr><td>M4</td><td>Controlled experiments with person-segmentation models</td><td>RQ3</td><td>Done (laptop, phone accuracy, phone speed)</td></tr>
+<tr><td>M5</td><td>Lexicon construction (Arabic offensive words)</td><td>RQ2</td><td>Combined list done; manual review planned</td></tr>
+<tr><td>M6</td><td>Evaluation of each release on the test phone</td><td>RQ1–RQ3, RQ6</td><td>Planned (v1 → v4, v5 bonus)</td></tr>
+<tr><td>M7</td><td>Training our own on-device text model (teacher → student)</td><td>RQ2, RQ5</td><td>Planned (v1)</td></tr>
+</table>
+<p class="small">Procedures, data sizes, software versions and limits of each method: <a href="research-methods.md">research-methods.md</a> §4.</p>
+
+<h2 id="s4"><span class="n">4</span>Related work</h2>
+<p>Our project sits where eight lines of work meet. For each one we summarise what exists, what we reuse, and what is missing for our goal.</p>
+<div class="map">
+  <div class="card"><b class="t">Language</b><ul><li>4.1 Offensive language detection</li><li>4.2 Arabic offensive language</li><li>4.3 Small text models for phones</li><li>4.4 Text inside images</li></ul></div>
+  <div class="card"><b class="t">Vision</b><ul><li>4.5 Finding and segmenting people</li><li>4.6 Hiding sensitive images</li></ul></div>
+  <div class="card"><b class="t">System and products</b><ul><li>4.7 The Android platform</li><li>4.8 Existing products</li><li>4.9 The gap we address</li></ul></div>
+</div>
+
+<h3 id="s4-1">4.1 Offensive language detection</h3>
+<p>Automatic detection of abusive and hateful language is a mature research area. Schmidt and Wiegand survey the early methods, from word lists and n-gram features to learned classifiers [72]. Davidson <i>et al.</i> show that separating hate speech from merely offensive language is hard, and that word lists alone flag many harmless posts [71]. The OffensEval shared tasks fixed common labels for offensive language and attracted hundreds of teams; the 2020 edition added Arabic, Danish, Greek and Turkish, with pre-trained transformers on top [73], [74]. Most systems decide for a <b>whole post</b>; the toxic-spans task asks instead <b>which words</b> are offensive [60], which is what a screen filter needs to cover only those words.</p>
+<div class="gap"><b>Gap.</b> These systems label posts offline, usually on a server, for moderators. None of them works on whatever text is on the user's screen, in real time, on the phone, and marks the exact words to cover.</div>
+
+<h3 id="s4-2">4.2 Arabic offensive language</h3>
+<p>Arabic adds dialects, spelling variants, letter normalization, elongation and Arabizi (Arabic in Latin letters). Mubarak <i>et al.</i> built one of the first Arabic obscene-word lists from social media [1]. The OSACT4 shared task (2020) created the standard Arabic offensive-tweet benchmark [2]; strong systems relied on careful preprocessing [3], [4], and the winning ALT system used character n-grams with linear models [64]. OSACT5 (2022) extended it to fine-grained hate speech [75]. Bensalem <i>et al.</i> review 54 Arabic toxic-language datasets and note that most come from Twitter and a few dialects [76]; Arabizi needs its own handling [5]. Arabic pre-trained encoders such as MARBERT [61] and CAMeLBERT [62] are strong on these tasks. Recent work targets safety for Arabic LLMs and memes: ArabicDialectSafety [56], the ArGuard shared task [57] and FanarGuard [59]. A distilled Arabic toxicity model made for phones exists (HAYAA-student, message level only) [15]. Open Arabic word lists exist but are small and scattered [6], [20]–[24].</p>
+<p><b>What we reuse:</b> the OSACT data for training and testing; Lucene's Arabic normalization rules [17]; all open word lists, combined (§5.4); multi-phrase matching in one pass with Aho–Corasick [18], [94].</p>
+<div class="gap"><b>Gap.</b> No public Arabic resource is both <b>word-level</b> (which words to cover) and <b>small enough for a low-cost phone</b>. Context-dependent words such as <span class="ar">كلب</span> (dog) or <span class="ar">كافر</span> (unbeliever) are offensive only in some sentences, which a list cannot decide.</div>
+
+<h3 id="s4-3">4.3 Small text models for phones</h3>
+<p><b>Knowledge distillation</b> trains a small "student" to copy a large "teacher" [77]; DistilBERT keeps most of BERT's quality at 40% less size [78], and the HAYAA student keeps 96.7% agreement with a teacher 68× larger [15]. Large language models now label text well: ChatGPT beat crowd workers on several annotation tasks [79], and open guard models such as Qwen3Guard cover 119 languages [54]. <b>Decision models</b> such as Jev return a fixed, typed choice with a confidence instead of free text, which is fast and easy to threshold [49]; open alternatives include Laya, Von, Kev and GLiNER2.5-Decide [50]–[53]. Jev runs only as a cloud API, so we take the idea, not the model: our phone model gives a typed answer (category + confidence + which words), and large decision and guard models are used only offline, as teachers that label training data. Multilingual models spend most of their size on the word table; <b>vocabulary trimming</b> removes unused tokens with no retraining [63]. Small candidates include multilingual encoders (mmBERT [55], multilingual E5 [69], EmbeddingGemma [67]), static embeddings (Model2Vec [65], [66]) and small generative models (Gemma 3 270M [68]). <b>Quantization</b> to 8-bit integers shrinks and speeds models on phones [86], but must be checked: our own int8 people model found nobody (§5.3).</p>
+<div class="gap"><b>Gap.</b> Teacher → student has not been applied to <b>word-level Arabic offensive language</b> under a phone budget (≤ 100 MB RAM, ≤ 50 ms per message). That is our RQ5.</div>
+
+<h3 id="s4-4">4.4 Text inside images</h3>
+<p>Memes, thumbnails and video subtitles carry text that screen readers never see. PP-OCR introduced an ultra-light OCR pipeline for mobile [80]; PaddleOCR 3.0 and PP-OCRv5 add multilingual recognition with models under 100 M parameters [81], [16], and an open-source Android app already runs it [41]. Google's on-device ML Kit OCR does <b>not</b> support Arabic [33]. In our design, text read from an image goes through the same word list and text model as screen text (§4.3). The ArGuard task studies harmful Arabic memes, but with server-side models [57].</p>
+<div class="gap"><b>Gap.</b> Reading Arabic text in images <b>on a low-cost phone, fast enough to cover words while scrolling</b> is not measured anywhere we found. That is our RQ6 (step P0d).</div>
+
+<h3 id="s4-5">4.5 Finding and segmenting people</h3>
+<p>Real-time detection began with one-stage detectors such as YOLO [82]. Mask R-CNN added a pixel mask for each object [83], and YOLACT made instance masks real-time [84]. Today's small real-time segmenters are the YOLO11/YOLO26 family [10] and RF-DETR [8], [11]. SAM 3 segments objects from a text prompt such as "person" and can label training data [9]. COCO is the standard benchmark, with small, medium and large object sizes [7]. Small objects are a known weakness; <b>slicing the image into tiles</b> (SAHI) raises small-object accuracy by 5–7 AP points without retraining [85], which is our v4 method. AI Benchmark shows how widely phone chips differ, and that phone AI units often do not help in practice [87], which matches our test phone (§5.3).</p>
+<div class="gap"><b>Gap.</b> Benchmarks use photos and fast GPUs. There are no published results for <b>people on phone screens</b> (feeds, grids, thumbnails) on a <b>low-cost phone</b>, which is why we built our own tests (M4).</div>
+
+<h3 id="s4-6">4.6 Hiding sensitive images</h3>
+<p>Most image filters classify the <b>whole image</b> as safe or not, for example pornography classifiers [88] and the browser model nsfwjs used by a competitor (§4.8). Two findings shape how we hide:</p>
+<ul>
+<li><b>Light blur is not enough.</b> McPherson <i>et al.</i> recognised faces and objects through blur and pixelation with deep learning [89]. We use <b>solid covers</b>.</li>
+<li><b>Even a glimpse counts.</b> People understood the meaning of pictures shown for only <b>13 ms</b> [90]. A filter that shows content and then blurs it has already failed. We <b>cover first, then check</b>.</li>
+</ul>
+<div class="gap"><b>Gap.</b> Image-level filters blur or block a whole picture after it is shown. We cover <b>only the person's shape</b>, and <b>before</b> it is shown.</div>
+
+<h3 id="s4-7">4.7 The Android platform</h3>
+<p>A normal app cannot change how Android draws the screen. Three platform features make our design possible:</p>
+<table>
+<tr><th>Feature</th><th>What it gives</th><th>Source</th></tr>
+<tr><td>Accessibility service</td><td>On-screen text from every app, and an event when it changes</td><td>[25], [35]</td></tr>
+<tr><td>Per-character boxes (Android 8+)</td><td>The exact screen position of each word, so only the word is covered; Chrome provides them for web pages</td><td>[26], [34]</td></tr>
+<tr><td>Window picture (Android 14+)</td><td>A picture of one app's window <b>without our covers</b>, at most one every 333 ms</td><td>[27], [28]</td></tr>
+<tr><td>Accessibility overlay</td><td>Trusted covers that may be fully solid while touches pass through</td><td>[27], [29]</td></tr>
+</table>
+<p>The limits exist for security. Cloak and Dagger showed that an app with the overlay and accessibility permissions could take full control of the phone's interface [91]. Android then capped see-through overlays of normal apps at 80% opacity [29], [30], requires consent for each screen-capture session [31], and Google Play restricts non-accessibility uses of the accessibility API [32].</p>
+<div class="gap"><b>Consequence.</b> The accessibility path is the only non-root way to get solid, touch-through covers and a picture that excludes them. It needs Android 14+, and it is the reason our app asks for one permission only and has no internet permission.</div>
+
+<h3 id="s4-8">4.8 Existing products</h3>
+<p>Several products hide sensitive images; none filters text system-wide.</p>
+<table>
+<tr><th>Product</th><th class="c">Every app</th><th class="c">Filters text</th><th class="c">Covers only the person</th><th class="c">Hidden before shown</th><th class="c">On device</th></tr>
+<tr><td>HaramBlur browser extension [37]</td><td class="c x">✕ websites</td><td class="c x">✕</td><td class="c x">✕ whole image</td><td class="c p">optional; lifts after 7 s</td><td class="c y">✓</td></tr>
+<tr><td>HaramBlur Android app [38]</td><td class="c p">popular apps</td><td class="c x">✕</td><td class="c x">✕ whole image</td><td class="c x">✕ shows 1–3 s</td><td class="c y">✓</td></tr>
+<tr><td>SafeGaze extension [39]</td><td class="c x">✕ websites</td><td class="c x">✕</td><td class="c">not checked</td><td class="c">not checked</td><td class="c">not checked</td></tr>
+<tr><td>Apple Communication Safety [92]</td><td class="c p">Apple's apps</td><td class="c x">✕</td><td class="c x">✕ whole image</td><td class="c y">✓</td><td class="c y">✓</td></tr>
+<tr><td>Google Messages sensitive content warnings [93]</td><td class="c p">Messages only</td><td class="c x">✕</td><td class="c x">✕ whole image</td><td class="c y">✓</td><td class="c y">✓</td></tr>
+<tr class="ours"><td>Our app</td><td class="c y">✓</td><td class="c y">✓ Arabic + English</td><td class="c y">✓ mask</td><td class="c y">✓ no timeout</td><td class="c y">✓ no internet</td></tr>
+</table>
+<p class="small">Apple and Google detect <b>nudity</b> in messages, a narrower goal than all people. HaramBlur guesses gender from faces; we cover all people, because a wrong guess means exposure. HaramBlur facts: our source-code reading (M2) and user-feedback analysis (M3).</p>
+
+<h3 id="s4-9">4.9 The gap we address</h3>
+<table>
+<tr><th>What exists</th><th>What is missing</th><th>Our contribution</th></tr>
+<tr><td>Offensive-language classifiers for posts, run on servers (4.1, 4.2)</td><td>Word-level, on-device, every app</td><td>A word list + small model that covers the exact words, on the phone (v1)</td></tr>
+<tr><td>Large Arabic models and safety guards (4.2, 4.3)</td><td>A model sized for a low-cost phone</td><td>Teacher → student, measured on the test phone (RQ5)</td></tr>
+<tr><td>Mobile OCR without Arabic, or with Arabic but unmeasured on phones (4.4)</td><td>Speed and accuracy on a low-cost phone</td><td>Measured OCR for text in images (v2, RQ6)</td></tr>
+<tr><td>Person segmenters benchmarked on photos and fast GPUs (4.5)</td><td>Results for phone screens on weak phones</td><td>Our phone-screen tests and tile strategy (v3, v4, RQ3)</td></tr>
+<tr><td>Image filters that blur after showing (4.6, 4.8)</td><td>Solid covers before showing</td><td>Cover first, check, then uncover (all versions)</td></tr>
+</table>
+
+<h2 id="s5"><span class="n">5</span>Findings so far</h2>
+<h3>5.1 Platform (RQ1)</h3>
+<table>
+<tr><th>Option</th><th>Verdict</th><th>Why</th></tr>
+<tr><td>Screen recording + normal overlay</td><td class="x">Rejected</td><td>Covers at most 80% solid; consent every session; records our own covers</td></tr>
+<tr><td><b>Accessibility service only (Android 14+)</b></td><td class="y">Chosen</td><td>Every app; one permission; solid touch-through covers; window picture without our covers; max 3 pictures/s</td></tr>
+<tr><td>Root or custom system</td><td class="x">Rejected</td><td>Only rooted phones; breaks with updates</td></tr>
+</table>
+<p>Limits found: secure windows (banking, some video apps) cannot be pictured; Xiaomi's battery saver can stop the service; installing from a file needs "restricted settings" on Android 13+.</p>
+
+<h3>5.2 Existing tools (RQ4)</h3>
+<p>We coded 163 GitHub issues of the HaramBlur extension and 364 recent Play Store reviews of its Android app (~696 000 installs, 4.61 stars). Counts come from keyword searches, then reading the matches.</p>
+<table>
+<tr><th>Theme</th><th>Evidence</th><th>Our design answer</th></tr>
+<tr><td><b>Content shows before the blur</b> (most common)</td><td>~20 reviews ("takes 1–2 seconds"); issue #190: visible 1–3 s</td><td>Cover first, never lift without a check</td></tr>
+<tr><td>Feels heavy</td><td>Reviews; extension using 2–5 GB RAM, 100% CPU</td><td>Work only when the screen changes</td></tr>
+<tr><td>Misses images</td><td>Small images, drawings, anime, background images</td><td>Check the window picture; tiles for medium people</td></tr>
+<tr><td>Blurs the wrong thing</td><td>~15 reviews: men, a drawing, a whole video</td><td>No gender guess; cover the person's mask</td></tr>
+<tr><td>Asks for permission again</td><td>Our own use; reviews</td><td>One accessibility permission, granted once</td></tr>
+<tr><td>Light blur shows details</td><td>Reviews</td><td>Solid covers</td></tr>
+<tr><td>No text filtering</td><td>Neither product</td><td>v1 and v2</td></tr>
+</table>
+
+<h3>5.3 People models on a low-cost phone (RQ3)</h3>
+<p>Test phone: Xiaomi Redmi 12 (Helio G88, Mali-G52 GPU, Android 15). Eleven model variants were compared on the laptop; the chosen one (YOLO26n-seg, 640 px) was exported for the phone.</p>
+<div class="grid">
+  <div class="card"><b class="t">GPU</b><span class="big">~205 ms</span>per full screen; 189 ms average over 15 minutes non-stop</div>
+  <div class="card"><b class="t">Best CPU setting</b><span class="big">277 ms</span>2 fast cores with fp16 math; heat slows the CPU up to ~30%</div>
+  <div class="card"><b class="t">Phone AI unit (NNAPI)</b><span class="big">no help</span>as slow as one CPU thread</div>
+  <div class="card"><b class="t">Smaller input (480 px)</b><span class="big">rejected</span>faster, but loses too much accuracy</div>
+</div>
+<p><b>People covered</b> (at least 90% of the person under the cover), synthetic phone feed screens built from COCO photos, the phone's model file:</p>
+<div class="bars">
+  <div class="legend"><i style="background:var(--sage)"></i>one look at the whole screen<i style="background:var(--teal)"></i>3 tiles (looking closer)</div>
+  <div class="row"><span class="lbl">Small</span><div><div class="bar one" style="width:23.7%">23.7%</div><div class="bar tiles" style="width:53.5%">53.5%</div></div></div>
+  <div class="row"><span class="lbl">Medium</span><div><div class="bar one" style="width:75.6%">75.6%</div><div class="bar tiles" style="width:89%">89.0%</div></div></div>
+  <div class="row"><span class="lbl">Big</span><div><div class="bar one" style="width:88.4%">88.4%</div><div class="bar tiles" style="width:91.4%">91.4%</div></div></div>
+</div>
+<p><b>Lesson:</b> the fully int8 phone model found <b>nobody</b> (0 of 448 detections), because boxes and scores shared one scale; it still looked fast. Every converted model is now checked against the original before its speed is tested.</p>
+<p class="small">Details: <a href="p0-results-android-v1.md">p0-results-android-v1.md</a>, <a href="p0-results-linux-v1.md">p0-results-linux-v1.md</a>.</p>
+
+<h3>5.4 Arabic word list (RQ2)</h3>
+<div class="grid">
+  <div class="card"><span class="big">1 906</span>unique terms from 7 open lists, normalized and de-duplicated, with the source of each term kept</div>
+  <div class="card"><span class="big">947</span>in Arabic script (680 words, 267 phrases)</div>
+  <div class="card"><span class="big">959</span>in Latin letters (Arabizi)</div>
+  <div class="card"><span class="big">0</span>terms lost in the merge (checked automatically)</div>
+</div>
+<p>Next: two team members label every Arabic term independently (category, context-dependent or not), with agreement measured by Cohen's kappa [95].</p>
+
+<h2 id="s6"><span class="n">6</span>Planned evaluation</h2>
+<table>
+<tr><th>Version</th><th>Main measures</th><th>Target</th></tr>
+<tr><td>v1 text</td><td>Share of offensive words covered (OSACT test split, English comments, our screenshots); false covers on clean text (news, Quran, schoolbooks); delay before the cover (slow-motion video); battery</td><td>≥ 95% covered; ≤ 1 false cover per 1 000 words; ≤ ~3 frames</td></tr>
+<tr><td>v1 text model</td><td>Macro-F1 and word-level F1 against the word list and ready-made small models; real RAM and ms per message on the phone</td><td>Better than the list; ≤ 100 MB, ≤ 50 ms</td></tr>
+<tr><td>v2 text in images</td><td>OCR speed and memory on the phone; offensive words covered in real screenshots</td><td>Measured (P0d)</td></tr>
+<tr><td>v3, v4 people</td><td>People covered by size on real phone screenshots; waiting time; exposure frames</td><td>≥ 95% big (v3) and medium (v4); wait ≤ 0.7 s</td></tr>
+</table>
+<p class="small">Results are reported with 95% confidence intervals. Full plan: <a href="research-methods.md">research-methods.md</a> §4.6–§4.7.</p>
+
+<h2 id="s7"><span class="n">7</span>Threats to validity</h2>
+<table>
+<tr><th>Threat</th><th>What we do</th></tr>
+<tr><td>Synthetic test screens differ from real ones</td><td>v3–v5 are evaluated on real phone screenshots</td></tr>
+<tr><td>One test phone</td><td>Report the model; repeat key measurements on a second phone where possible</td></tr>
+<tr><td>Heat changes speed</td><td>Pauses, temperature recorded, sustained 15-minute test</td></tr>
+<tr><td>Word lists from one region's social media</td><td>Manual review; tests on standard-Arabic clean text</td></tr>
+<tr><td>Teacher labels can be wrong</td><td>Several teachers, majority vote, human-checked sample with kappa</td></tr>
+<tr><td>Keyword counts of reviews are approximate</td><td>All low-star reviews read in full</td></tr>
+</table>
+
+<h2 id="s8"><span class="n">8</span>Ethics, privacy and AI use</h2>
+<ul>
+<li><b>Privacy by design:</b> screen content is processed in memory on the phone; the app has no internet permission and saves nothing.</li>
+<li><b>Public data:</b> reviews and issues are reported in aggregate, without user names. A competitor's AGPL code was read for ideas, not copied.</li>
+<li><b>Licenses</b> of every word list, dataset and model are recorded; one list's author will be asked for permission.</li>
+<li><b>Private training screenshots</b> (v5) are never published or sent to outside services.</li>
+<li><b>AI tools</b> helped with searching, scripts and drafting; all measurements come from our own runs, and the team checks and owns the content. The department allows AI tools.</li>
+</ul>
+
+<h2 id="refs">References</h2>
+<p class="small">Numbers [1]–[70] are the same as in <a href="research-methods.md">research-methods.md</a> §9, so citations agree across documents; the full list, including references not cited here, is kept there. <span class="new" style="margin:0">NEW</span> marks references added for this review (accessed 18 October 2026). Other online sources were accessed on 6 October 2026.</p>
+<div class="refs">
+<p>[1] H. Mubarak, K. Darwish, and W. Magdy, "Abusive language detection on Arabic social media," in <i>Proc. First Workshop on Abusive Language Online</i>, Vancouver, Canada, 2017, pp. 52–56, doi: 10.18653/v1/W17-3008.</p>
+<p>[2] H. Mubarak, K. Darwish, W. Magdy, T. Elsayed, and H. Al-Khalifa, "Overview of OSACT4 Arabic offensive language detection shared task," in <i>Proc. 4th Workshop on Open-Source Arabic Corpora and Processing Tools</i>, Marseille, France, 2020, pp. 48–52.</p>
+<p>[3] F. Husain, "OSACT4 shared task on offensive language detection: Intensive preprocessing-based approach," in <i>Proc. 4th Workshop on Open-Source Arabic Corpora and Processing Tools</i>, 2020, pp. 53–60.</p>
+<p>[4] F. Husain, "Arabic offensive language detection using machine learning and ensemble machine learning approaches," arXiv:2005.08946, 2020.</p>
+<p>[5] I. Bensalem, M. Mout, and P. Rosso, "Offensive language detection in Arabizi," in <i>Proc. ArabicNLP 2023</i>, Singapore, 2023, pp. 423–434, doi: 10.18653/v1/2023.arabicnlp-1.36.</p>
+<p>[6] M. Attia, "arabic-offensive-words" (LLM-based Arabic offensive lexicon), GitHub, 2025. https://github.com/mohammedattia/arabic-offensive-words</p>
+<p>[7] T.-Y. Lin <i>et al.</i>, "Microsoft COCO: Common objects in context," in <i>Computer Vision – ECCV 2014</i>, 2014. arXiv:1405.0312.</p>
+<p>[8] I. Robinson, P. Robicheaux, M. Popov, D. Ramanan, and N. Peri, "RF-DETR: Neural architecture search for real-time detection transformers," arXiv:2511.09554, 2025.</p>
+<p>[9] N. Carion <i>et al.</i>, "SAM 3: Segment anything with concepts," arXiv:2511.16719, 2025.</p>
+<p>[10] Ultralytics, "Ultralytics YOLO" (YOLO11 and YOLO26 segmentation), v8.4.171. https://github.com/ultralytics/ultralytics</p>
+<p>[11] Roboflow, "RF-DETR," v1.11.1. https://github.com/roboflow/rf-detr</p>
+<p>[15] MahmoudMabrok, "HAYAA Student — Arabic toxicity classifier for on-device use," Hugging Face. https://huggingface.co/MahmoudMabrok/HAYAA-student-int8</p>
+<p>[16] PaddlePaddle, "PaddleOCR: On-device deployment" (PP-OCRv5). https://www.paddleocr.ai/v3.3.1/en/version3.x/deployment/on_device_deployment.html</p>
+<p>[17] Apache Software Foundation, "Apache Lucene: ArabicNormalizer." https://lucene.apache.org/core/8_5_1/analyzers-common/org/apache/lucene/analysis/ar/ArabicNormalizer.html</p>
+<p>[18] R. Bor, "aho-corasick" (Java implementation), GitHub. https://github.com/robert-bor/aho-corasick</p>
+<p>[20] Shutterstock / LDNOOBW, "List of dirty, naughty, obscene, and otherwise bad words," CC-BY-4.0. https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words</p>
+<p>[21] LDNOOBWV2, "List of dirty, naughty, obscene and otherwise bad words, V2," CC0. https://github.com/LDNOOBWV2/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words_V2</p>
+<p>[22] UXBERT Labs, "Arabic bad &amp; dirty word filter list," MIT. https://github.com/uxbertlabs/arabic_bad_dirty_word_filter_list</p>
+<p>[23] 4troDev, "profanity.csv: A multilingual profanity database," MIT. https://github.com/4troDev/profanity.csv</p>
+<p>[24] T. Wormer, "cuss" (Arabic in Latin letters), MIT. https://github.com/words/cuss</p>
+<p>[25] Android Developers, "AccessibilityService." https://developer.android.com/reference/android/accessibilityservice/AccessibilityService</p>
+<p>[26] Android Developers, "AccessibilityNodeInfo" and API 26 differences. https://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo</p>
+<p>[27] Android Developers, "API 34 differences: AccessibilityService" (takeScreenshotOfWindow, accessibility overlays). https://developer.android.com/sdk/api_diff/34/changes/android.accessibilityservice.AccessibilityService</p>
+<p>[28] Android Open Source Project, AccessibilityService.java and AbstractAccessibilityServiceConnection.java (android11, android13, android14, master). https://android.googlesource.com/platform/frameworks/base/</p>
+<p>[29] Android Open Source Project, "Cap alpha to max if SAW + FLAG_NOT_TOUCHABLE," commit a451d5b. https://android.googlesource.com/platform/frameworks/base/+/a451d5bae2e2</p>
+<p>[30] Android Developers, "Tapjacking." https://developer.android.com/topic/security/risks/tapjacking</p>
+<p>[31] Android Developers, "Media projection." https://developer.android.com/media/grow/media-projection</p>
+<p>[32] Google, Play Console Help: use of the AccessibilityService API, answer 10964491. https://support.google.com/googleplay/android-developer/answer/10964491</p>
+<p>[33] Google, ML Kit text recognition v2, supported languages. https://developers.google.com/ml-kit/vision/text-recognition/v2/languages</p>
+<p>[34] The Chromium Authors, WebContentsAccessibilityImpl.java (main). https://chromium.googlesource.com/chromium/src/</p>
+<p>[35] Google Codelabs, "Developing an accessibility service for Android." https://codelabs.developers.google.com/codelabs/developing-android-a11y-service</p>
+<p>[37] M. Alganzory, "HaramBlur" browser extension, source code (commit f47000e) and issue tracker. https://github.com/alganzory/HaramBlur</p>
+<p>[38] M. Alganzory, "HaramBlur" Android app, v2.0.5, Google Play. https://play.google.com/store/apps/details?id=com.haramblur</p>
+<p>[39] "SafeGaze" browser extension, Chrome Web Store. https://chrome.google.com/webstore/detail/safegaze-browser-extensio/aaddkkmpkpcnchdggomfaehpagbekalb</p>
+<p>[41] Ente, "The best open-source Android OCR." https://ente.com/blog/ocr/</p>
+<p>[49] TypeSafe AI, "Jev" decision model (Jev 1.13, released Sep. 2026). https://openrouter.ai/typesafe/jev-1.13/api</p>
+<p>[50] DataCamp, overview of open-source alternatives to TypeSafe Jev (Laya, Von, Kev, NanoJev, and others). https://www.datacamp.com/blog/top-open-source-jev-alternatives</p>
+<p>[51] ConvAI Innovations, "Laya" and "Laya-multilingual," Apache-2.0, Hugging Face. https://huggingface.co/convaiinnovations/laya-multilingual</p>
+<p>[52] LiteRT Community, "Laya-Multilingual-LiteRT" (phone build with measured latency), Hugging Face. https://huggingface.co/litert-community/Laya-Multilingual-LiteRT</p>
+<p>[53] Fastino, "GLiNER2.5-Decide," Apache-2.0, Hugging Face. https://huggingface.co/fastino/gliner2.5-decide</p>
+<p>[54] H. Zhao <i>et al.</i>, "Qwen3Guard technical report," arXiv:2510.14276, 2025.</p>
+<p>[55] M. Marone <i>et al.</i>, "mmBERT: A modern multilingual encoder with annealed language learning," arXiv:2509.06888, 2025.</p>
+<p>[56] W. Zaghouani, M. R. Biswas, K. K. Aldous, and M. Bessghaier, "ArabicDialectSafety: A dialect-aware benchmark for Arabic content safety classification," arXiv:2608.01291, 2026.</p>
+<p>[57] F. Alam <i>et al.</i>, "ArGuard shared task: Harmful content detection in Arabic memes and LLM prompts," arXiv:2609.29349, 2026.</p>
+<p>[59] M. Fatehkia, E. Altinisik, and H. T. Sencar, "FanarGuard: A culturally-aware moderation filter for Arabic language models," arXiv:2511.18852, 2025.</p>
+<p>[60] J. Pavlopoulos, J. Sorensen, L. Laugier, and I. Androutsopoulos, "SemEval-2021 Task 5: Toxic spans detection," in <i>Proc. SemEval-2021</i>, 2021, pp. 59–69, doi: 10.18653/v1/2021.semeval-1.6.</p>
+<p>[61] M. Abdul-Mageed, A. Elmadany, and E. M. B. Nagoudi, "ARBERT &amp; MARBERT: Deep bidirectional transformers for Arabic," in <i>Proc. ACL-IJCNLP 2021</i>, doi: 10.18653/v1/2021.acl-long.551.</p>
+<p>[62] G. Inoue, B. Alhafni, N. Baimukan, H. Bouamor, and N. Habash, "The interplay of variant, size, and task type in Arabic pre-trained language models," in <i>Proc. Sixth Arabic NLP Workshop</i>, 2021.</p>
+<p>[63] A. Ushio, Y. Zhou, and J. Camacho-Collados, "Efficient multilingual language model compression through vocabulary trimming," in <i>Findings of EMNLP 2023</i>, pp. 14725–14739, doi: 10.18653/v1/2023.findings-emnlp.981.</p>
+<p>[64] S. Hassan <i>et al.</i>, "ALT submission for OSACT shared task on offensive language detection," in <i>Proc. 4th Workshop on Open-Source Arabic Corpora and Processing Tools</i>, 2020, pp. 61–65.</p>
+<p>[65] MinishLab, "Model2Vec: Fast state-of-the-art static embeddings." https://github.com/MinishLab/model2vec</p>
+<p>[66] MinishLab, "potion-multilingual-128M," and NAMAA-Space, "Zarra," Hugging Face.</p>
+<p>[67] H. Schechter Vera <i>et al.</i>, "EmbeddingGemma: Powerful and lightweight text representations," arXiv:2509.20354, 2025.</p>
+<p>[68] Google, "Introducing Gemma 3 270M: The compact model for hyper-efficient AI," Google Developers Blog.</p>
+<p>[69] L. Wang <i>et al.</i>, "Multilingual E5 text embeddings: A technical report," arXiv:2402.05672, 2024.</p>
+<p>[71] T. Davidson, D. Warmsley, M. Macy, and I. Weber, "Automated hate speech detection and the problem of offensive language," in <i>Proc. ICWSM</i>, 2017, pp. 512–515.<span class="new">NEW</span></p>
+<p>[72] A. Schmidt and M. Wiegand, "A survey on hate speech detection using natural language processing," in <i>Proc. Fifth Int. Workshop on Natural Language Processing for Social Media</i>, Valencia, Spain, 2017, pp. 1–10, doi: 10.18653/v1/W17-1101.<span class="new">NEW</span></p>
+<p>[73] M. Zampieri, S. Malmasi, P. Nakov, S. Rosenthal, N. Farra, and R. Kumar, "SemEval-2019 Task 6: Identifying and categorizing offensive language in social media (OffensEval)," in <i>Proc. SemEval-2019</i>, 2019, pp. 75–86, doi: 10.18653/v1/S19-2010.<span class="new">NEW</span></p>
+<p>[74] M. Zampieri <i>et al.</i>, "SemEval-2020 Task 12: Multilingual offensive language identification in social media (OffensEval 2020)," in <i>Proc. Fourteenth Workshop on Semantic Evaluation</i>, 2020, pp. 1425–1447, doi: 10.18653/v1/2020.semeval-1.188.<span class="new">NEW</span></p>
+<p>[75] H. Mubarak, H. Al-Khalifa, and A. Al-Thubaity, "Overview of OSACT5 shared task on Arabic offensive language and hate speech detection," in <i>Proc. 5th Workshop on Open-Source Arabic Corpora and Processing Tools</i>, Marseille, France, 2022, pp. 162–166. https://aclanthology.org/2022.osact-1.20<span class="new">NEW</span></p>
+<p>[76] I. Bensalem, P. Rosso, and H. Zitouni, "Toxic language detection: A systematic review of Arabic datasets," arXiv:2312.07228, 2024.<span class="new">NEW</span></p>
+<p>[77] G. Hinton, O. Vinyals, and J. Dean, "Distilling the knowledge in a neural network," arXiv:1503.02531, 2015.<span class="new">NEW</span></p>
+<p>[78] V. Sanh, L. Debut, J. Chaumond, and T. Wolf, "DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter," arXiv:1910.01108, 2019.<span class="new">NEW</span></p>
+<p>[79] F. Gilardi, M. Alizadeh, and M. Kubli, "ChatGPT outperforms crowd workers for text-annotation tasks," <i>Proc. Natl. Acad. Sci. USA</i>, vol. 120, no. 30, e2305016120, 2023, doi: 10.1073/pnas.2305016120.<span class="new">NEW</span></p>
+<p>[80] Y. Du <i>et al.</i>, "PP-OCR: A practical ultra lightweight OCR system," arXiv:2009.09941, 2020.<span class="new">NEW</span></p>
+<p>[81] C. Cui <i>et al.</i>, "PaddleOCR 3.0 technical report," arXiv:2507.05595, 2025.<span class="new">NEW</span></p>
+<p>[82] J. Redmon, S. Divvala, R. Girshick, and A. Farhadi, "You only look once: Unified, real-time object detection," in <i>Proc. IEEE CVPR</i>, 2016, pp. 779–788.<span class="new">NEW</span></p>
+<p>[83] K. He, G. Gkioxari, P. Dollár, and R. Girshick, "Mask R-CNN," in <i>Proc. IEEE ICCV</i>, 2017, doi: 10.1109/ICCV.2017.322.<span class="new">NEW</span></p>
+<p>[84] D. Bolya, C. Zhou, F. Xiao, and Y. J. Lee, "YOLACT: Real-time instance segmentation," in <i>Proc. IEEE/CVF ICCV</i>, 2019, pp. 9157–9166.<span class="new">NEW</span></p>
+<p>[85] F. C. Akyon, S. O. Altinuc, and A. Temizel, "Slicing aided hyper inference and fine-tuning for small object detection," in <i>Proc. IEEE ICIP</i>, Bordeaux, France, 2022, pp. 966–970, doi: 10.1109/ICIP46576.2022.9897990.<span class="new">NEW</span></p>
+<p>[86] B. Jacob <i>et al.</i>, "Quantization and training of neural networks for efficient integer-arithmetic-only inference," in <i>Proc. IEEE/CVF CVPR</i>, 2018, pp. 2704–2713.<span class="new">NEW</span></p>
+<p>[87] A. Ignatov <i>et al.</i>, "AI Benchmark: All about deep learning on smartphones in 2019," in <i>Proc. IEEE/CVF ICCV Workshops</i>, 2019, pp. 3617–3635, doi: 10.1109/ICCVW.2019.00447.<span class="new">NEW</span></p>
+<p>[88] M. Moustafa, "Applying deep learning to classify pornographic images and videos," arXiv:1511.08899, 2015.<span class="new">NEW</span></p>
+<p>[89] R. McPherson, R. Shokri, and V. Shmatikov, "Defeating image obfuscation with deep learning," arXiv:1609.00408, 2016.<span class="new">NEW</span></p>
+<p>[90] M. C. Potter, B. Wyble, C. E. Hagmann, and E. S. McCourt, "Detecting meaning in RSVP at 13 ms per picture," <i>Atten. Percept. Psychophys.</i>, vol. 76, no. 2, pp. 270–279, 2014, doi: 10.3758/s13414-013-0605-z.<span class="new">NEW</span></p>
+<p>[91] Y. Fratantonio, C. Qian, S. P. Chung, and W. Lee, "Cloak and dagger: From two permissions to complete control of the UI feedback loop," in <i>Proc. IEEE Symp. Security and Privacy</i>, 2017, pp. 1041–1057, doi: 10.1109/SP.2017.39.<span class="new">NEW</span></p>
+<p>[92] Apple, "About Communication Safety on your child's Apple device," Apple Support, article 105069. https://support.apple.com/en-us/105069<span class="new">NEW</span></p>
+<p>[93] Google, "Sensitive content warnings in Google Messages," Google Messages Help, answer 15724426. https://support.google.com/messages/answer/15724426<span class="new">NEW</span></p>
+<p>[94] A. V. Aho and M. J. Corasick, "Efficient string matching: An aid to bibliographic search," <i>Commun. ACM</i>, vol. 18, no. 6, pp. 333–340, 1975, doi: 10.1145/360825.360855.<span class="new">NEW</span></p>
+<p>[95] J. Cohen, "A coefficient of agreement for nominal scales," <i>Educ. Psychol. Meas.</i>, vol. 20, no. 1, pp. 37–46, 1960, doi: 10.1177/001316446002000104.<span class="new">NEW</span></p>
+</div>
+
+</main>
+</body>
+</html>

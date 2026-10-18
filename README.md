@@ -12,13 +12,14 @@ An Android app that hides offensive language and images of people on the phone s
 
 | Version | Hides | Status |
 |---|---|---|
-| **v1** | Bad words in on-screen text (Arabic + English), with a word list | Next: app skeleton (v1-a) |
-| **v1.1** | Context-dependent insults, with our own small text model (trained from large "teacher" models) | Planned, in parallel with v1 |
+| **v1** | Bad words in on-screen text (Arabic + English): a word list, plus our own small text model for context-dependent insults (trained from large "teacher" models) | Next: app skeleton (v1-a) |
 | **v2** | Bad words in text **inside images** (memes, thumbnails, subtitles), with on-phone OCR | Planned |
 | **v3** | Big people (taller than ~96 px on screen) | Model tested: 85–95% hidden |
 | **v4** | Medium people (~32–96 px), checking the screen in tiles | Model tested: 87–89% with tiles |
-| **v5** | Small people (under ~32 px), with our own fine-tuned model | The hard part: 51–54% with tiles today |
-| **v6** | People in videos while they play | Needs research |
+| **v5** *(bonus)* | Small people (under ~32 px), with our own fine-tuned model | The hard part: 51–54% with tiles today |
+| **v6** *(after graduation)* | People in videos while they play | Future work |
+
+**Graduation scope: v1 to v4.** v5 is a bonus if time allows; v6 comes after graduation.
 
 Plan by week: [`docs/roadmap.md`](docs/roadmap.md). Deadline: about mid-April 2027.
 

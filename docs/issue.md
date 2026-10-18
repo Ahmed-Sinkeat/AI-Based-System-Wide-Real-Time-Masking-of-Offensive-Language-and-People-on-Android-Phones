@@ -30,7 +30,7 @@ Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** And
 | # | Pri | Issue | Next action | Stream | Since |
 |---|---|---|---|---|---|
 | 31 | 🟠 | **Arabic OCR speed and accuracy on the phone unknown** (P0d) | Week 5: PaddleOCR PP-OCRv5 Arabic + English mobile models on the Redmi 12, CPU and GPU; small meme/thumbnail test set; then set NFR-14 targets | C | 2026-10-18 |
-| 32 | 🟢 | No method yet for video (3 window pictures per second cannot follow a playing video) | Week 21: compare tracking between checks, screen capture during video only, strict mode (roadmap v6) | C | 2026-10-18 |
+| 32 | 🟢 | No method yet for video (3 window pictures per second cannot follow a playing video) | **After graduation** (v6 is out of the graduation scope): compare tracking, screen capture during video only, strict mode; name it as future work in the report | C | 2026-10-18 |
 | 33 | 🟢 | Internet pictures for v5 training must allow this use | Keep a source and license for every downloaded set; prefer openly licensed sets | B | 2026-10-18 |
 
 ### Text filter (v1) and word lists

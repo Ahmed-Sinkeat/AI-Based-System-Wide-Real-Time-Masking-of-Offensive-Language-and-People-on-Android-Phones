@@ -178,3 +178,39 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
   - The team **already has a Google Play developer account** (another app published on 2026-10-07). APK installs during development, then Google Play.
   - **AI tools are allowed** by the department. No AI tool is named as an author or co-author in commits, documents or the report.
 - **Evidence:** SRS v2.2 §3, §4; [`research-methods.md`](research-methods.md) §8; closes issues #3 (C11) and the AI part of #28 (C14)
+
+### 2026-10-18 — Graduation scope: v1 to v4; v5 bonus; v6 after graduation
+- **What:** The graduation project is **v1 to v4** (bad-language text, our own text model, text inside images, big and medium people). **v5** (small people) is a **bonus**, started only when v4 meets its exit criterion. **v6** (video) moves to **after graduation** and appears in the report only as future work. Roadmap re-planned: v4 gets Weeks 13–15, a new "test v1–v4 together" phase in Weeks 16–18, v5 (bonus) Weeks 17–22, report and defense Weeks 22–27.
+- **Why:** Six months for three people is tight for seven versions. v5 needs our own data and training, and v6 needs a method that does not exist yet; both could eat the time needed to finish and test v1–v4 well. v1–v4 already make a complete product: text everywhere plus people the model finds reliably.
+- **Alternatives considered:** Keep v1–v6 in scope (risk of four half-finished versions); drop v5 completely (loses the part with the most research value if time allows).
+- **Also:** A team-only guide and the supervisor slides live in `private/` (ignored by git).
+- **Not yet updated:** SRS v2.2 (`srs-*.html` / `.pdf`) still lists v5 and v6 as planned versions.
+- **Evidence:** [`roadmap.md`](roadmap.md); issue #32
+
+### 2026-10-18 — v1.1 merged into v1
+- **What:** Our own small text model is now part of **v1** (layer ② next to the word list), not a separate version "v1.1". v1 runs Weeks 1–9; the word list and app (part 1) and the model (part 2) are built in parallel as before. Version numbers v2 to v6 do not change.
+- **Why:** The model is a small piece of the same text feature; a separate version number made the scope look bigger and split one feature in two.
+- **Not yet updated:** older documents (investigation, app design, research methods, SRS, issues) still say "v1.1"; read it as "v1, layer ②".
+- **Also:** the supervisor slides were rewritten: less technical detail, no week numbers (only the order of work), more on **why** each method was chosen and why we cover before checking; HaramBlur is described as both a browser extension and an Android app.
+- **Evidence:** [`roadmap.md`](roadmap.md)
+
+### 2026-10-18 — Team guide and supervisor slides in English and Arabic
+- **What:** The team guide in `private/` is now a designed page with drawn diagrams, in **English and Arabic** (`team-guide-en/ar.html` + `.pdf`, Arabic right-to-left). It explains the whole app as a process (what happens when you scroll, every part of the app, how text and images share the phone) without deep technical detail, and adds a **machine-learning learning path** tied to our versions. The supervisor slides are built in both languages from one script (`build-deck.js en|ar`, Arabic mirrored right-to-left).
+- **Why:** The team asked for a simple explanation of the whole process and a way to learn ML for the project; the supervisor and the team read both languages.
+- **Slides cut to 6 + backup:** the proposal was already given to the supervisor, so the meeting is a follow-up. Main slides: title, what we did since the proposal, scope to approve, how it works (cover first), evidence, plan + decisions we need. Problem and idea slides removed (in the proposal); the detailed slides stay after the end as backup for questions.
+- **Proposal written into the guide (not yet in app design):** people model on the graphics chip and the text-in-image reader on the main processor, one image job at a time, latest screen wins. To be measured in v2/v3.
+- **Evidence:** `private/` (not in git)
+
+### 2026-10-18 — Research and related-work page (HTML + PDF)
+- **What:** Wrote [`research-en.html`](research-en.html) (+ `research-en.pdf`, 16 pages): research questions, methods, a full related-work review in 9 topics (offensive language, Arabic, small phone models, OCR, people segmentation, hiding images, Android platform, existing products, gap table), findings so far, evaluation plan, validity, ethics. Added 25 new references [71]–[95] to [`research-methods.md`](research-methods.md) §9 so numbers match.
+- **Why:** The research was done but the related-work chapter was not written; this is the base for the report's background chapter and something readable to show the supervisor.
+- **Alternatives considered:** Arabic version too (skipped for now, English only); a separate reference list (rejected, numbers would drift).
+- **What got in the way:** One survey (Husain & Uzuner, TALLIP) could not be verified and was left out. SafeGaze features were not tested, so they are marked "not checked".
+- **Evidence:** [`research-en.html`](research-en.html) §4, references.
+
+### 2026-10-18 — Decision models added to the related work
+- **What:** [`research-en.html`](research-en.html) §4.3 now covers "decision models" (Jev and open alternatives, refs [49]–[53]); §4.4 says text read from images goes through the same text model.
+- **Why:** The typed answer of our v1 text model and its teachers come from this idea, but the page did not say so. People are not done this way: a decision model gives a label for the whole image, and we need each person's shape to cover only the person.
+- **Alternatives considered:** Using Jev in the app (rejected: cloud only, screen text would leave the phone).
+- **What got in the way:** Nothing.
+- **Evidence:** [`investigation-android-v1.md`](investigation-android-v1.md) §3 (typed answer, teachers).

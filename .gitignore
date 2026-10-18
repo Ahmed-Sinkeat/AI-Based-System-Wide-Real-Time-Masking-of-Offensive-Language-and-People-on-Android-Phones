@@ -19,6 +19,9 @@ bench/*.onnx
 # Third-party binaries
 bench/phone_tools/
 
+# Team-only notes and slides (not shared in git)
+private/
+
 # OS / editor
 .DS_Store
 *.swp

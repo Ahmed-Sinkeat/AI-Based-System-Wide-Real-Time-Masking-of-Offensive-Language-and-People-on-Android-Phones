@@ -475,3 +475,56 @@ All online sources were accessed on **6 October 2026** unless stated otherwise.
 [69] L. Wang, N. Yang, X. Huang, L. Yang, R. Majumder *et al.*, "Multilingual E5 text embeddings: A technical report," arXiv:2402.05672, 2024.
 
 [70] Google, "Streamlining LLM inference at the edge with TFLite," Google Developers Blog. [Online]. Available: https://developers.googleblog.com/en/streamlining-llm-inference-at-the-edge-with-tflite/
+
+
+*References [71]–[95] were added for the related-work review in [`research-en.html`](research-en.html) (accessed 18 October 2026).*
+
+[71] T. Davidson, D. Warmsley, M. Macy, and I. Weber, "Automated hate speech detection and the problem of offensive language," in *Proc. ICWSM*, 2017, pp. 512–515.
+
+[72] A. Schmidt and M. Wiegand, "A survey on hate speech detection using natural language processing," in *Proc. Fifth Int. Workshop on Natural Language Processing for Social Media*, Valencia, Spain, 2017, pp. 1–10, doi: 10.18653/v1/W17-1101.
+
+[73] M. Zampieri, S. Malmasi, P. Nakov, S. Rosenthal, N. Farra, and R. Kumar, "SemEval-2019 Task 6: Identifying and categorizing offensive language in social media (OffensEval)," in *Proc. SemEval-2019*, 2019, pp. 75–86, doi: 10.18653/v1/S19-2010.
+
+[74] M. Zampieri *et al.*, "SemEval-2020 Task 12: Multilingual offensive language identification in social media (OffensEval 2020)," in *Proc. Fourteenth Workshop on Semantic Evaluation*, 2020, pp. 1425–1447, doi: 10.18653/v1/2020.semeval-1.188.
+
+[75] H. Mubarak, H. Al-Khalifa, and A. Al-Thubaity, "Overview of OSACT5 shared task on Arabic offensive language and hate speech detection," in *Proc. 5th Workshop on Open-Source Arabic Corpora and Processing Tools*, Marseille, France, 2022, pp. 162–166. [Online]. Available: https://aclanthology.org/2022.osact-1.20
+
+[76] I. Bensalem, P. Rosso, and H. Zitouni, "Toxic language detection: A systematic review of Arabic datasets," arXiv:2312.07228, 2024.
+
+[77] G. Hinton, O. Vinyals, and J. Dean, "Distilling the knowledge in a neural network," arXiv:1503.02531, 2015.
+
+[78] V. Sanh, L. Debut, J. Chaumond, and T. Wolf, "DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter," arXiv:1910.01108, 2019.
+
+[79] F. Gilardi, M. Alizadeh, and M. Kubli, "ChatGPT outperforms crowd workers for text-annotation tasks," *Proc. Natl. Acad. Sci. USA*, vol. 120, no. 30, e2305016120, 2023, doi: 10.1073/pnas.2305016120.
+
+[80] Y. Du *et al.*, "PP-OCR: A practical ultra lightweight OCR system," arXiv:2009.09941, 2020.
+
+[81] C. Cui *et al.*, "PaddleOCR 3.0 technical report," arXiv:2507.05595, 2025.
+
+[82] J. Redmon, S. Divvala, R. Girshick, and A. Farhadi, "You only look once: Unified, real-time object detection," in *Proc. IEEE CVPR*, 2016, pp. 779–788.
+
+[83] K. He, G. Gkioxari, P. Dollár, and R. Girshick, "Mask R-CNN," in *Proc. IEEE ICCV*, 2017, doi: 10.1109/ICCV.2017.322.
+
+[84] D. Bolya, C. Zhou, F. Xiao, and Y. J. Lee, "YOLACT: Real-time instance segmentation," in *Proc. IEEE/CVF ICCV*, 2019, pp. 9157–9166.
+
+[85] F. C. Akyon, S. O. Altinuc, and A. Temizel, "Slicing aided hyper inference and fine-tuning for small object detection," in *Proc. IEEE ICIP*, Bordeaux, France, 2022, pp. 966–970, doi: 10.1109/ICIP46576.2022.9897990.
+
+[86] B. Jacob *et al.*, "Quantization and training of neural networks for efficient integer-arithmetic-only inference," in *Proc. IEEE/CVF CVPR*, 2018, pp. 2704–2713.
+
+[87] A. Ignatov *et al.*, "AI Benchmark: All about deep learning on smartphones in 2019," in *Proc. IEEE/CVF ICCV Workshops*, 2019, pp. 3617–3635, doi: 10.1109/ICCVW.2019.00447.
+
+[88] M. Moustafa, "Applying deep learning to classify pornographic images and videos," arXiv:1511.08899, 2015.
+
+[89] R. McPherson, R. Shokri, and V. Shmatikov, "Defeating image obfuscation with deep learning," arXiv:1609.00408, 2016.
+
+[90] M. C. Potter, B. Wyble, C. E. Hagmann, and E. S. McCourt, "Detecting meaning in RSVP at 13 ms per picture," *Atten. Percept. Psychophys.*, vol. 76, no. 2, pp. 270–279, 2014, doi: 10.3758/s13414-013-0605-z.
+
+[91] Y. Fratantonio, C. Qian, S. P. Chung, and W. Lee, "Cloak and dagger: From two permissions to complete control of the UI feedback loop," in *Proc. IEEE Symp. Security and Privacy*, 2017, pp. 1041–1057, doi: 10.1109/SP.2017.39.
+
+[92] Apple, "About Communication Safety on your child's Apple device," Apple Support, article 105069. [Online]. Available: https://support.apple.com/en-us/105069
+
+[93] Google, "Sensitive content warnings in Google Messages," Google Messages Help, answer 15724426. [Online]. Available: https://support.google.com/messages/answer/15724426
+
+[94] A. V. Aho and M. J. Corasick, "Efficient string matching: An aid to bibliographic search," *Commun. ACM*, vol. 18, no. 6, pp. 333–340, 1975, doi: 10.1145/360825.360855.
+
+[95] J. Cohen, "A coefficient of agreement for nominal scales," *Educ. Psychol. Meas.*, vol. 20, no. 1, pp. 37–46, 1960, doi: 10.1177/001316446002000104.
