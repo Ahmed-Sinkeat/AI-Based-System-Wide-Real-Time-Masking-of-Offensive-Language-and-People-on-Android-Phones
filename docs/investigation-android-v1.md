@@ -281,6 +281,17 @@ Key choices:
 - **Model format:** ONNX → LiteRT (`.tflite`), already exported (`bench/export_tflite.py`). The same model family as the Linux tests, so the accuracy numbers carry over.
 - **Covers follow scrolling.** Scroll events carry how far the page moved, so covers move with it. A person who is already covered stays covered while scrolling.
 
+**Other people models considered and ruled out (2026-10-18):**
+
+| Model | What it is | Why not |
+|---|---|---|
+| MediaPipe SelfieSegmenter / SelfieMulticlass [50] | Google's phone segmenters, already in LiteRT format | Built to "segment the portrait of a person" (video calls, background effects); input only 256 × 256 px (144 × 256 landscape). A phone screen shrunk to 256 px makes a 96 px person about 10 px tall, so medium and small people (v4, v5) would be lost. |
+| MediaPipe DeepLab-v3 [50] | General segmenter with a "person" class, 257 × 257 px | Same low input size; one mask for all people, so no per-person confidence |
+| MobileSAM [51], EdgeSAM [52] | Fast, distilled versions of SAM | Need a **prompt** (a point or a box) for each object; they cannot find people by themselves, so they would still need a detector such as YOLO in front |
+| FastSAM [53] | "Segment everything" with a CNN instance-segmentation model, then prompting | Finds all objects, not people; the underlying model is a YOLO-style segmenter anyway, so our YOLO26n-seg trained on people is the direct choice |
+
+The SAM family stays useful **off the phone**, for labelling training pictures (SAM 3 with the text prompt "person", v5).
+
 ---
 
 ## 5. "Hide first" on Android: what is possible
@@ -336,7 +347,7 @@ Big people are fine. Small people are the open problem, like on Linux. Training 
 
 | Limit | Effect | What we do |
 |---|---|---|
-| **Secure windows** (`FLAG_SECURE`: banking, some video apps with DRM) | The window picture fails with a "secure window" error [4]. Screen capture shows black. | We cannot check them. Default: leave them alone (most never show people). Add a per-app "always cover" switch. |
+| **Secure windows** (`FLAG_SECURE`: banking, Netflix and other video apps with DRM) | The window picture fails with a "secure window" error [4]. Screen capture shows black. | We cannot check pictures there; screen **text is still filtered** (it comes from the accessibility tree, not the picture). Banking apps rarely show people, but **streaming apps do**, so this is a real limit for video apps: state it in the report. Optional per-app "always cover" switch (covers the whole window). Corrected 2026-10-18: the earlier "most never show people" was wrong for streaming apps. |
 | **Accessibility policy on Google Play** | Apps that are not accessibility tools need a declaration form and a clear in-app disclosure [7] | For the graduation project: install from an APK file. Still show a clear consent screen, since the service sees the whole screen. |
 | **Xiaomi battery saver / autostart** | MIUI/HyperOS may stop background services | Setup screen asks the user to allow Autostart and set battery to "No restrictions" |
 | **Android version** | Window picture needs Android 14 | The Redmi 12 runs Android 15. Older phones are not supported for now. |
@@ -514,3 +525,7 @@ Linux tests stay valid for the model work (v3–v5). The Linux plugin is paused.
 47. Multilingual E5 Text Embeddings, technical report: [arXiv 2402.05672](https://arxiv.org/abs/2402.05672); [intfloat/multilingual-e5-small](https://huggingface.co/intfloat/multilingual-e5-small)
 48. TFLite memory-mapped model files: [Google Developers Blog, Streamlining LLM inference at the edge with TFLite](https://developers.googleblog.com/en/streamlining-llm-inference-at-the-edge-with-tflite/)
 49. Hugging Face model pages, checked 2026-10-07: [asafaya/bert-mini-arabic](https://huggingface.co/asafaya/bert-mini-arabic), [asafaya/bert-medium-arabic](https://huggingface.co/asafaya/bert-medium-arabic), [microsoft/Multilingual-MiniLM-L12-H384](https://huggingface.co/microsoft/Multilingual-MiniLM-L12-H384), [distilbert-base-multilingual-cased](https://huggingface.co/distilbert/distilbert-base-multilingual-cased), [aubmindlab/bert-base-arabertv02](https://huggingface.co/aubmindlab/bert-base-arabertv02), [FacebookAI/xlm-roberta-base](https://huggingface.co/FacebookAI/xlm-roberta-base), [microsoft/mdeberta-v3-base](https://huggingface.co/microsoft/mdeberta-v3-base), [Alibaba-NLP/gte-multilingual-base](https://huggingface.co/Alibaba-NLP/gte-multilingual-base), [LiquidAI/LFM2-350M](https://huggingface.co/LiquidAI/LFM2-350M), [wfzyx/von-1.0](https://huggingface.co/wfzyx/von-1.0), [HuggingFaceTB/SmolLM2-135M](https://huggingface.co/HuggingFaceTB/SmolLM2-135M)
+50. MediaPipe Image Segmenter, supported models (SelfieSegmenter, SelfieMulticlass, DeepLab-v3), checked 2026-10-18: [developers.google.com](https://developers.google.com/edge/mediapipe/solutions/vision/image_segmenter)
+51. C. Zhang *et al.*, "Faster Segment Anything: Towards lightweight SAM for mobile applications" (MobileSAM): [arXiv 2306.14289](https://arxiv.org/abs/2306.14289)
+52. C. Zhou *et al.*, "EdgeSAM: Prompt-in-the-loop distillation for on-device deployment of SAM": [arXiv 2312.06660](https://arxiv.org/abs/2312.06660)
+53. X. Zhao *et al.*, "Fast Segment Anything" (FastSAM): [arXiv 2306.12156](https://arxiv.org/abs/2306.12156)

@@ -53,7 +53,7 @@ Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** And
 
 | # | Pri | Issue | Next action | Stream | Since |
 |---|---|---|---|---|---|
-| 21 | 🟠 | **Licenses to check** before using: Gemma models (Gemma terms), LFM2 (LFM license), MARBERTv2, AraBERT, ArabicBERT (not stated), HAYAA-student (research only), ArabicDialectSafety and OSACT data | Read each license; record it in research-methods §4.7 | C | 2026-10-07 |
+| 21 | 🟠 | **Licenses to check** before using: Gemma models (Gemma terms), LFM2 (LFM license), MARBERTv2, AraBERT, ArabicBERT (not stated), HAYAA-student (research only), ArabicDialectSafety and OSACT data | **Checked 2026-10-18** (research-methods §6 table). Still open: ask the authors of AraBERT / ArabicBERT, OSACT and ArabicDialectSafety before shipping a model trained on them; Ultralytics YOLO is AGPL-3.0, so the app must stay open source | B + C | 2026-10-07 |
 | 22 | 🟠 | Teachers' Arabic quality unknown (Laya never tested on Arabic; Jev mentions no Arabic) | Week 5: human-checked sample, Cohen's kappa with teacher labels | B + C | 2026-10-07 |
 | 23 | 🟢 | Jev / other API terms: may their answers be used to train our model? | Read the terms before using any API teacher | C | 2026-10-07 |
 | 24 | 🟢 | Token count for trimming came from a **small sample** (4 276 tokens, 1.7%) | Recount over the full training data per language | C | 2026-10-07 |

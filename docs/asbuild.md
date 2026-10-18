@@ -214,3 +214,10 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **Alternatives considered:** Using Jev in the app (rejected: cloud only, screen text would leave the phone).
 - **What got in the way:** Nothing.
 - **Evidence:** [`investigation-android-v1.md`](investigation-android-v1.md) §3 (typed answer, teachers).
+
+### 2026-10-18 — Pre-design clean-up: SRS 2.3, honest limits, ruled-out models, licenses
+- **What:** (1) SRS EN + AR moved to **v2.3**: v1.1 merged into v1, graduation scope v1–v4, v5 bonus, v6 future work; FR-18 "Bonus", FR-19 "Future"; PDFs reprinted. (2) "Every app" replaced by honest limits in the SRS, READMEs, roadmap, research page and team guides: apps that block screenshots (banking, **Netflix and other protected video apps**) get text filtering only; apps that do not share text (many games) get picture checks only; video is v6. The investigation's secure-window row was wrong ("most never show people") and is corrected. (3) MediaPipe segmenters, MobileSAM, EdgeSAM and FastSAM added as considered and ruled out (refs [96]–[99]). (4) License check of every candidate model and tool (research-methods §6). (5) Team guide: HaramBlur row split, "tiling" named.
+- **Why:** Requirements and claims must be correct before design; the supervisor checks claims against tests.
+- **Alternatives considered:** Citing the supervisor's papers now (postponed by the team).
+- **What got in the way:** Several Arabic models and datasets state no license (AraBERT, ArabicBERT, OSACT, ArabicDialectSafety); MARBERT and HAYAA-student are research-only. **Ultralytics YOLO is AGPL-3.0**, so the app must stay open source (or switch to RF-DETR, Apache-2.0). The GLiNER2.5-Decide page no longer resolves.
+- **Evidence:** [`srs-en.html`](srs-en.html), [`research-methods.md`](research-methods.md) §6, [`investigation-android-v1.md`](investigation-android-v1.md) §4, issue #21.

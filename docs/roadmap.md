@@ -166,7 +166,7 @@ Final report, demo video (record the screen with the filter on), slides, practic
 | Arabic dialects and Arabizi | The word list already has 959 Arabizi entries; needs review |
 | A short product name | Candidate: **Sitr (سِتر)**. Check the Play Store for clashes first (issue #4) |
 | Android 13 and older (FR-16) | Dropped for now: the app is built for Android 14+ first |
-| Apps that block screenshots | Not needed: banking apps rarely show what we hide |
+| Pictures of apps that block screenshots (banking, Netflix and other protected video apps) | Android does not allow it; their screen text is still filtered. Named as a limit in the report |
 
 ---
 

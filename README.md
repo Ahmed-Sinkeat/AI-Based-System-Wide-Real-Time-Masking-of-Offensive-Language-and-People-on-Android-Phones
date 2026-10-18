@@ -4,7 +4,7 @@
 
 Graduation project, Software Engineering. **Team:** Ahmed Mohammed Omer · Omer Abd Almonim · Momen Kamal
 
-An Android app that hides offensive language and images of people on the phone screen, in every app, using AI that runs on the phone itself. **Nothing leaves the phone:** the app has no internet permission.
+An Android app that hides offensive language and images of people on the phone screen, across the apps people use every day (limits: [SRS §5](docs/srs-en.html#scope)), using AI that runs on the phone itself. **Nothing leaves the phone:** the app has no internet permission.
 
 ---
 

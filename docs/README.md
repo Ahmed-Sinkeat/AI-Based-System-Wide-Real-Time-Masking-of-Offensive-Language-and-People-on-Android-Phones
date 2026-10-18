@@ -1,6 +1,6 @@
 # Docs: start here
 
-**Project:** an Android app that hides bad language and images of people on the screen, in every app. Everything runs on the phone.
+**Project:** an Android app that hides bad language and images of people on the screen, across the apps people use every day (limits: SRS §5). Everything runs on the phone.
 
 **Release order:** v1 bad-language text (Arabic + English: word list + our own small text model) → v2 text inside images → v3 big people → v4 medium people. **Graduation scope is v1–v4**; v5 small people is a bonus; v6 video is after graduation.
 

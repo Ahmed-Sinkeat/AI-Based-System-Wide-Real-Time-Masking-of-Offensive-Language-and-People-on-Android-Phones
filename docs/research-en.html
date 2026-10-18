@@ -90,7 +90,7 @@ ul,ol{margin:6px 0;padding-inline-start:22px}li{margin:3px 0}
 </div>
 
 <h2 id="s1"><span class="n">1</span>Summary</h2>
-<p>We build an Android app that covers offensive words and images of people on the screen, <b>in every app</b>, with all AI running <b>on the phone</b>, and that covers new content <b>before</b> the user sees it. Research so far shows this is possible on a normal, not rooted, Android 14+ phone, and that no existing product or published system does all of it.</p>
+<p>We build an Android app that covers offensive words and images of people on the screen, <b>across apps</b> (system-wide), with all AI running <b>on the phone</b>, and that covers new content <b>before</b> the user sees it. Research so far shows this is possible on a normal, not rooted, Android 14+ phone, and that no existing product or published system does all of it.</p>
 <div class="grid">
   <div class="card"><span class="big">0</span>existing tools that filter <b>text</b> across all apps on a phone (§4.8)</div>
   <div class="card"><span class="big">163 + 364</span>competitor issues and reviews analysed; top complaint: content shows before the blur (§5.2)</div>
@@ -158,7 +158,7 @@ ul,ol{margin:6px 0;padding-inline-start:22px}li{margin:3px 0}
 <div class="gap"><b>Gap.</b> Reading Arabic text in images <b>on a low-cost phone, fast enough to cover words while scrolling</b> is not measured anywhere we found. That is our RQ6 (step P0d).</div>
 
 <h3 id="s4-5">4.5 Finding and segmenting people</h3>
-<p>Real-time detection began with one-stage detectors such as YOLO [82]. Mask R-CNN added a pixel mask for each object [83], and YOLACT made instance masks real-time [84]. Today's small real-time segmenters are the YOLO11/YOLO26 family [10] and RF-DETR [8], [11]. SAM 3 segments objects from a text prompt such as "person" and can label training data [9]. COCO is the standard benchmark, with small, medium and large object sizes [7]. Small objects are a known weakness; <b>slicing the image into tiles</b> (SAHI) raises small-object accuracy by 5–7 AP points without retraining [85], which is our v4 method. AI Benchmark shows how widely phone chips differ, and that phone AI units often do not help in practice [87], which matches our test phone (§5.3).</p>
+<p>Real-time detection began with one-stage detectors such as YOLO [82]. Mask R-CNN added a pixel mask for each object [83], and YOLACT made instance masks real-time [84]. Today's small real-time segmenters are the YOLO11/YOLO26 family [10] and RF-DETR [8], [11]. SAM 3 segments objects from a text prompt such as "person" and can label training data [9]. Phone-oriented options exist but do not fit screens: MediaPipe's segmenters are made for portraits and video calls at 256 × 256 px input [96], so a medium person on a shrunk screen becomes a few pixels; MobileSAM [97] and EdgeSAM [98] are fast but need a point or box prompt for each object; FastSAM [99] segments every object rather than people. We therefore keep a people-trained YOLO segmenter on the phone and use SAM only offline, for labelling. COCO is the standard benchmark, with small, medium and large object sizes [7]. Small objects are a known weakness; <b>slicing the image into tiles</b> (SAHI) raises small-object accuracy by 5–7 AP points without retraining [85], which is our v4 method. AI Benchmark shows how widely phone chips differ, and that phone AI units often do not help in practice [87], which matches our test phone (§5.3).</p>
 <div class="gap"><b>Gap.</b> Benchmarks use photos and fast GPUs. There are no published results for <b>people on phone screens</b> (feeds, grids, thumbnails) on a <b>low-cost phone</b>, which is why we built our own tests (M4).</div>
 
 <h3 id="s4-6">4.6 Hiding sensitive images</h3>
@@ -173,7 +173,7 @@ ul,ol{margin:6px 0;padding-inline-start:22px}li{margin:3px 0}
 <p>A normal app cannot change how Android draws the screen. Three platform features make our design possible:</p>
 <table>
 <tr><th>Feature</th><th>What it gives</th><th>Source</th></tr>
-<tr><td>Accessibility service</td><td>On-screen text from every app, and an event when it changes</td><td>[25], [35]</td></tr>
+<tr><td>Accessibility service</td><td>On-screen text from every app that shares it, and an event when it changes</td><td>[25], [35]</td></tr>
 <tr><td>Per-character boxes (Android 8+)</td><td>The exact screen position of each word, so only the word is covered; Chrome provides them for web pages</td><td>[26], [34]</td></tr>
 <tr><td>Window picture (Android 14+)</td><td>A picture of one app's window <b>without our covers</b>, at most one every 333 ms</td><td>[27], [28]</td></tr>
 <tr><td>Accessibility overlay</td><td>Trusted covers that may be fully solid while touches pass through</td><td>[27], [29]</td></tr>
@@ -184,7 +184,7 @@ ul,ol{margin:6px 0;padding-inline-start:22px}li{margin:3px 0}
 <h3 id="s4-8">4.8 Existing products</h3>
 <p>Several products hide sensitive images; none filters text system-wide.</p>
 <table>
-<tr><th>Product</th><th class="c">Every app</th><th class="c">Filters text</th><th class="c">Covers only the person</th><th class="c">Hidden before shown</th><th class="c">On device</th></tr>
+<tr><th>Product</th><th class="c">Across apps</th><th class="c">Filters text</th><th class="c">Covers only the person</th><th class="c">Hidden before shown</th><th class="c">On device</th></tr>
 <tr><td>HaramBlur browser extension [37]</td><td class="c x">✕ websites</td><td class="c x">✕</td><td class="c x">✕ whole image</td><td class="c p">optional; lifts after 7 s</td><td class="c y">✓</td></tr>
 <tr><td>HaramBlur Android app [38]</td><td class="c p">popular apps</td><td class="c x">✕</td><td class="c x">✕ whole image</td><td class="c x">✕ shows 1–3 s</td><td class="c y">✓</td></tr>
 <tr><td>SafeGaze extension [39]</td><td class="c x">✕ websites</td><td class="c x">✕</td><td class="c">not checked</td><td class="c">not checked</td><td class="c">not checked</td></tr>
@@ -197,7 +197,7 @@ ul,ol{margin:6px 0;padding-inline-start:22px}li{margin:3px 0}
 <h3 id="s4-9">4.9 The gap we address</h3>
 <table>
 <tr><th>What exists</th><th>What is missing</th><th>Our contribution</th></tr>
-<tr><td>Offensive-language classifiers for posts, run on servers (4.1, 4.2)</td><td>Word-level, on-device, every app</td><td>A word list + small model that covers the exact words, on the phone (v1)</td></tr>
+<tr><td>Offensive-language classifiers for posts, run on servers (4.1, 4.2)</td><td>Word-level, on-device, system-wide</td><td>A word list + small model that covers the exact words, on the phone (v1)</td></tr>
 <tr><td>Large Arabic models and safety guards (4.2, 4.3)</td><td>A model sized for a low-cost phone</td><td>Teacher → student, measured on the test phone (RQ5)</td></tr>
 <tr><td>Mobile OCR without Arabic, or with Arabic but unmeasured on phones (4.4)</td><td>Speed and accuracy on a low-cost phone</td><td>Measured OCR for text in images (v2, RQ6)</td></tr>
 <tr><td>Person segmenters benchmarked on photos and fast GPUs (4.5)</td><td>Results for phone screens on weak phones</td><td>Our phone-screen tests and tile strategy (v3, v4, RQ3)</td></tr>
@@ -209,10 +209,10 @@ ul,ol{margin:6px 0;padding-inline-start:22px}li{margin:3px 0}
 <table>
 <tr><th>Option</th><th>Verdict</th><th>Why</th></tr>
 <tr><td>Screen recording + normal overlay</td><td class="x">Rejected</td><td>Covers at most 80% solid; consent every session; records our own covers</td></tr>
-<tr><td><b>Accessibility service only (Android 14+)</b></td><td class="y">Chosen</td><td>Every app; one permission; solid touch-through covers; window picture without our covers; max 3 pictures/s</td></tr>
+<tr><td><b>Accessibility service only (Android 14+)</b></td><td class="y">Chosen</td><td>Works across apps; one permission; solid touch-through covers; window picture without our covers; max 3 pictures/s</td></tr>
 <tr><td>Root or custom system</td><td class="x">Rejected</td><td>Only rooted phones; breaks with updates</td></tr>
 </table>
-<p>Limits found: secure windows (banking, some video apps) cannot be pictured; Xiaomi's battery saver can stop the service; installing from a file needs "restricted settings" on Android 13+.</p>
+<p>Limits found: apps that block screenshots (banking, Netflix and other protected video apps) cannot be pictured, so only their screen text is filtered; apps that draw text themselves (many games) share no text; video while it plays is left for after graduation (v6); Xiaomi's battery saver can stop the service; installing from a file needs "restricted settings" on Android 13+.</p>
 
 <h3>5.2 Existing tools (RQ4)</h3>
 <p>We coded 163 GitHub issues of the HaramBlur extension and 364 recent Play Store reviews of its Android app (~696 000 installs, 4.61 stars). Counts come from keyword searches, then reading the matches.</p>
@@ -367,6 +367,10 @@ ul,ol{margin:6px 0;padding-inline-start:22px}li{margin:3px 0}
 <p>[93] Google, "Sensitive content warnings in Google Messages," Google Messages Help, answer 15724426. https://support.google.com/messages/answer/15724426<span class="new">NEW</span></p>
 <p>[94] A. V. Aho and M. J. Corasick, "Efficient string matching: An aid to bibliographic search," <i>Commun. ACM</i>, vol. 18, no. 6, pp. 333–340, 1975, doi: 10.1145/360825.360855.<span class="new">NEW</span></p>
 <p>[95] J. Cohen, "A coefficient of agreement for nominal scales," <i>Educ. Psychol. Meas.</i>, vol. 20, no. 1, pp. 37–46, 1960, doi: 10.1177/001316446002000104.<span class="new">NEW</span></p>
+<p>[96] Google, "MediaPipe Image Segmenter: models," Google AI Edge. https://developers.google.com/edge/mediapipe/solutions/vision/image_segmenter<span class="new">NEW</span></p>
+<p>[97] C. Zhang <i>et al.</i>, "Faster Segment Anything: Towards lightweight SAM for mobile applications," arXiv:2306.14289, 2023.<span class="new">NEW</span></p>
+<p>[98] C. Zhou, X. Li, C. C. Loy, and B. Dai, "EdgeSAM: Prompt-in-the-loop distillation for on-device deployment of SAM," arXiv:2312.06660, 2023.<span class="new">NEW</span></p>
+<p>[99] X. Zhao <i>et al.</i>, "Fast Segment Anything," arXiv:2306.12156, 2023.<span class="new">NEW</span></p>
 </div>
 
 </main>

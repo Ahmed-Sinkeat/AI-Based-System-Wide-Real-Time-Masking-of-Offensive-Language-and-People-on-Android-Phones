@@ -9,7 +9,7 @@ References use IEEE style. Numbers in square brackets point to §9.
 
 ## 1. Purpose and scope
 
-The project builds an Android app that hides offensive language and images of people on the phone screen, in every app, on the device itself. This document records **how the research was done**: what questions it asks, which methods answer them, what data and tools were used, and what the limits are. It covers the work done so far (research, tests, competitor study, word-list building) and the planned evaluation of each release (v1 text, v1.1 text model, v2 text inside images, v3–v5 people, v6 video).
+The project builds an Android app that hides offensive language and images of people on the phone screen, across apps (system-wide), on the device itself. This document records **how the research was done**: what questions it asks, which methods answer them, what data and tools were used, and what the limits are. It covers the work done so far (research, tests, competitor study, word-list building) and the planned evaluation of each release (v1 text, v1.1 text model, v2 text inside images, v3–v5 people, v6 video).
 
 ---
 
@@ -292,6 +292,20 @@ Metrics: macro-F1 over the 5 categories; **word-level F1** (as in the toxic-span
 - **Public user data.** Reviews and issues are reported in aggregate, without user names.
 - **Models and datasets for M7.** Teacher models are open (Apache-2.0) and run offline, so no data is sent out. Cloud teachers are used only if their terms allow training on their answers. Each dataset's license is checked before use; HAYAA-student and MARBERTv2 are for research use.
 
+**License check (2026-10-18)**, from each Hugging Face model card and GitHub repository:
+
+| License | Models and tools | What it means for us |
+|---|---|---|
+| MIT / Apache-2.0 | multilingual-E5-small, Multilingual-MiniLM, mmBERT-small, multilingual-toxicity-small, potion-multilingual-128M, Zarra, CAMeLBERT-mix, DistilBERT multilingual, Qwen3Guard (8B, Stream-0.6B), Laya-multilingual, RF-DETR, PaddleOCR, LiteRT | Free to use, change and ship in the app; keep the notice |
+| **AGPL-3.0** | **Ultralytics YOLO (our people model)** | Allowed, but the app that ships it must be **open source under AGPL-3.0** (our code is open anyway). A closed or paid version later would need an Ultralytics license or a switch to RF-DETR (Apache-2.0) |
+| Gemma terms (gated) | Gemma 3 270M, EmbeddingGemma | Use allowed under Google's terms, with their use restrictions passed on to users |
+| LFM Open License v1.0 | LFM2-350M | Free below 10 M USD yearly revenue; fine for us |
+| Research use only | MARBERTv2, HAYAA-student (built on MARBERT) | Fine for experiments and comparison; **not for the shipped app** without the authors' permission |
+| Not stated | AraBERTv02, ArabicBERT (asafaya) mini / medium, OSACT 2020 data, ArabicDialectSafety | Treat as research-only; ask the authors before shipping anything trained on them |
+| Unreachable | GLiNER2.5-Decide (model page now redirects) | Recheck before use |
+
+**Consequence for the design:** the shipped text model should come from the MIT / Apache group. Research-only models stay as baselines in the comparison.
+
 ---
 
 ## 7. Reproducibility
@@ -528,3 +542,11 @@ All online sources were accessed on **6 October 2026** unless stated otherwise.
 [94] A. V. Aho and M. J. Corasick, "Efficient string matching: An aid to bibliographic search," *Commun. ACM*, vol. 18, no. 6, pp. 333–340, 1975, doi: 10.1145/360825.360855.
 
 [95] J. Cohen, "A coefficient of agreement for nominal scales," *Educ. Psychol. Meas.*, vol. 20, no. 1, pp. 37–46, 1960, doi: 10.1177/001316446002000104.
+
+[96] Google, "MediaPipe Image Segmenter: models," Google AI Edge. [Online]. Available: https://developers.google.com/edge/mediapipe/solutions/vision/image_segmenter
+
+[97] C. Zhang *et al.*, "Faster Segment Anything: Towards lightweight SAM for mobile applications," arXiv:2306.14289, 2023.
+
+[98] C. Zhou, X. Li, C. C. Loy, and B. Dai, "EdgeSAM: Prompt-in-the-loop distillation for on-device deployment of SAM," arXiv:2312.06660, 2023.
+
+[99] X. Zhao *et al.*, "Fast Segment Anything," arXiv:2306.12156, 2023.
