@@ -1,4 +1,4 @@
-# HaramBlurr — As-Built Log
+# As-Built Log
 
 What we did, **why**, what else we considered, and **what got in our way**. Newest entries at the bottom. One entry per decision or event.
 Open problems are tracked in [`issue.md`](issue.md). Details live in the linked documents.
@@ -46,7 +46,7 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 
 ### 2026-10-06 — Android first; Linux paused as plan B
 - **What:** The team chose Android as the first platform. Linux docs were kept and marked "paused".
-- **Why:** The project targets phones (as in the proposal). *(Team: add any other reasons here.)*
+- **Why:** The project targets phones (as in the proposal). More reasons are written in the 2026-10-18 entry "Why Android, and why on the phone".
 - **What got in the way:** On Android a normal app cannot sit inside the screen drawing, so "hide first" is harder (next entry).
 - **Evidence:** [`investigation-android-v1.md`](investigation-android-v1.md)
 
@@ -133,3 +133,48 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **What got in the way:** (1) The phone was warm (38–41 °C, on the charger) and the CPU was ~30% slower than on 2026-10-03; re-checked: 301 ms at 37 °C, 357 ms at 38 °C, so it is heat, not a mistake. (2) On the GPU, the 480 px files need **~52–60 s and ~470 MB to start** (640: ~4 s); repeated twice with the same result. (3) The accuracy script only handled 640 px files; it now takes the size from the file name.
 - **Evidence:** [`p0-results-android-v1.md`](p0-results-android-v1.md) §2–§4, `bench/results/phone_latency.csv`, `bench/results/phone_tflite_*`; closes issue #6
 
+### 2026-10-07 — Completed the sustained phone benchmark and checked the handoff
+- **What:** On the connected Redmi 12, ran the 640 fp32 model for 15 consecutive 60-second blocks on CPU (2 threads, XNNPACK fp16), then 15 on GPU (OpenCL). Saved raw logs and a 30-row CSV with timing, memory, temperature and charging state; removed the temporary model from the phone afterwards.
+- **Why:** Close the remaining P0b heat/performance follow-up (#29), without repeating unchanged model exports or expanding into the deferred candidates.
+- **Result:** 8 165 timed inferences. GPU weighted mean **189.3 ms**, CPU **261.4 ms**. CPU warmed from 34 to 40 °C and its final block's **p95 reached 411.9 ms**; GPU ran at 38–41 °C with no progressive slowdown. **The 150 ms target remains unmet.** GPU stays the people-model choice.
+- **Limits:** AC charging throughout; GPU followed CPU without cooling. Each block reloads the model (CPU ~0.1 s, GPU ~3–4 s), so this is near-continuous load rather than a persistent interpreter. App-level latency and battery life still need the implementation.
+- **Checks:** All 30 blocks complete, no benchmark errors or delegate fallback, each configured for 60 seconds with paired battery readings. Metric and word-list self-tests pass; Python compilation passes; word-list rebuild is byte-for-byte unchanged. Audited the six existing valid accuracy reports (60 screens per layout each), without re-running them.
+- **Correction:** The previous speed CSV contains **34 unique valid settings**, not 36: dynamic-range files skip fp16 math. Its 36 rows include two earlier repeats; the results report now states that distinction.
+- **Evidence:** [`p0-results-android-v1.md`](p0-results-android-v1.md) §2.1, [`raw log`](../bench/results/phone_sustained_2026-10-07.log), [`CSV`](../bench/results/phone_sustained_2026-10-07.csv); closes issue #29. Optional exports (320 px, YOLO11n, YOLO26s), 480 GPU cache work and future text/app tests remain deferred.
+
+## Phase 1b: name, scope and six-month plan
+
+### 2026-10-18 — Working name dropped; project uses its full title
+- **What:** Removed the working name "HaramBlurr" from all documents, the requirements, the app design and the test logs. The project is now called by its full title: *AI-Based System-Wide Real-Time Masking of Offensive Language and People on Android Phones*. The project folder is renamed to `android-masking/`. The old draft `docs/ha.pdf` (which carried the old name) was removed.
+- **Why:** The name was one letter away from the competing "HaramBlur" extension and app (~700K installs), which would confuse users and examiners. "HaramBlur" stays only where we cite it as prior work.
+- **Alternatives considered:** Keep the name; pick a new short name now. A short name is left open; candidate **Sitr (سِتر)** (issue #4).
+- **Also:** In the raw phone log `bench/results/phone_sustained_2026-10-07.log` the temporary model path on the phone was renamed from `/data/local/tmp/haramblurr_sustained_640_fp32.tflite` to `/data/local/tmp/masking_sustained_640_fp32.tflite` (60 lines, text only; no numbers changed). Older entries above keep the old wording as history.
+- **Evidence:** closed issues C12 (name) and C15 (`ha.pdf`, #5)
+
+### 2026-10-18 — Why Android, and why on the phone (not the cloud)
+- **What:** Confirmed: Android first (PC/Linux stays paused as plan B), and all AI runs on the phone. The app has no internet permission.
+- **Why Android:** It is where people scroll (social media, short videos), so the filter helps more people. Phone test results are good enough for text and big people (GPU ~189–205 ms per screen); small people are hard on any hardware, so a PC would not solve the hard part.
+- **Why on the phone:** Privacy (screen pictures never leave the phone), works without internet, no mobile data cost, no server bill or subscription to run. Large models are used only while **training** (laptop or Colab), then shrunk for the phone.
+- **Alternatives considered:** PC app (more power, but less used for scrolling); cloud models (stronger, but sends every screen to a server, costs money each month, needs user accounts and data protection).
+- **Evidence:** [`p0-results-android-v1.md`](p0-results-android-v1.md), [`investigation-android-v1.md`](investigation-android-v1.md) §0; closes issue #26 (C13)
+
+### 2026-10-18 — Why a window picture, not screen casting
+- **What:** Kept the accessibility service window picture (`takeScreenshotOfWindow`, Android 14+) as the only way to see images. Screen casting (MediaProjection) is not used.
+- **Why:** (1) Allowed once in settings; casting asks again every session on Android 14+. (2) The window picture does **not** include our own covers, so we can cover first and check under the cover; casting sees our covers (flicker). (3) The model handles about 5 pictures per second, so casting's 60 frames per second would be wasted work. (4) Our covers stay fully opaque in the trusted accessibility overlay; normal overlays are capped at 80% opacity. Memory: one picture at a time, nothing saved to storage.
+- **Limit:** At most one picture per window every 333 ms, so a playing video cannot be followed this way (planned for v6).
+- **Evidence:** [`investigation-android-v1.md`](investigation-android-v1.md) §2, §4, §5
+
+### 2026-10-18 — New release order and six-month plan
+- **What:** The deadline is about six months away (about mid-April 2027; week 1 = Mon 12 Oct 2026). New order: **v1** bad-language text → **v1.1** our own small text model → **v2** bad words in text **inside images** (on-phone OCR) → **v3** big people → **v4** medium → **v5** small (own fine-tuned model) → **v6** people in videos. Roadmap rewritten for 27 weeks; SRS updated to **v2.2** (new FR-12 text in images, FR-19 video, NFR-14 OCR targets after test P0d).
+- **Why:** Text inside images reuses the text filter and is cheaper than people, so it comes before them. Video is the hardest (needs more than 3 pictures per second), so it is last.
+- **Also decided:** Hide the **whole person**, with no gender guess. Building our own small-people model by fine-tuning is in scope (v5).
+- **Evidence:** [`roadmap.md`](roadmap.md), [`srs-en.html`](srs-en.html), issues #31–#33
+
+### 2026-10-18 — Scope limits and project facts
+- **What:**
+  - **Android 14+ only** for picture features; older phones are not supported for now. The Android 13 screen-casting fallback (FR-16) is dropped.
+  - **Banking and other secure apps are not promised** (they block screenshots; there is no need to filter them). FR-15 marked "by design".
+  - **v5 training data is private and never published**, plus openly licensed internet pictures (license kept for each set, issue #33).
+  - The team **already has a Google Play developer account** (another app published on 2026-10-07). APK installs during development, then Google Play.
+  - **AI tools are allowed** by the department. No AI tool is named as an author or co-author in commits, documents or the report.
+- **Evidence:** SRS v2.2 §3, §4; [`research-methods.md`](research-methods.md) §8; closes issues #3 (C11) and the AI part of #28 (C14)

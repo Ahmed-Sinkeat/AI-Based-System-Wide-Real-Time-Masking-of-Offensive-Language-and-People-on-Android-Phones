@@ -1,0 +1,2280 @@
+SUSTAINED_BEGIN config=cpu2_fp16 minute=1
+Wed Oct  7 11:52:56 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3099380
+  status: 2
+  health: 2
+  present: true
+  level: 62
+  scale: 100
+  voltage: 4151
+  temperature: 340
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 140.838ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=235696 p5=235696 median=235696 p95=235696
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=272 first=222774 curr=232635 min=212748 max=268615 avg=220123 std=5775 p5=213897 median=218936 p95=229801
+
+INFO: Inference timings in us: Init: 140838, First inference: 235696, Warmup (avg): 235696, Inference (avg): 220123
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.4336 overall=77.9336
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 86.7734
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 86 MB
+INFO: + RssAnnon           : 66 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3149370
+  status: 2
+  health: 2
+  present: true
+  level: 63
+  scale: 100
+  voltage: 4161
+  temperature: 350
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=1
+SUSTAINED_BEGIN config=cpu2_fp16 minute=2
+Wed Oct  7 11:53:57 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3149370
+  status: 2
+  health: 2
+  present: true
+  level: 63
+  scale: 100
+  voltage: 4161
+  temperature: 350
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 116.085ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=247246 p5=247246 median=247246 p95=247246
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=260 first=230508 curr=229647 min=227678 max=270287 avg=230220 std=4648 p5=228011 median=229151 p95=233515
+
+INFO: Inference timings in us: Init: 116085, First inference: 247246, Warmup (avg): 247246, Inference (avg): 230220
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.6055 overall=78.2305
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 86.9102
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 86 MB
+INFO: + RssAnnon           : 66 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3199360
+  status: 2
+  health: 2
+  present: true
+  level: 64
+  scale: 100
+  voltage: 4171
+  temperature: 360
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=2
+SUSTAINED_BEGIN config=cpu2_fp16 minute=3
+Wed Oct  7 11:54:58 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3199360
+  status: 2
+  health: 2
+  present: true
+  level: 64
+  scale: 100
+  voltage: 4171
+  temperature: 360
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 118.189ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=237728 p5=237728 median=237728 p95=237728
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=235 first=232472 curr=270529 min=227505 max=302973 avg=255282 std=19696 p5=228234 median=269717 p95=272681
+
+INFO: Inference timings in us: Init: 118189, First inference: 237728, Warmup (avg): 237728, Inference (avg): 255282
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.8359 overall=78.4609
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.293
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3199360
+  status: 2
+  health: 2
+  present: true
+  level: 64
+  scale: 100
+  voltage: 4180
+  temperature: 370
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=3
+SUSTAINED_BEGIN config=cpu2_fp16 minute=4
+Wed Oct  7 11:55:58 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3199360
+  status: 2
+  health: 2
+  present: true
+  level: 64
+  scale: 100
+  voltage: 4180
+  temperature: 370
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: INFO: XNNPACK delegate created.
+Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 137.685ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=280178 p5=280178 median=280178 p95=280178
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=219 first=270206 curr=274557 min=268948 max=342133 avg=272953 std=8289 p5=269373 median=270986 p95=283098
+
+INFO: Inference timings in us: Init: 137685, First inference: 280178, Warmup (avg): 280178, Inference (avg): 272953
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.5703 overall=78.1953
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.1562
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3249350
+  status: 2
+  health: 2
+  present: true
+  level: 65
+  scale: 100
+  voltage: 4188
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=4
+SUSTAINED_BEGIN config=cpu2_fp16 minute=5
+Wed Oct  7 11:56:59 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3249350
+  status: 2
+  health: 2
+  present: true
+  level: 65
+  scale: 100
+  voltage: 4188
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: XNNPACK delegate created.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 142.791ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=287626 p5=287626 median=287626 p95=287626
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=220 first=279815 curr=276023 min=268320 max=316887 avg=271979 std=5457 p5=269315 median=270940 p95=274729
+
+INFO: Inference timings in us: Init: 142791, First inference: 287626, Warmup (avg): 287626, Inference (avg): 271979
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.7891 overall=78.5391
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.3672
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 66 MB
+INFO: + RssFile + RssShmem : 21 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3249350
+  status: 2
+  health: 2
+  present: true
+  level: 65
+  scale: 100
+  voltage: 4194
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=5
+SUSTAINED_BEGIN config=cpu2_fp16 minute=6
+Wed Oct  7 11:58:00 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3249350
+  status: 2
+  health: 2
+  present: true
+  level: 65
+  scale: 100
+  voltage: 4194
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 136.189ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=287618 p5=287618 median=287618 p95=287618
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=220 first=275743 curr=268902 min=267958 max=316608 avg=271949 std=4989 p5=268902 median=270716 p95=277737
+
+INFO: Inference timings in us: Init: 136189, First inference: 287618, Warmup (avg): 287618, Inference (avg): 271949
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.5273 overall=78.1523
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.2188
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3249350
+  status: 2
+  health: 2
+  present: true
+  level: 65
+  scale: 100
+  voltage: 4137
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=6
+SUSTAINED_BEGIN config=cpu2_fp16 minute=7
+Wed Oct  7 11:59:01 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3249350
+  status: 2
+  health: 2
+  present: true
+  level: 65
+  scale: 100
+  voltage: 4137
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 137.756ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=299545 p5=299545 median=299545 p95=299545
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=221 first=276602 curr=270578 min=268680 max=315229 avg=271591 std=4586 p5=269207 median=270532 p95=276140
+
+INFO: Inference timings in us: Init: 137756, First inference: 299545, Warmup (avg): 299545, Inference (avg): 271591
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.5586 overall=78.1836
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.1055
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3299340
+  status: 2
+  health: 2
+  present: true
+  level: 66
+  scale: 100
+  voltage: 4139
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=7
+SUSTAINED_BEGIN config=cpu2_fp16 minute=8
+Wed Oct  7 12:00:01 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3299340
+  status: 2
+  health: 2
+  present: true
+  level: 66
+  scale: 100
+  voltage: 4139
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 139.246ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=290238 p5=290238 median=290238 p95=290238
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=220 first=272304 curr=269722 min=268496 max=316053 avg=271869 std=6141 p5=268823 median=270310 p95=282928
+
+INFO: Inference timings in us: Init: 139246, First inference: 290238, Warmup (avg): 290238, Inference (avg): 271869
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.582 overall=78.332
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.043
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3299340
+  status: 2
+  health: 2
+  present: true
+  level: 66
+  scale: 100
+  voltage: 4142
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=8
+SUSTAINED_BEGIN config=cpu2_fp16 minute=9
+Wed Oct  7 12:01:02 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3299340
+  status: 2
+  health: 2
+  present: true
+  level: 66
+  scale: 100
+  voltage: 4142
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 137.198ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=289236 p5=289236 median=289236 p95=289236
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=221 first=271078 curr=270596 min=268704 max=316194 avg=271369 std=4350 p5=269258 median=270517 p95=274458
+
+INFO: Inference timings in us: Init: 137198, First inference: 289236, Warmup (avg): 289236, Inference (avg): 271369
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.7344 overall=78.3594
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.1836
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3349330
+  status: 2
+  health: 2
+  present: true
+  level: 67
+  scale: 100
+  voltage: 4145
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=9
+SUSTAINED_BEGIN config=cpu2_fp16 minute=10
+Wed Oct  7 12:02:03 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3349330
+  status: 2
+  health: 2
+  present: true
+  level: 67
+  scale: 100
+  voltage: 4145
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: XNNPACK delegate created.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 136.762ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=286403 p5=286403 median=286403 p95=286403
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=221 first=270078 curr=271198 min=268571 max=319905 avg=271327 std=5256 p5=269059 median=270420 p95=273892
+
+INFO: Inference timings in us: Init: 136762, First inference: 286403, Warmup (avg): 286403, Inference (avg): 271327
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.5781 overall=78.0781
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.0977
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3349330
+  status: 2
+  health: 2
+  present: true
+  level: 67
+  scale: 100
+  voltage: 4149
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=10
+SUSTAINED_BEGIN config=cpu2_fp16 minute=11
+Wed Oct  7 12:03:04 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3349330
+  status: 2
+  health: 2
+  present: true
+  level: 67
+  scale: 100
+  voltage: 4149
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: XNNPACK delegate created.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 137.336ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=288971 p5=288971 median=288971 p95=288971
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=221 first=271111 curr=269353 min=267920 max=315295 avg=271689 std=6228 p5=268704 median=270132 p95=278896
+
+INFO: Inference timings in us: Init: 137336, First inference: 288971, Warmup (avg): 288971, Inference (avg): 271689
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.5859 overall=78.2109
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.3008
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3349330
+  status: 2
+  health: 2
+  present: true
+  level: 67
+  scale: 100
+  voltage: 4152
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=11
+SUSTAINED_BEGIN config=cpu2_fp16 minute=12
+Wed Oct  7 12:04:05 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3349330
+  status: 2
+  health: 2
+  present: true
+  level: 67
+  scale: 100
+  voltage: 4152
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 137.57ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=286824 p5=286824 median=286824 p95=286824
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=221 first=269859 curr=271323 min=268598 max=325379 avg=271216 std=5216 p5=268964 median=270297 p95=273920
+
+INFO: Inference timings in us: Init: 137570, First inference: 286824, Warmup (avg): 286824, Inference (avg): 271216
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.7266 overall=78.3516
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.1953
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3399320
+  status: 2
+  health: 2
+  present: true
+  level: 68
+  scale: 100
+  voltage: 4156
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=12
+SUSTAINED_BEGIN config=cpu2_fp16 minute=13
+Wed Oct  7 12:05:06 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3399320
+  status: 2
+  health: 2
+  present: true
+  level: 68
+  scale: 100
+  voltage: 4156
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 136.021ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=279332 p5=279332 median=279332 p95=279332
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=221 first=270781 curr=271037 min=268095 max=314739 avg=270972 std=4646 p5=268768 median=270095 p95=273230
+
+INFO: Inference timings in us: Init: 136021, First inference: 279332, Warmup (avg): 279332, Inference (avg): 270972
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.5156 overall=78.2656
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.2109
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 87 MB
+INFO: + RssAnnon           : 67 MB
+INFO: + RssFile + RssShmem : 20 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3399320
+  status: 2
+  health: 2
+  present: true
+  level: 68
+  scale: 100
+  voltage: 4159
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=13
+SUSTAINED_BEGIN config=cpu2_fp16 minute=14
+Wed Oct  7 12:06:06 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3399320
+  status: 2
+  health: 2
+  present: true
+  level: 68
+  scale: 100
+  voltage: 4159
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: XNNPACK delegate created.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 137.745ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=279489 p5=279489 median=279489 p95=279489
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=235 first=269528 curr=357312 min=209313 max=362766 avg=254394 std=35271 p5=211438 median=254354 p95=320594
+
+INFO: Inference timings in us: Init: 137745, First inference: 279489, Warmup (avg): 279489, Inference (avg): 254394
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=55.5898 overall=78.2148
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 87.0859
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 84 MB
+INFO: + RssAnnon           : 66 MB
+INFO: + RssFile + RssShmem : 18 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3399320
+  status: 2
+  health: 2
+  present: true
+  level: 68
+  scale: 100
+  voltage: 4164
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=14
+SUSTAINED_BEGIN config=cpu2_fp16 minute=15
+Wed Oct  7 12:07:07 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3399320
+  status: 2
+  health: 2
+  present: true
+  level: 68
+  scale: 100
+  voltage: 4164
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Num threads: [2]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: #threads used for CPU inference: [2]
+INFO: Use xnnpack: [1]
+INFO: xnnpack_force_fp16: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: XNNPack FP16 inference enabled.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+INFO: XNNPACK delegate created.
+VERBOSE: Replacing 473 out of 477 node(s) with delegate (TfLiteXNNPackDelegate) node, yielding 7 partitions for subgraph 0.
+INFO: Explicitly applied XNNPACK delegate, and the model graph will be partially executed by the delegate w/ 4 delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 213.737ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=383249 p5=383249 median=383249 p95=383249
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=229 first=422590 curr=227796 min=209675 max=499632 avg=260947 std=60744 p5=212258 median=238742 p95=411872
+
+INFO: Inference timings in us: Init: 213737, First inference: 383249, Warmup (avg): 383249, Inference (avg): 260947
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=53.8164 overall=76.3164
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 84.1836
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 84 MB
+INFO: + RssAnnon           : 66 MB
+INFO: + RssFile + RssShmem : 18 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3399320
+  status: 2
+  health: 2
+  present: true
+  level: 68
+  scale: 100
+  voltage: 4099
+  temperature: 400
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=cpu2_fp16 minute=15
+SUSTAINED_BEGIN config=gpu minute=1
+Wed Oct  7 12:08:08 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3399320
+  status: 2
+  health: 2
+  present: true
+  level: 68
+  scale: 100
+  voltage: 4099
+  temperature: 400
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: Created TensorFlow Lite delegate for GPU.
+INFO: GPU delegate created.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3417.07ms.
+INFO: Created 1 GPU delegate kernels.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=187634 p5=187634 median=187634 p95=187634
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=327 first=180011 curr=188275 min=175415 max=204027 avg=182833 std=8837 p5=176182 median=178008 p95=200255
+
+INFO: Inference timings in us: Init: 3417066, First inference: 187634, Warmup (avg): 187634, Inference (avg): 182833
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=152.605 overall=169.875
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 177.93
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 177 MB
+INFO: + RssAnnon           : 58 MB
+INFO: + RssFile + RssShmem : 119 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3449310
+  status: 2
+  health: 2
+  present: true
+  level: 69
+  scale: 100
+  voltage: 4099
+  temperature: 410
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=1
+SUSTAINED_BEGIN config=gpu minute=2
+Wed Oct  7 12:09:12 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3449310
+  status: 2
+  health: 2
+  present: true
+  level: 69
+  scale: 100
+  voltage: 4099
+  temperature: 410
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: GPU delegate created.
+INFO: Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 4004.41ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=210814 p5=210814 median=210814 p95=210814
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=307 first=193243 curr=191651 min=185033 max=207066 avg=194229 std=4451 p5=186733 median=194083 p95=201194
+
+INFO: Inference timings in us: Init: 4004406, First inference: 210814, Warmup (avg): 210814, Inference (avg): 194229
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.312 overall=172.215
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.359
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 58 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3449310
+  status: 2
+  health: 2
+  present: true
+  level: 69
+  scale: 100
+  voltage: 4100
+  temperature: 400
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=2
+SUSTAINED_BEGIN config=gpu minute=3
+Wed Oct  7 12:10:17 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3449310
+  status: 2
+  health: 2
+  present: true
+  level: 69
+  scale: 100
+  voltage: 4100
+  temperature: 400
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: INFO: GPU delegate created.
+Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3973.84ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=216928 p5=216928 median=216928 p95=216928
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=308 first=196299 curr=194164 min=184720 max=207377 avg=193741 std=5020 p5=186176 median=193324 p95=201915
+
+INFO: Inference timings in us: Init: 3973837, First inference: 216928, Warmup (avg): 216928, Inference (avg): 193741
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.32 overall=172.465
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.531
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 58 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3449310
+  status: 2
+  health: 2
+  present: true
+  level: 69
+  scale: 100
+  voltage: 4101
+  temperature: 400
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=3
+SUSTAINED_BEGIN config=gpu minute=4
+Wed Oct  7 12:11:21 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3449310
+  status: 2
+  health: 2
+  present: true
+  level: 69
+  scale: 100
+  voltage: 4101
+  temperature: 400
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: Created TensorFlow Lite delegate for GPU.
+INFO: GPU delegate created.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3917.08ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=216703 p5=216703 median=216703 p95=216703
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=311 first=196464 curr=201077 min=183650 max=201952 avg=191704 std=4320 p5=185402 median=191053 p95=199931
+
+INFO: Inference timings in us: Init: 3917076, First inference: 216703, Warmup (avg): 216703, Inference (avg): 191704
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.168 overall=172.312
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.625
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 58 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3449310
+  status: 2
+  health: 2
+  present: true
+  level: 69
+  scale: 100
+  voltage: 4170
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=4
+SUSTAINED_BEGIN config=gpu minute=5
+Wed Oct  7 12:12:26 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3449310
+  status: 2
+  health: 2
+  present: true
+  level: 69
+  scale: 100
+  voltage: 4170
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: INFO: GPU delegate created.
+Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3432.32ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=207440 p5=207440 median=207440 p95=207440
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=313 first=185630 curr=191483 min=183448 max=204244 avg=190584 std=4434 p5=184091 median=190245 p95=198160
+
+INFO: Inference timings in us: Init: 3432316, First inference: 207440, Warmup (avg): 207440, Inference (avg): 190584
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.117 overall=172.336
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.719
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 59 MB
+INFO: + RssFile + RssShmem : 121 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3499300
+  status: 2
+  health: 2
+  present: true
+  level: 70
+  scale: 100
+  voltage: 4174
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=5
+SUSTAINED_BEGIN config=gpu minute=6
+Wed Oct  7 12:13:30 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3499300
+  status: 2
+  health: 2
+  present: true
+  level: 70
+  scale: 100
+  voltage: 4174
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: INFO: GPU delegate created.
+Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3444.14ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=199563 p5=199563 median=199563 p95=199563
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=314 first=190183 curr=193670 min=183491 max=201690 avg=189877 std=3858 p5=184161 median=189427 p95=196864
+
+INFO: Inference timings in us: Init: 3444145, First inference: 199563, Warmup (avg): 199563, Inference (avg): 189877
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.496 overall=172.859
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 181.312
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 58 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3499300
+  status: 2
+  health: 2
+  present: true
+  level: 70
+  scale: 100
+  voltage: 4177
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=6
+SUSTAINED_BEGIN config=gpu minute=7
+Wed Oct  7 12:14:34 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3499300
+  status: 2
+  health: 2
+  present: true
+  level: 70
+  scale: 100
+  voltage: 4177
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: INFO: GPU delegate created.
+Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3446.72ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=200710 p5=200710 median=200710 p95=200710
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=313 first=188163 curr=187932 min=183711 max=202236 avg=190793 std=3922 p5=184816 median=190076 p95=198441
+
+INFO: Inference timings in us: Init: 3446717, First inference: 200710, Warmup (avg): 200710, Inference (avg): 190793
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=154.992 overall=172.141
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.602
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 59 MB
+INFO: + RssFile + RssShmem : 121 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3499300
+  status: 2
+  health: 2
+  present: true
+  level: 70
+  scale: 100
+  voltage: 4182
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=7
+SUSTAINED_BEGIN config=gpu minute=8
+Wed Oct  7 12:15:38 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3499300
+  status: 2
+  health: 2
+  present: true
+  level: 70
+  scale: 100
+  voltage: 4182
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: INFO: GPU delegate created.
+Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3399.81ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=201882 p5=201882 median=201882 p95=201882
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=313 first=184666 curr=187393 min=183555 max=202202 avg=190444 std=4160 p5=184206 median=189709 p95=197992
+
+INFO: Inference timings in us: Init: 3399811, First inference: 201882, Warmup (avg): 201882, Inference (avg): 190444
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.918 overall=173.176
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 181.641
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 181 MB
+INFO: + RssAnnon           : 59 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3549290
+  status: 2
+  health: 2
+  present: true
+  level: 71
+  scale: 100
+  voltage: 4187
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=8
+SUSTAINED_BEGIN config=gpu minute=9
+Wed Oct  7 12:16:42 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3549290
+  status: 2
+  health: 2
+  present: true
+  level: 71
+  scale: 100
+  voltage: 4187
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: GPU delegate created.
+INFO: Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3441.2ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=198463 p5=198463 median=198463 p95=198463
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=312 first=185546 curr=186005 min=184059 max=204083 avg=190999 std=4102 p5=185319 median=190648 p95=198929
+
+INFO: Inference timings in us: Init: 3441198, First inference: 198463, Warmup (avg): 198463, Inference (avg): 190999
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.859 overall=173.117
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 181.422
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 181 MB
+INFO: + RssAnnon           : 59 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3549290
+  status: 2
+  health: 2
+  present: true
+  level: 71
+  scale: 100
+  voltage: 4192
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=9
+SUSTAINED_BEGIN config=gpu minute=10
+Wed Oct  7 12:17:46 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3549290
+  status: 2
+  health: 2
+  present: true
+  level: 71
+  scale: 100
+  voltage: 4192
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: GPU delegate created.
+INFO: Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3422.58ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=196456 p5=196456 median=196456 p95=196456
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=320 first=186818 curr=178460 min=177697 max=200996 avg=186526 std=6313 p5=178455 median=187312 p95=196959
+
+INFO: Inference timings in us: Init: 3422578, First inference: 196456, Warmup (avg): 196456, Inference (avg): 186526
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=154.93 overall=171.953
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.316
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 59 MB
+INFO: + RssFile + RssShmem : 121 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3549290
+  status: 2
+  health: 2
+  present: true
+  level: 71
+  scale: 100
+  voltage: 4196
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=10
+SUSTAINED_BEGIN config=gpu minute=11
+Wed Oct  7 12:18:50 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3549290
+  status: 2
+  health: 2
+  present: true
+  level: 71
+  scale: 100
+  voltage: 4196
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: INFO: GPU delegate created.
+Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+Created 1 GPU delegate kernels.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 2574.5ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=188718 p5=188718 median=188718 p95=188718
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=334 first=178297 curr=179786 min=177770 max=182898 avg=178819 std=612 p5=178087 median=178691 p95=179958
+
+INFO: Inference timings in us: Init: 2574504, First inference: 188718, Warmup (avg): 188718, Inference (avg): 178819
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=154.816 overall=171.98
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.5
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 58 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3599280
+  status: 2
+  health: 2
+  present: true
+  level: 72
+  scale: 100
+  voltage: 4200
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=11
+SUSTAINED_BEGIN config=gpu minute=12
+Wed Oct  7 12:19:53 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3599280
+  status: 2
+  health: 2
+  present: true
+  level: 72
+  scale: 100
+  voltage: 4200
+  temperature: 390
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: INFO: GPU delegate created.
+Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 2582.88ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=188967 p5=188967 median=188967 p95=188967
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=316 first=178388 curr=189761 min=177989 max=202646 avg=189172 std=5171 p5=178767 median=189516 p95=196913
+
+INFO: Inference timings in us: Init: 2582877, First inference: 188967, Warmup (avg): 188967, Inference (avg): 189172
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=154.555 overall=171.695
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.18
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 59 MB
+INFO: + RssFile + RssShmem : 121 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3599280
+  status: 2
+  health: 2
+  present: true
+  level: 72
+  scale: 100
+  voltage: 4205
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=12
+SUSTAINED_BEGIN config=gpu minute=13
+Wed Oct  7 12:20:57 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3599280
+  status: 2
+  health: 2
+  present: true
+  level: 72
+  scale: 100
+  voltage: 4205
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: GPU delegate created.
+INFO: Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3446.46ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=204062 p5=204062 median=204062 p95=204062
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=315 first=185024 curr=185400 min=184420 max=200756 avg=189739 std=3321 p5=185286 median=189454 p95=195775
+
+INFO: Inference timings in us: Init: 3446457, First inference: 204062, Warmup (avg): 204062, Inference (avg): 189739
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.457 overall=172.289
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.719
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 58 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3649270
+  status: 2
+  health: 2
+  present: true
+  level: 73
+  scale: 100
+  voltage: 4210
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=13
+SUSTAINED_BEGIN config=gpu minute=14
+Wed Oct  7 12:22:01 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3649270
+  status: 2
+  health: 2
+  present: true
+  level: 73
+  scale: 100
+  voltage: 4210
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: GPU delegate created.
+INFO: Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3431.01ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=202862 p5=202862 median=202862 p95=202862
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=314 first=188914 curr=188357 min=184737 max=202893 avg=190398 std=3685 p5=185456 median=189961 p95=197588
+
+INFO: Inference timings in us: Init: 3431008, First inference: 202862, Warmup (avg): 202862, Inference (avg): 190398
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.078 overall=172.238
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 180.664
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 58 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3649270
+  status: 2
+  health: 2
+  present: true
+  level: 73
+  scale: 100
+  voltage: 4214
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=14
+SUSTAINED_BEGIN config=gpu minute=15
+Wed Oct  7 12:23:05 UTC 2026
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3649270
+  status: 2
+  health: 2
+  present: true
+  level: 73
+  scale: 100
+  voltage: 4214
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+INFO: STARTING!
+INFO: Log parameter values verbosely: [0]
+INFO: Min num runs: [1]
+INFO: Min runs duration (seconds): [60]
+INFO: Max runs duration (seconds): [65]
+INFO: Min warmup runs: [1]
+INFO: Min warmup runs duration (seconds): [0]
+INFO: Report the peak memory footprint: [1]
+INFO: Graph: [/data/local/tmp/masking_sustained_640_fp32.tflite]
+INFO: Signature to run: []
+INFO: Use gpu: [1]
+INFO: Loaded model /data/local/tmp/masking_sustained_640_fp32.tflite
+INFO: Initialized TensorFlow Lite runtime.
+INFO: GPU delegate created.
+INFO: Created TensorFlow Lite delegate for GPU.
+INFO: Loaded OpenCL library with dlopen.
+VERBOSE: Replacing 477 out of 477 node(s) with delegate (TfLiteGpuDelegateV2) node, yielding 1 partitions for subgraph 0.
+Could not open module param file '/sys/module/mali_kbase/parameters/large_page_conf'
+INFO: Initialized OpenCL-based API.
+INFO: Created 1 GPU delegate kernels.
+INFO: Explicitly applied GPU delegate, and the model graph will be completely executed by the delegate.
+INFO: The input model file size (MB): 11.1071
+INFO: Initialized session in 3550.49ms.
+INFO: Running benchmark for at least 1 iterations and at least 0 seconds but terminate if exceeding 65 seconds.
+INFO: count=1 curr=201892 p5=201892 median=201892 p95=201892
+
+INFO: Running benchmark for at least 1 iterations and at least 60 seconds but terminate if exceeding 65 seconds.
+INFO: count=312 first=188072 curr=204341 min=179672 max=207127 avg=191576 std=5753 p5=184852 median=189832 p95=203295
+
+INFO: Inference timings in us: Init: 3550488, First inference: 201892, Warmup (avg): 201892, Inference (avg): 191576
+INFO: Note: as the benchmark tool itself affects memory footprint, the following is only APPROXIMATE to the actual memory footprint of the model at runtime. Take the information at your discretion.
+INFO: Memory footprint delta from the start of the tool (MB): init=155.457 overall=172.605
+INFO: Overall peak memory footprint (MB) via periodic monitoring: 181.047
+INFO: Memory status at the end of exeution:
+INFO: - VmRSS              : 180 MB
+INFO: + RssAnnon           : 58 MB
+INFO: + RssFile + RssShmem : 122 MB
+Current Battery Service state:
+  AC powered: true
+  USB powered: false
+  Wireless powered: false
+  Dock powered: false
+  Max charging current: 0
+  Max charging voltage: 0
+  Charge counter: 3649270
+  status: 2
+  health: 2
+  present: true
+  level: 73
+  scale: 100
+  voltage: 4217
+  temperature: 380
+  technology: Li-poly
+  Charging state: 0
+  Charging policy: 0
+SUSTAINED_END config=gpu minute=15

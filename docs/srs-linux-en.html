@@ -1,4 +1,4 @@
-<title>HaramBlurr Requirements</title>
+<title>Linux Requirements (paused)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;600;700&display=swap">
 <style>
@@ -65,7 +65,7 @@ footer { color: var(--muted); font-size: .88rem; border-top: 1px solid var(--lin
 <div class="page">
   <header>
     <div class="eyebrow">Software Requirements Specification</div>
-    <h1>HaramBlurr</h1>
+    <h1>AI-Based System-Wide Real-Time Masking of People (Linux desktop, paused)</h1>
     <p class="lead">A filter for your desktop that hides people on screen as they appear, in every app.</p>
     <p class="note"><strong>Paused, plan B (6 October 2026).</strong> The project moved to Android first. The current SRS is <code>srs-en.html</code>.</p>
     <div class="meta">
@@ -84,7 +84,7 @@ footer { color: var(--muted); font-size: .88rem; border-top: 1px solid var(--lin
   <section id="intro">
     <h2>1. Introduction</h2>
     <h3>1.1 Purpose</h3>
-    <p>This document explains what HaramBlurr must do and how well it must do it. It is written for the project team and supervisors, so it avoids deep technical detail. The full technical study and the test results live in <code>investigation-linux-v1.md</code> and <code>p0-results-linux-v1.md</code>.</p>
+    <p>This document explains what the filter must do and how well it must do it. It is written for the project team and supervisors, so it avoids deep technical detail. The full technical study and the test results live in <code>investigation-linux-v1.md</code> and <code>p0-results-linux-v1.md</code>.</p>
     <h3>1.2 The problem</h3>
     <p>Some people want to avoid seeing images of people while they use a computer: in social feeds, videos, ads, news and games. Today's tools record the screen, look at it, then draw a blur on top. That has three problems:</p>
     <ul>
@@ -93,7 +93,7 @@ footer { color: var(--muted); font-size: .88rem; border-top: 1px solid var(--lin
       <li>They often work only in one app or one website.</li>
     </ul>
     <h3>1.3 Our idea</h3>
-    <p>HaramBlurr sits inside the part of Linux that draws all windows on the screen. It sees each window's picture <strong>before</strong> it reaches the screen. Anything new stays hidden until it has been checked. Only then is it shown, with any people covered.</p>
+    <p>The filter sits inside the part of Linux that draws all windows on the screen. It sees each window's picture <strong>before</strong> it reaches the screen. Anything new stays hidden until it has been checked. Only then is it shown, with any people covered.</p>
   </section>
 
   <section id="overview">
@@ -205,5 +205,5 @@ footer { color: var(--muted); font-size: .88rem; border-top: 1px solid var(--lin
     </table></div>
   </section>
 
-  <footer>HaramBlurr · Graduation project · SRS v1.0 draft · Arabic version available</footer>
+  <footer>Graduation project · SRS v1.0 draft · Arabic version available</footer>
 </div>

@@ -1,11 +1,11 @@
-# HaramBlurr — P0 Results on the Phone (Android v1)
+# P0 Results on the Phone (Android v1)
 
-Date: 2026-10-03 (first phone runs), 2026-10-06 (checks and fixes), 2026-10-07 (full phone speed test, 480 px and fp16 accuracy) · Phone: Xiaomi Redmi 12 (Helio G88, Android 15, 8 GB) · Laptop for offline runs: i5-1135G7
-Scope: the **people** model, used in v2–v4 ([`investigation-android-v1.md`](investigation-android-v1.md) §10). Offline tests only. No app code exists yet.
+Date: 2026-10-03 (first phone runs), 2026-10-06 (checks and fixes), 2026-10-07 (full phone speed test, 480 px and fp16 accuracy, sustained CPU/GPU test) · Phone: Xiaomi Redmi 12 (Helio G88, Android 15, 8 GB) · Laptop for offline runs: i5-1135G7
+Scope: the **people** model, used in v3–v5 ([`investigation-android-v1.md`](investigation-android-v1.md) §10). Offline tests only. No app code exists yet.
 
-> **v1 hides bad-language text and needs no AI model**, so nothing here blocks v1. These results matter from v2 (big people) onward. Text tests are planned in the investigation §3.4.
+> **v1 hides bad-language text and needs no AI model**, so nothing here blocks v1. These results matter from v3 (big people) onward. Text tests are planned in the investigation §3.4.
 
-Raw data: `bench/results/phone/`, `bench/results/phone_tflite_*/`, `bench/results/phone_latency.csv`.
+Raw data: `bench/results/phone/`, `bench/results/phone_tflite_*/`, `bench/results/phone_latency.csv`, `bench/results/phone_sustained_2026-10-07.csv` and its `.log`.
 
 ---
 
@@ -16,13 +16,13 @@ Raw data: `bench/results/phone/`, `bench/results/phone_tflite_*/`, `bench/result
 | How fast is the model on the Redmi 12? | **GPU: ~205 ms** per full-screen check at 640 px (about 5 per second). **CPU: 277 ms** at best (2 fast cores, fp16 math). NNAPI does not help. Warm phones are up to ~30% slower on the CPU (§2). |
 | Is the phone model file correct? | **fp32: yes.** It finds the same people as the laptop model. **INT8: no, it was broken.** It found **nobody** (0 of 448 people), so it was moved to `models_tflite/broken/` (§4). |
 | Does it hide people on phone-like screens? | **Large people: yes** (85–95%). **Small people: no.** One pass hides 24–27% of them. Three tiles hide 52–54%. **480 px is faster but loses a lot** (e.g. medium people in the grid 64% → 41%), so **640 stays**. fp16 is as accurate as fp32. |
-| What next? | P0b is done. **The ≤ 150 ms rule for tiles is not met at 640** (§2): v3 must check tiles only where the screen changed. Fix the slow GPU start-up at 480 only if 480 is ever used (§4). |
+| What next? | P0b is done. **The ≤ 150 ms rule for tiles is not met at 640** (§2): v4 must check tiles only where the screen changed. Fix the slow GPU start-up at 480 only if 480 is ever used (§4). |
 
 ---
 
 ## 2. Speed on the Redmi 12 (LiteRT `benchmark_model` over adb)
 
-Full run 2026-10-07: every file × every setting, 10 warm-up + 60 timed runs, 20 s pause between runs. Phone: Android 15, on the charger, screen on, battery **38–41 °C**. Raw: `bench/results/phone_latency.csv`, log `bench/results/bench_phone_all.log`.
+Full run 2026-10-07: every file × every applicable setting, 10 warm-up + 60 timed runs, 20 s pause between runs. **34 unique settings** (6 files × 6 settings, minus the 2 dynamic-range/fp16-math combinations); the CSV has 36 rows including 2 earlier repeats. Phone: Android 15, on the charger, screen on, battery **38–41 °C**. Raw: `bench/results/phone_latency.csv`, log `bench/results/bench_phone_all.log`.
 
 **ms per full-screen check (average; p95 within ~5%) · peak memory in MB**
 
@@ -43,7 +43,25 @@ GPU start-up time: **~4 s at 640**, but **~52–60 s at 480** with **~470 MB** p
 - **NNAPI is useless on this phone**: as slow as 1 CPU thread. The Helio G88 has no AI unit that helps.
 - **Heat slows the CPU a lot.** The same test (640 fp32, 4 threads) gave **295 ms at 35 °C** (2026-10-03), **301 ms at 37 °C** and **357 ms at 38 °C** (re-checked 2026-10-07), and **388 ms** in the warm full run. A filter that runs all day will run warm: plan with the warm numbers, and prefer the GPU or 2 threads.
 - 4 threads use slow cores too: 2 threads with fp16 math are faster than 4 threads with fp32.
-- **Decision rule (≤ 150 ms per full screen, so tiles fit): not met at 640.** Only 480 meets it (GPU 121 ms, CPU drq 122 ms), but 480 loses a lot of accuracy (§3). Consequence for v3: tiles at 640 cost ~3 × 205 ms ≈ 0.6 s on the GPU; check tiles only where the screen changed, or accept a longer wait in strict mode.
+- **Decision rule (≤ 150 ms per full screen, so tiles fit): not met at 640.** Only 480 meets it (GPU 121 ms, CPU drq 122 ms), but 480 loses a lot of accuracy (§3). Consequence for v4: tiles at 640 cost ~3 × 205 ms ≈ 0.6 s on the GPU; check tiles only where the screen changed, or accept a longer wait in strict mode.
+
+### 2.1 Sustained CPU/GPU test (2026-10-07)
+
+Same **640 fp32** file, first CPU (2 threads, XNNPACK fp16 math), then GPU (OpenCL, all 477 nodes delegated). Each setting ran **15 consecutive 60-second timed blocks**, with one warm-up inference per block and no intentional cooling pauses. Model reloads between blocks add brief gaps (CPU ~0.1 s; GPU ~3–4 s): this is near-continuous load, not one persistent interpreter. Temperature and charging state were saved before and after every block; peak-memory monitoring was enabled.
+
+The phone reported **AC charging throughout** (battery level 62% → 73%). GPU started immediately after CPU, on an already warm phone. Raw evidence: [`CSV`](../bench/results/phone_sustained_2026-10-07.csv), [`full log`](../bench/results/phone_sustained_2026-10-07.log).
+
+| Setting | Timed inferences | Overall mean, ms | First → last block mean, ms | Highest block p95, ms | Peak memory, MB | Battery temperature, °C |
+|---|---|---|---|---|---|---|
+| CPU 2 threads, fp16 math | 3 436 | 261.4 | 220.1 → 260.9 | 411.9 | 87.4 | 34 → 40 |
+| GPU | 4 729 | 189.3 | 182.8 → 191.6 | 203.3 | 181.6 | 40 → 38 (maximum 41) |
+
+Overall means are weighted by inference count. The p95 column is the highest **per-minute** p95, not a pooled percentile over the full run.
+
+- CPU averaged ~271–273 ms in blocks 4–13. Its final block had **p95 412 ms despite a 261 ms mean**: averages alone hide the jitter. GPU's final five blocks averaged ~188 ms, with no progressive slowdown in this run.
+- **The ≤150 ms target still fails.** GPU remains the faster option, with tighter tail latency here; allow roughly 0.6 s for three model passes before capture, preprocessing, NMS and drawing costs.
+- This is synthetic-input model inference, not app or battery-life testing. Charging, different starting temperatures and model reloads limit the comparison. Re-test with one persistent interpreter and the complete pipeline when the app exists.
+- All 30 blocks completed with valid timing/memory data, no benchmark errors, CPU fp16 enabled and full GPU delegation. This closes the benchmark follow-up in issue #29.
 
 ---
 
@@ -89,7 +107,7 @@ GPU start-up time: **~4 s at 640**, but **~52–60 s at 480** with **~470 MB** p
 - **Small people are the problem, as on Linux.** Half of the missed people are under about **40 px tall** on screen (38–44 px median, about 2.5 mm on a ~400 ppi screen). The model input is 640 px for a 2340 px tall screen, so the model sees them 3.7× smaller still: about 10 px. See `results/phone/missed_people_sheet.jpg`.
 - **3 tiles roughly double small-person recall.** But they cost 3 checks: about 0.6 s on the GPU, more on the CPU.
 - **Over-cover is high in the grid layout (≈40%)**, because small people get a cover that is big compared to them. That is acceptable: hiding too much is fine, showing a person is not.
-- These are COCO photos on fake screens. Real app screenshots are still untested (v4).
+- These are COCO photos on fake screens. Real app screenshots are still untested (v5).
 
 Pictures of what the user would see: `results/phone/feed_*.jpg`, `grid_*.jpg` (green = hidden, orange = partly, red = missed).
 
@@ -113,10 +131,10 @@ Pictures of what the user would see: `results/phone/feed_*.jpg`, `grid_*.jpg` (g
 
 ## 5. Done and still to do
 
-**Done (2026-10-07):** full phone speed test (36 runs), accuracy of fp16 and 480 px files.
+**Done (2026-10-07):** full phone speed test (34 unique settings; 36 saved rows), accuracy of fp16 and 480 px files, sustained CPU/GPU test (15 minutes of timed inference each, §2.1). Both existing self-tests (`eval.py selftest`, `build_ar.py --test`) pass; Python compilation passes; rebuilding the 1 906-term word list reproduces the tracked file exactly. The existing six valid accuracy reports each contain 60 feed and 60 grid screens; these were audited, not re-run in the sustained-test session.
 
 **Still to do (not blocking v1):**
-- A **sustained** test: 10–15 minutes of continuous checks, to see how far speed falls when the phone heats up (the app will run for hours).
+- End-to-end sustained and battery-life testing with one persistent interpreter, when the app exists.
 - GPU delegate serialization cache, only if 480 px or a new model shows the same slow GPU start-up.
 - P0c (text models, v1.1): separate, see investigation §3.5.
 
@@ -130,3 +148,28 @@ Pictures of what the user would see: `results/phone/feed_*.jpg`, `grid_*.jpg` (g
 | Phone-screen accuracy, phone file | `python phone_tflite.py fp32 60` (or `fp16`, `drq`) |
 | Export phone files | `python export_tflite.py` |
 | Phone speed (adb, phone plugged in) | `python bench_phone.py [name filter]` |
+
+For the sustained test, push `models_tflite/yolo26n-seg_640_fp32.tflite` to `/data/local/tmp/masking_sustained_640_fp32.tflite`. Run the following on the phone through `adb shell`, saving stdout and stderr to a new log; do not overwrite the recorded evidence. Remove that temporary model afterwards.
+
+```sh
+for cfg in cpu2_fp16 gpu; do
+  if [ "$cfg" = gpu ]; then
+    flags="--use_gpu=true"
+  else
+    flags="--num_threads=2 --use_xnnpack=true --xnnpack_force_fp16=true"
+  fi
+  i=1
+  while [ "$i" -le 15 ]; do
+    echo "SUSTAINED_BEGIN config=$cfg minute=$i"
+    date -u
+    dumpsys battery
+    /data/local/tmp/benchmark_model \
+      --graph=/data/local/tmp/masking_sustained_640_fp32.tflite $flags \
+      --num_runs=1 --min_secs=60 --max_secs=65 \
+      --warmup_runs=1 --warmup_min_secs=0 --report_peak_memory_footprint=true || exit 1
+    dumpsys battery
+    echo "SUSTAINED_END config=$cfg minute=$i"
+    i=$((i+1))
+  done
+done
+```

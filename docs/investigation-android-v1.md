@@ -1,4 +1,4 @@
-# HaramBlurr — Technical Investigation, Android v1
+# Technical Investigation, Android v1
 
 **Real-time, system-wide hiding of bad-language text and people on an Android phone**
 Scope: Android, no root. Linux is paused as plan B ([`investigation-linux-v1.md`](investigation-linux-v1.md)).
@@ -10,13 +10,13 @@ Date: 2026-10-06 (updated: text first) · Status: investigation. Phone test resu
 
 | Question | Answer |
 |---|---|
-| What comes first? | **v1 hides bad-language text** (Arabic and English) with a word list. **v1.1 adds our own small AI text model** on the phone, which understands context and points at the offensive words (§3.5). People follow in three steps: **big (v2), medium (v3), small (v4)**. Text is the easiest start: it builds the whole app that the people stages reuse (§3). |
+| What comes first? | **v1 hides bad-language text** (Arabic and English) with a word list. **v1.1 adds our own small AI text model** on the phone, which understands context and points at the offensive words (§3.5). **v2 reads text inside images** (OCR) with the same window picture the people stages need. People follow in three steps: **big (v3), medium (v4), small (v5)**, then **video (v6)**. Text is the easiest start: it builds the whole app that the later stages reuse (§3). |
 | Is it possible on a normal (not rooted) phone? | **Yes, with limits.** An app cannot sit inside Android's screen drawing the way the Linux plugin could. It has to **look at the screen from the side and draw a cover on top**. |
-| Which Android parts? | One **accessibility service** does all of it. It hears when the screen changes (scroll, new page, app switch). It takes a picture of the **app's window only** (Android 14+). It draws the covers in a **trusted accessibility overlay**. **Screen capture (MediaProjection)** is the fallback for Android 13 and older. |
-| Can we still "hide first" (never show unchecked content)? | **Mostly, on Android 14+.** The window picture does not include our own covers, so we can cover first and check under the cover. There is still a short gap between the app drawing and our cover going up (one accessibility event). It is **not measured yet** and is the first thing to measure in v1 (for text) and v2 (for people). On older Android, hide-first is not possible (§5). |
-| Is the phone fast enough? | **Not yet proven.** Redmi 12, full-size model on the CPU: **295 ms per check** (about 3 per second). The faster options (fp16 on the GPU, dynamic-range on the CPU) were never measured: the test stopped early, and the INT8 file turned out broken. |
+| Which Android parts? | One **accessibility service** does all of it. It hears when the screen changes (scroll, new page, app switch). It takes a picture of the **app's window only** (Android 14+). It draws the covers in a **trusted accessibility overlay**. No fallback for Android 13 and older for now (decided 2026-10-18). |
+| Can we still "hide first" (never show unchecked content)? | **Mostly, on Android 14+.** The window picture does not include our own covers, so we can cover first and check under the cover. There is still a short gap between the app drawing and our cover going up (one accessibility event). It is **not measured yet** and is the first thing to measure in v1 (for text) and v3 (for people). On older Android, hide-first is not possible (§5). |
+| Is the phone fast enough? | **For text and big people, yes.** Redmi 12, people model at 640 px: **GPU ~205 ms per check** (189 ms over 15 minutes non-stop), best CPU setting 277 ms (§6). Tiles for smaller people do not fit on every change, so they run only where the screen changed. |
 | Is accuracy good enough? | **Large people yes, small people no.** Same picture as on Linux. On fake phone screens, one pass hides 24–26% of small people, and 3 tiles hide 52–54%. Details in the results doc. |
-| Biggest risks | Text: (1) the final Arabic word list must be built by the team (free lists are only a start), (2) text inside images and videos cannot be read in v1. People: (3) the phone may be too slow for tiles, (4) small people. Both: (5) Android and Xiaomi limits on background apps. |
+| Biggest risks | Text: (1) the final Arabic word list must be built by the team (free lists are only a start), (2) text inside images and videos needs OCR (v2), whose phone speed is not measured yet. People: (3) the phone may be too slow for tiles, (4) small people, (5) video (v6). Both: (6) Android and Xiaomi limits on background apps. |
 
 **The main change from Linux:** on Linux we owned the screen drawing, so "never show unchecked content" was easy. On Android we do not. The phone also has about **one tenth** of the laptop's speed. The design below is built around those two facts.
 
@@ -25,11 +25,14 @@ Date: 2026-10-06 (updated: text first) · Status: investigation. Phone test resu
 | Version | Hides | Why this order | Today |
 |---|---|---|---|
 | **v1** | **Bad-language text**: swearing, sexual words, insults, blasphemy, in standard Arabic and English | No AI model needed. Fast and light on battery. Builds the app: service, cover, scroll tracking, settings. | Designed (§3). Not built. |
-| **v2** | **Big people** (taller than about 96 px on screen) | The model already hides 85–95% of them | Model tested offline |
-| **v3** | **Medium people** (about 32–96 px) | Needs the closer check in tiles, so it needs a faster phone setup | 60–76% offline, 87–89% with tiles |
-| **v4** | **Small people** (under about 32 px) | Needs our own training on phone screenshots | 24–27% offline, 51–54% with tiles |
+| **v1.1** | **Context**: our own small text model as a second layer | A word list cannot see context (§3.5) | Planned |
+| **v2** | **Text inside images**: memes, thumbnails, subtitles burned into videos | Builds the window picture that the people stages reuse; PaddleOCR has an Arabic mobile model | Planned; phone test P0d first |
+| **v3** | **Big people** (taller than about 96 px on screen) | The model already hides 85–95% of them | Model tested offline |
+| **v4** | **Medium people** (about 32–96 px) | Needs the closer check in tiles, so it needs a faster phone setup | 60–76% offline, 87–89% with tiles |
+| **v5** | **Small people** (under about 32 px) | Needs our own training on phone screenshots | 24–27% offline, 51–54% with tiles |
+| **v6** | **Video**: people in videos while they play | 3 pictures per second cannot follow movement; needs its own method | Needs research |
 
-Each version adds to the one before. v2 still covers any small person it happens to find, but it only **promises** big ones.
+Each version adds to the one before. v3 still covers any small person it happens to find, but it only **promises** big ones.
 
 ---
 
@@ -58,7 +61,7 @@ On Linux, the app could sit **inside** the program that draws the screen. On And
 |---|---|---|---|---|
 | **A. Screen capture + app overlay** | MediaProjection (like screen recording) | Normal "draw over other apps" window | Asks for permission **every session** (Android 14+) [2]. Our covers show up in our own capture. **A see-through overlay is capped at 80% opacity**, so 20% of the person still shows through [3]. | ❌ The 80% cap alone rules it out. |
 | **B. Accessibility service only** (Android 14+) | `takeScreenshotOfWindow`: a picture of **one app's window**, without our covers [4] | Accessibility overlay: trusted, fully opaque, touches pass through [3] | Max **3 pictures per second per window** (one every 333 ms) [5]. Needs Android 14. | ✅ **Main path.** |
-| **C. Screen capture + accessibility overlay** | MediaProjection | Accessibility overlay | Our covers appear in the capture (see below). Permission prompt each session. | ✅ **Fallback** for Android 13 and older, and the comparison in v2. |
+| **C. Screen capture + accessibility overlay** | MediaProjection | Accessibility overlay | Our covers appear in the capture (see below). Permission prompt each session. | ⏸ Not planned for now (Android 14+ only, 2026-10-18). May return for video only (v6). |
 | D. Root (Magisk / LSPosed hook into SurfaceFlinger) | Inside the screen drawing, like Linux | Inside the screen drawing | Only rooted phones. Hard. Breaks with updates. | ❌ Not v1 (maybe a "pro mode" later) |
 | E. Custom ROM | Inside the system | Inside the system | Users would have to reflash their phone | ❌ Not v1 |
 
@@ -79,7 +82,7 @@ Option B does not have this problem, because a window picture only contains the 
 Most apps already tell Android what text is on the screen, so screen readers can read it aloud. Our accessibility service can read the same text. **No picture and no AI model are needed.**
 
 ```
-┌──────────────── HaramBlurr app (same accessibility service) ───────────────┐
+┌──────────────── Our app (same accessibility service) ──────────────────────┐
 │  1. EVENTS   content changed / scrolled / app switched                     │
 │  2. READ     walk the visible screen items, take each item's text          │
 │  3. CLEAN    normalize the text (rules in §3.3)                            │
@@ -95,7 +98,7 @@ Most apps already tell Android what text is on the screen, so screen readers can
 - **Fast.** A word-list lookup takes well under a millisecond. The slow part is Android delivering the event. That gap is **not measured yet** and is the first thing to measure in v1-b (§10).
 - **No hide-first for text.** Checking is so fast that covering everything first would make covers flash all the time. The cover appears right after the text, after about one event delay.
 - **Text the user is typing** (input boxes) is **not covered** by default. It is the user's own text.
-- **Same cover and scroll tracking as the people stages.** v1 builds them, and v2–v4 reuse them.
+- **Same cover and scroll tracking as the people stages.** v1 builds them, and v3–v5 reuse them.
 
 ### 3.2 What v1 can and cannot see
 
@@ -104,7 +107,7 @@ Most apps already tell Android what text is on the screen, so screen readers can
 | Normal app text: posts, comments, chats, titles, buttons | ✅ | Apps give it to accessibility |
 | Web pages in Chrome, and apps that show web pages (WebView) | ✅ | Chrome gives page text **and per-letter boxes** to accessibility (checked in Chromium's source [13]). Other browsers (Firefox, Samsung, Opera) must be **tested in v1-b**. |
 | Text the app draws itself (many games, some custom apps) | ❌ | Not given to accessibility |
-| **Text inside images and videos** (memes, thumbnails, burned-in subtitles) | ❌ | Needs OCR (reading text from pixels). Google's on-device OCR (ML Kit) **does not support Arabic** [10]. **Later: PaddleOCR** (PP-OCRv5 Arabic mobile model, about 8 MB [16]). A team member has worked with PaddleOCR and plans to contribute Arabic improvements to it. |
+| **Text inside images and videos** (memes, thumbnails, burned-in subtitles) | ❌ (v2) | Needs OCR (reading text from pixels). Google's on-device OCR (ML Kit) **does not support Arabic** [10]. **v2: PaddleOCR** (PP-OCRv5 Arabic mobile model, about 8 MB [16]). A team member has worked with PaddleOCR and plans to contribute Arabic improvements to it. |
 
 ### 3.3 Word list and matching
 
@@ -250,10 +253,10 @@ The pack's model is the best one that passes step 1. Different languages may end
 
 ---
 
-## 4. People (v2–v4): proposed design (option B, with C as fallback)
+## 4. People (v3–v5): proposed design (option B)
 
 ```
-┌──────────────── HaramBlurr app (one accessibility service) ───────────────┐
+┌──────────────── Our app (one accessibility service) ──────────────────────┐
 │                                                                           │
 │  1. EVENTS   scroll / content changed / app switched                      │
 │              → put a cover over the changed area at once  (hide first)    │
@@ -292,9 +295,9 @@ This is a real trade-off for the user:
 - **Strict** (B): almost nothing slips through. But every scroll covers new content for up to about half a second.
 - **Fast** (C): no waiting. But new people can show for about a third of a second before they are covered.
 
-`ponytail:` build B first (it matches the project's promise). Add C only if the phone runs Android 13, or if waiting feels too slow in testing.
+`ponytail:` build B only (it matches the project's promise). C is dropped for now (2026-10-18): no Android 13 support; reconsider only if waiting feels too slow in testing.
 
-**Scrolling and video:** during a fast scroll or a video, B covers the changed area until the next picture (max 3/s). In practice, a playing video stays mostly covered with a strict setting. A video-specific mode (for example, check every frame through MediaProjection) is a v1.1 question.
+**Scrolling and video:** during a fast scroll or a video, B covers the changed area until the next picture (max 3/s). In practice, a playing video stays mostly covered with a strict setting. Video gets its own stage, **v6** (roadmap): tracking between checks, screen capture during video only, or strict mode.
 
 ---
 
@@ -310,7 +313,7 @@ This is a real trade-off for the user:
 | Model at 480 px | GPU ~121 ms, CPU drq 122 ms | Fast, but loses a lot of accuracy, and the GPU needs ~52 s and ~470 MB to start |
 | 3 tiles (for small people) | ≈ 3 × 205 ms ≈ 0.6 s on the GPU | Too slow for every change |
 
-**Go / no-go (measured 2026-10-07):** at 640 px no setting reaches **150 ms** per full screen; only 480 px does, and it loses too much accuracy. So **640 stays, the GPU is the main path, and tiles (v3) are used only where the screen changed**, not on every full screen. Details: [`p0-results-android-v1.md`](p0-results-android-v1.md) §2.
+**Go / no-go (measured 2026-10-07):** at 640 px no setting reaches **150 ms** per full screen; only 480 px does, and it loses too much accuracy. So **640 stays, the GPU is the main path, and tiles (v4) are used only where the screen changed**, not on every full screen. Details: [`p0-results-android-v1.md`](p0-results-android-v1.md) §2.
 
 ---
 
@@ -325,7 +328,7 @@ The same model family as on Linux. On fake phone screens (1080 × 2340), with th
 | Grid (Explore / search tab) | whole screen | 26% | 60% | 87% |
 | Grid | 3 tiles | 54% | 87% | 95% |
 
-Big people are fine. Small people are the open problem, like on Linux. Training on real phone screenshots (v4) is the main fix. More detail, including a check of the actual phone model file, is in [`p0-results-android-v1.md`](p0-results-android-v1.md).
+Big people are fine. Small people are the open problem, like on Linux. Training on real phone screenshots (v5) is the main fix. More detail, including a check of the actual phone model file, is in [`p0-results-android-v1.md`](p0-results-android-v1.md).
 
 ---
 
@@ -336,14 +339,14 @@ Big people are fine. Small people are the open problem, like on Linux. Training 
 | **Secure windows** (`FLAG_SECURE`: banking, some video apps with DRM) | The window picture fails with a "secure window" error [4]. Screen capture shows black. | We cannot check them. Default: leave them alone (most never show people). Add a per-app "always cover" switch. |
 | **Accessibility policy on Google Play** | Apps that are not accessibility tools need a declaration form and a clear in-app disclosure [7] | For the graduation project: install from an APK file. Still show a clear consent screen, since the service sees the whole screen. |
 | **Xiaomi battery saver / autostart** | MIUI/HyperOS may stop background services | Setup screen asks the user to allow Autostart and set battery to "No restrictions" |
-| **Android version** | Window picture needs Android 14 | Check the Redmi 12 version. If it is on 13, use option C until it updates. |
+| **Android version** | Window picture needs Android 14 | The Redmi 12 runs Android 15. Older phones are not supported for now. |
 | **Accessibility service turned off by the system** | The filter silently stops | Show a notification while the filter is running. If the service stops, the user sees the notification disappear. |
 
 ---
 
 ## 9. Prior work: HaramBlur (browser extension and Android app)
 
-**"HaramBlur" already exists, in two forms.** The report must cite both. The team may want to rename our project, since "HaramBlurr" with two r's is easy to confuse.
+**"HaramBlur" already exists, in two forms.** The report must cite both. Our old working name was too close to it and was dropped on 2026-10-18 (issue C12).
 
 | | Browser extension [8] | Android app [19] |
 |---|---|---|
@@ -362,14 +365,14 @@ Sources: **our own use** of the Android app; **163 GitHub issues** on the extens
 
 | Problem | Evidence | How our design answers it |
 |---|---|---|
-| **Asks for permission again and again** | Our own use. A review: settings get mixed up and it asks for permissions again. One review says it needs Android 15. | This pattern fits **screen capture (MediaProjection)**, which needs a new consent prompt every session on Android 14+ (§2) — likely their method, not confirmed. Our v1 needs **no screen capture at all**. v2+ uses the accessibility window picture: allowed **once** in settings. |
+| **Asks for permission again and again** | Our own use. A review: settings get mixed up and it asks for permissions again. One review says it needs Android 15. | This pattern fits **screen capture (MediaProjection)**, which needs a new consent prompt every session on Android 14+ (§2) — likely their method, not confirmed. Our v1 needs **no screen capture at all**. v3+ uses the accessibility window picture: allowed **once** in settings. |
 | **Content shows before the blur** (the most common complaint) | ~20 reviews: "takes 1–2 seconds", "slow", "doesn't blur instantly", including many 5★ reviews. GitHub #190: images and videos visible **1–3 s** before detection in the app. Extension: #106, #111, #168; its "blurry start" lifts after 7 s anyway. | **Hide first**: changed content stays covered until checked, and the cover never lifts by itself (FR-14). Text is checked in under 1 ms. |
 | **Feels heavy** | Our own use. Reviews: "slow", "lag". Extension: 2–5 GB RAM (#130, #133), 100% CPU (#153), VRAM leak (#192), "makes the whole device slow" (#220). | **Event-driven**: no work while the screen is still. v1 runs no AI model. Memory targets: v1 < 50 MB, with people model < 200 MB (NFR-9). |
-| **Misses images** | Our own use. Reviews: far-away people, anime, drawings, manga, small pop-ups. GitHub: small images and thumbnails (#124, #213), CSS background images (#25, #159), lazy-loaded images (#219), women with headphones (#171), manga (#204). | Every visible image is checked (not only `<img>` tags), because we look at the window picture. Small and medium people are planned stages (v3, v4) with measured accuracy targets. |
+| **Misses images** | Our own use. Reviews: far-away people, anime, drawings, manga, small pop-ups. GitHub: small images and thumbnails (#124, #213), CSS background images (#25, #159), lazy-loaded images (#219), women with headphones (#171), manga (#204). | Every visible image is checked (not only `<img>` tags), because we look at the window picture. Small and medium people are planned stages (v4, v5) with measured accuracy targets. |
 | **Blurs the wrong thing** | ~15 reviews: blurs men instead of women, a man's lecture, a flower drawing; the whole video when one person moves. GitHub #175 (a man's hand), #72. | **No gender guess**: we hide all people (§9, "What is different"). We cover the **person's mask**, not the whole image or video. |
 | **Cover in the wrong place / not following** | Reviews: the blur stays fixed in one place and does not track the video; it stays on screen after leaving the video; "a blurred picture next to the real picture". GitHub #212 (offset cover). | Covers move with scrolling (FR-3), and are re-placed after every check. |
 | **Light blur still shows details** | A review: the blur is light and shows details. | **Solid block or strong pixelation**, never a light blur (FR-13). |
-| **Only some apps** | Reviews ask for TikTok (5+), Facebook; one says it "only works in the internal browser". | Every app that shares its text (v1) or can be pictured (v2+). |
+| **Only some apps** | Reviews ask for TikTok (5+), Facebook; one says it "only works in the internal browser". | Every app that shares its text (v1) or can be pictured (v3+). |
 | **Closed and paid** | The public repo has no code since Aug 2024; issues #148, #188, #189, #217 ask whether it is still open source; ~8 reviews complain about paid features. | Graduation project: our code and documents stay open. |
 | **No text filtering** | Neither product filters words. | v1 is a bad-language text filter. |
 
@@ -392,8 +395,8 @@ We read the extension's code for ideas. **We do not copy its code.**
 
 | Idea | Where it goes in our project |
 |---|---|
-| Blur fast, unblur slow (1 positive vs 3 clean frames) | Cover tracking in v2–v4 (and for text that changes) |
-| Skip the model if the screen barely changed | Saves battery in v2–v4 |
+| Blur fast, unblur slow (1 positive vs 3 clean frames) | Cover tracking in v3–v5 (and for text that changes) |
+| Skip the model if the screen barely changed | Saves battery in v3–v5 |
 | Strictness slider | Settings: one slider for people, plus category switches for text |
 | Whitelist | Per-app skip list (FR-4) |
 | Start covered, then check | We already do this for people ("hide first"), but **without** the 7 s timeout. Our cover never lifts on its own. |
@@ -415,13 +418,16 @@ We read the extension's code for ideas. **We do not copy its code.**
 | **v1-a: app skeleton** | Accessibility service, overlay, settings screen, notification, consent screen. Read the screen text and print it to the log. | Which apps give us their text? | ~1 week |
 | **v1-b: text filter** | Normalization, matcher, word boxes, cover (word / message), covers follow scrolling | The gap before the cover. Do word boxes work in Chrome and in big social apps? | ~1–2 weeks |
 | **v1-c: word lists and test** | Team builds the Arabic list (start: LDNOOBW V2 + Attia's categories, §3.3) and reviews the English list. Test on OSACT tweets and clean text. | Words hidden, false covers (§3.4) | ~1 week, can run in parallel |
-| **v1.1: own text model** | P0c (phone test of all candidates, then quality test), then data + teacher labels + training per language pack + comparison (§3.5) | Is our small model better than the word list and the baselines, fast enough on the phone? | ~4–5 weeks, in parallel with v2 |
-| P0b: finish the phone speed test | Re-run `bench/bench_phone.py` on the Redmi 12. fp32 / fp16 / dynamic-range on CPU, GPU, NNAPI, at 640 and 480 px. | Is any option about 150 ms or faster? | 1 evening, **before v2** |
-| v2: big people | Window picture, LiteRT model + NMS, mask cover, hide first | End-to-end delay, battery, big-people accuracy on real screenshots | ~2 weeks |
-| v3: medium people | Tiles, plus the faster model setup from P0b | Medium-people accuracy versus speed | ~1–2 weeks |
-| v4: small people | Real phone screenshots, SAM 3 labels, fine-tune | Small-people accuracy | weeks |
+| **v1.1: own text model** | P0c (phone test of all candidates, then quality test), then data + teacher labels + training per language pack + comparison (§3.5) | Is our small model better than the word list and the baselines, fast enough on the phone? | ~4–5 weeks, in parallel with v3 |
+| ~~P0b: finish the phone speed test~~ | Done 2026-10-07 ([`p0-results-android-v1.md`](p0-results-android-v1.md)) | GPU ~205 ms at 640 px; nothing reaches 150 ms at 640 | done |
+| P0d: OCR phone test | PaddleOCR PP-OCRv5 Arabic and English mobile models on the Redmi 12, CPU and GPU | Speed, RAM, accuracy on memes and thumbnails | days, **before v2** |
+| v2: text inside images | Window picture, OCR, same text filter, cover words inside images | Waiting time, words hidden in images | ~3–4 weeks |
+| v3: big people | Window picture, LiteRT model + NMS, mask cover, hide first | End-to-end delay, battery, big-people accuracy on real screenshots | ~2 weeks |
+| v4: medium people | Tiles, plus the faster model setup from P0b | Medium-people accuracy versus speed | ~1–2 weeks |
+| v5: small people | Real phone screenshots, SAM 3 labels, fine-tune | Small-people accuracy | weeks |
+| v6: video | Compare tracking, screen capture during video, strict mode | People visible per second of video | ~3 weeks |
 
-Linux tests stay valid for the model work (v2–v4). The Linux plugin is paused.
+Linux tests stay valid for the model work (v3–v5). The Linux plugin is paused.
 
 ---
 

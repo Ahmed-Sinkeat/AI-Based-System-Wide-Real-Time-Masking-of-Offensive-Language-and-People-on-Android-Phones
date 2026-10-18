@@ -1,4 +1,4 @@
-# HaramBlurr — Issues
+# Issues
 
 Open problems, risks to check, and decisions still needed. Closed issues stay at the bottom with how they were solved.
 Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** Android app · **B** language and data · **C** AI models (see [`roadmap.md`](roadmap.md)).
@@ -14,19 +14,24 @@ Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** And
 
 | # | Pri | Issue | Next action | Stream | Since |
 |---|---|---|---|---|---|
-| 3 | 🟠 | **Developer verification** may reach our country before the defense | Register a student "limited distribution" account; keep ADB installs for development | A | 2026-10-07 |
-| 4 | 🟢 | Name clash: "HaramBlur" already exists (extension and Android app) | Team decides: keep "HaramBlurr" or rename | all | 2026-10-06 |
-| 5 | 🟢 | `docs/ha.pdf` is an old proposal draft | Keep as history or delete | all | 2026-10-06 |
+| 4 | 🟢 | No short product name yet (the old working name was dropped, C12). Candidate: **Sitr (سِتر)** | Check the Play Store and the web for clashes; team decides before publishing | all | 2026-10-18 |
 
-### People model and phone tests (needed before v2)
+### People model and phone tests (needed before v3)
 
 | # | Pri | Issue | Next action | Stream | Since |
 |---|---|---|---|---|---|
-| 29 | 🟠 | **Speed falls with heat** (CPU ~30% slower at 41 °C than at 35 °C); the app will run for hours | Sustained test: 10–15 min of continuous checks on CPU and GPU, record ms and battery temperature over time | C | 2026-10-07 |
 | 30 | 🟢 | GPU start-up at 480 px takes ~52–60 s and ~470 MB (640: ~4 s, ~180 MB) | Only if 480 px is ever used: try the GPU delegate's serialization cache and re-measure | C | 2026-10-07 |
 | 7 | 🟢 | Full-INT8 export of the people model is broken (boxes and scores share one scale) | Only if more CPU speed is needed: export with boxes divided by the input size | C | 2026-10-06 |
 | 8 | 🟢 | TFLite export stopped after 640 px: 320 px, yolo11n and yolo26s were never exported | Re-run `bench/export_tflite.py` when needed | C | 2026-10-03 |
 | 9 | 🟢 | `bench/yolo26n-seg.onnx` is the **480 px** export (each export overwrites it) | Do not use it as "the 640 model"; name exports by size if it matters | C | 2026-10-06 |
+
+### Text inside images (v2) and video (v6)
+
+| # | Pri | Issue | Next action | Stream | Since |
+|---|---|---|---|---|---|
+| 31 | 🟠 | **Arabic OCR speed and accuracy on the phone unknown** (P0d) | Week 5: PaddleOCR PP-OCRv5 Arabic + English mobile models on the Redmi 12, CPU and GPU; small meme/thumbnail test set; then set NFR-14 targets | C | 2026-10-18 |
+| 32 | 🟢 | No method yet for video (3 window pictures per second cannot follow a playing video) | Week 21: compare tracking between checks, screen capture during video only, strict mode (roadmap v6) | C | 2026-10-18 |
+| 33 | 🟢 | Internet pictures for v5 training must allow this use | Keep a source and license for every downloaded set; prefer openly licensed sets | B | 2026-10-18 |
 
 ### Text filter (v1) and word lists
 
@@ -58,9 +63,8 @@ Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** And
 
 | # | Pri | Issue | Next action | Stream | Since |
 |---|---|---|---|---|---|
-| 26 | 🟢 | Reason for moving to Android first is not written down in detail | Add it to `asbuild.md` (2026-10-06 entry) | all | 2026-10-07 |
 | 27 | 🟢 | "HaramBlur's app uses screen capture" is an **inference**, not confirmed | Keep it labelled as an inference in the report | B | 2026-10-06 |
-| 28 | 🟢 | Department rules on AI-tool use and reference style unknown | Ask the supervisor; adjust research-methods §8 and the reference style | all | 2026-10-06 |
+| 28 | 🟢 | Department reference style unknown (AI-tool use: allowed, C14) | Ask the supervisor; keep IEEE until told otherwise | all | 2026-10-06 |
 
 ---
 
@@ -76,4 +80,10 @@ Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** And
 | C6 | Model shortlist excluded candidates by assumption | 2026-10-07 | Full candidate list; only two hard rules; choice by phone measurement (P0c) |
 | C7 | Project not in git (#1) | 2026-10-07 | Git repository + private GitHub repository; large and rebuildable files ignored |
 | C8 | Android version of the Redmi 12 unknown (#2) | 2026-10-07 | Android 15 (SDK 35), HyperOS 2.0, 8 GB RAM: meets Android 14+ |
-| C9 | Phone speed test incomplete (#6) | 2026-10-07 | Full run: 36 settings on the Redmi 12; GPU ~205 ms at 640, best CPU 277 ms, NNAPI useless (p0-results-android §2) |
+| C9 | Phone speed test incomplete (#6) | 2026-10-07 | Full run: 34 unique settings (36 saved rows) on the Redmi 12; GPU ~205 ms at 640, best CPU 277 ms, NNAPI useless (p0-results-android §2) |
+| C10 | Sustained CPU/GPU benchmark missing (#29) | 2026-10-07 | 15 × 60 s timed blocks per setting, with reload gaps documented: GPU mean 189 ms, CPU 261 ms; CPU block p95 reaches 412 ms. All 30 blocks saved with temperatures (p0-results-android §2.1). App-level sustained/battery tests remain for implementation. |
+| C11 | Developer verification (#3) | 2026-10-18 | The team already has a Google Play developer account (published another app on 2026-10-07). ADB installs stay for development. |
+| C12 | Working name "HaramBlurr" was too close to the competing "HaramBlur" app (#4) | 2026-10-18 | Name removed from all documents and the folder; the project uses its full title. A short name is still open (#4). |
+| C13 | Reasons for Android first not written down (#26) | 2026-10-18 | Written in `asbuild.md` (2026-10-18 entries): reach, where people scroll, phone results good enough for text and big people |
+| C14 | AI-tool rules unknown (part of #28) | 2026-10-18 | The department does not forbid AI tools. Kept the use-of-AI note in research-methods §8; no AI tool is named as an author or co-author. |
+| C15 | Old proposal draft `docs/ha.pdf` (#5) | 2026-10-18 | Removed from the repository (it carried the old working name); still in git history. The current proposal is `Initial-Project-Proposal.pdf`. |

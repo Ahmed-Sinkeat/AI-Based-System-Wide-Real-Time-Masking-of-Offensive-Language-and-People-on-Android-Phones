@@ -2,28 +2,48 @@
 
 **إخفاء الألفاظ السيئة وصور الأشخاص على مستوى النظام وفي الوقت الفعلي على هواتف أندرويد باستخدام الذكاء الاصطناعي**
 
-Graduation project, Software Engineering. Working name: **HaramBlurr**.
+Graduation project, Software Engineering. **Team:** Ahmed Mohammed Omer · Omer Abd Almonim · Momen Kamal
 
-An Android app that hides offensive language and images of people on the phone screen, in every app, using AI that runs on the phone itself. Nothing leaves the phone.
-
-**Release order:** v1 bad-language text (Arabic + English) → v1.1 our own small text model → v2 big people → v3 medium people → v4 small people.
-
-**Team:** Ahmed Mohammed Omer · Omer Abd Almonim · Momen Kamal
+An Android app that hides offensive language and images of people on the phone screen, in every app, using AI that runs on the phone itself. **Nothing leaves the phone:** the app has no internet permission.
 
 ---
+
+## Release plan
+
+| Version | Hides | Status |
+|---|---|---|
+| **v1** | Bad words in on-screen text (Arabic + English), with a word list | Next: app skeleton (v1-a) |
+| **v1.1** | Context-dependent insults, with our own small text model (trained from large "teacher" models) | Planned, in parallel with v1 |
+| **v2** | Bad words in text **inside images** (memes, thumbnails, subtitles), with on-phone OCR | Planned |
+| **v3** | Big people (taller than ~96 px on screen) | Model tested: 85–95% hidden |
+| **v4** | Medium people (~32–96 px), checking the screen in tiles | Model tested: 87–89% with tiles |
+| **v5** | Small people (under ~32 px), with our own fine-tuned model | The hard part: 51–54% with tiles today |
+| **v6** | People in videos while they play | Needs research |
+
+Plan by week: [`docs/roadmap.md`](docs/roadmap.md). Deadline: about mid-April 2027.
+
+## Key decisions
+
+| Decision | Why |
+|---|---|
+| **Android**, not PC | It is where people scroll. Phone results are good enough for text and big people. Small people are hard on any hardware. |
+| **On the phone**, not the cloud | Privacy (no screen pictures sent anywhere), works without internet, no mobile data cost, no server bill. Big models are used only while **training**, on a laptop or Colab. |
+| **Window picture** (accessibility service), not screen casting | Android allows it once in settings, with no prompt each session. The picture does not include our own covers, so we can cover first and check under the cover. The model handles ~5 pictures per second anyway, so casting's 60 frames per second would be wasted. |
+| **Android 14+** for picture features | Needed for the window picture. Older phones are not supported for now. |
+| **Hide the whole person**, no gender guess | A wrong guess shows a person. Hiding too much is acceptable; showing too much is not. |
+
+Details and evidence: [`docs/asbuild.md`](docs/asbuild.md) (every decision, dated) and [`docs/README.md`](docs/README.md) (all documents).
 
 ## Project rule
 
 **Every decision, change, or obstacle gets a dated entry in [`docs/asbuild.md`](docs/asbuild.md)** (what, why, alternatives, what got in the way, evidence). Open problems go in [`docs/issue.md`](docs/issue.md).
 
----
-
 ## Where things are
 
 | Folder | What |
 |---|---|
-| [`docs/`](docs/README.md) | All documents: start at [`docs/README.md`](docs/README.md) (design, requirements, roadmap, research methods, results, as-built log, issues) |
-| [`wordlists/`](wordlists/README.md) | Combined Arabic bad-word list and the script that builds it |
+| [`docs/`](docs/README.md) | All documents: start at [`docs/README.md`](docs/README.md) |
+| [`wordlists/`](wordlists/README.md) | Combined Arabic bad-word list (1 906 terms from 7 sources) and the script that builds it |
 | `bench/` | Model tests on the laptop and the phone (Python) |
 | `app/` | The Android app (not started yet) |
 

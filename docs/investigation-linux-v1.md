@@ -1,4 +1,4 @@
-# HaramBlurr — Technical Investigation, Linux v1
+# Technical Investigation, Linux v1 (paused)
 
 > **Paused — plan B (2026-10-06).** The project moved to **Android first**. See [`investigation-android-v1.md`](investigation-android-v1.md) and [`p0-results-android-v1.md`](p0-results-android-v1.md). The model findings here (§5–§9) still apply to Android. The Hyprland plugin work is on hold.
 
@@ -89,7 +89,7 @@ App renders ─► wl_buffer (shm or dmabuf) ─► Compositor ─► composite 
                 │ unix socket in $XDG_RUNTIME_DIR (0600)
                 │ {window_id, commit_seq, w, h, shm_offset}
                 ▼                             │ {window_id, commit_seq, mask 160×160 | boxes}
-┌──────────────────────── haramblurr daemon ───────────────────────┐
+┌──────────────────────── masking daemon ──────────────────────────┐
 │  OpenVINO (Iris Xe GPU) · seg model (ONNX/IR)                    │
 │  temporal logic: hysteresis, tracking, scene-cut detection       │
 │  mask post-process: threshold → dilate → downsample              │

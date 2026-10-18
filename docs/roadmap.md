@@ -1,36 +1,43 @@
-# HaramBlurr — Roadmap
+# Roadmap
 
-Date: 2026-10-06 · Start of plan: **Week 1 = Mon 12 Oct 2026** · Team: 3 students
-Details of each step: [`investigation-android-v1.md`](investigation-android-v1.md) §10. Requirements: SRS v2.1 (`srs-en.html`). Methods: [`research-methods.md`](research-methods.md).
+Date: 2026-10-18 (re-planned; first version 2026-10-06) · Start of plan: **Week 1 = Mon 12 Oct 2026** · Team: 3 students
+Details of each step: [`investigation-android-v1.md`](investigation-android-v1.md) §10. Requirements: SRS v2.2 (`srs-en.html`). Methods: [`research-methods.md`](research-methods.md).
 
-> **The submission deadline is not known yet.** The weeks below are estimates of effort. When the deadline is fixed, move the "Report and defense" block to the end and shorten the optional items first.
+> **Deadline: about six months from 18 Oct 2026, so around mid-April 2027 (Week 27).** The exact date is not fixed yet. If it moves, keep "Report and defense" at the end and shorten v6 (video) first, then v5.
 
 ---
 
 ## 1. Overview
 
 ```
-Wk  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22
-    ├─ v1: bad-language text ─┤
-    [0][v1-a ][v1-b    ][eval]
-    [ v1-c word lists ]
-        ├──────── v1.1: own text model (teachers → data → student → phone) ───┤
-                                    ├─ v2: big people ──┤├ v3: med. ┤
-                                                                    ├──── v4: small people ────┤
-    [ report written continuously ..................................................] [report+def.]
+Wk  1   2   3   4   5   6   7   8   9   10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27
+    ├──── v1 text ────┤
+        ├──── v1.1 own text model ────┤
+                    ├P0d┤
+                        ├v2 text in images┤
+                                        ├─ v3 big ┤
+                                                    ├v4 med┤
+                                                        ├──── v5 small people ────┤
+                                                                                    ├─v6 video┤
+                                                                                                ├report+defense┤
+    [ report written continuously ..........................................................]
 ```
 
 | Phase | Weeks | Hides | Exit criterion (must be true to move on) |
 |---|---|---|---|
-| **0. Housekeeping** | 1 | — | Git repo; phone speed test (P0b) finished; Android version of the test phone known; email sent to Attia |
+| **0. Housekeeping** | 1–2 | — | Git repo ✅; phone speed test (P0b) ✅; Android version of the test phone ✅; email sent to Attia; streams assigned |
 | **v1. Bad-language text** | 1–5 | Arabic + English bad words | NFR-1 (≥ 95% of listed words hidden), NFR-2 (≤ 1 false cover / 1 000 clean words), NFR-3 (gap ≤ 3 frames) measured and reported |
 | **v1.1. Own text model** | 2–9 (parallel) | Context-dependent words, insults without bad words | Per language pack, NFR-13 on the Redmi 12: real RAM ≤ 100 MB, ≤ 50 ms per message (p95), about one CPU core at most; and better than the word list and the cheaper baselines on the same test set |
-| **v2. Big people** | 8–11 | People > ~96 px | ≥ 95% of big people hidden on real phone screenshots; waiting time ≤ 0.7 s |
-| **v3. Medium people** | 12–13 | People ~32–96 px | ≥ 95% of medium people hidden; check speed fits (tiles) |
-| **v4. Small people** | 14–19 | People < ~32 px | Our trained model beats the base model on small people (target 95%) |
-| **Report and defense** | 20–22 | — | Final report, demo video, slides |
+| **v2. Text inside images** | 5 (P0d), 6–9 | Bad words in memes, thumbnails, subtitles burned into videos | OCR phone test done (P0d); NFR-14 targets set from it and measured on real screenshots |
+| **v3. Big people** | 10–12 | People > ~96 px | ≥ 95% of big people hidden on real phone screenshots; waiting time ≤ 0.7 s |
+| **v4. Medium people** | 13–14 | People ~32–96 px | ≥ 95% of medium people hidden; check speed fits (tiles) |
+| **v5. Small people** | 14–20 | People < ~32 px | Our trained model beats the base model on small people (target 95%) |
+| **v6. Video** | 21–23 | People in videos while they play | Method chosen and measured: people hidden per second of video, and how long they show between checks |
+| **Report and defense** | 24–27 | — | Final report, demo video, slides |
 
-**Done before Week 1:** research, the people-model tests on laptop and phone (P0), the HaramBlur study, the combined Arabic word list, SRS v2.1, proposal.
+**Done before Week 1:** research, the people-model tests on laptop and phone (P0, P0b), the study of the competing HaramBlur app, the combined Arabic word list, SRS, proposal.
+
+**Rules agreed on 2026-10-18:** Android 14+ only for now (no fallback for older phones). Apps that block screenshots (banking, some video apps) are not checked. AI tools may be used for the project.
 
 ---
 
@@ -40,9 +47,9 @@ Three people, three streams. The team decides who takes which.
 
 | Stream | Owns | Main output |
 |---|---|---|
-| **A. Android app** | Accessibility service, covers, settings, notification, scroll tracking; later the window picture and model in the app | The APK |
-| **B. Language and data** | Arabic and English word lists, categories, test sets, measuring v1; later the phone-screenshot dataset for v4 | `wordlists/`, test results |
-| **C. AI models** | Phone speed tests; **our own text model (v1.1)**: teachers, training, phone export; people detection, tiles, training for v4; text-in-images (PaddleOCR) if time allows | Model files, results docs |
+| **A. Android app** | Accessibility service, covers, settings, notification, scroll tracking; from v2 the window picture and the models in the app | The APK |
+| **B. Language and data** | Arabic and English word lists, categories, test sets, measuring v1; screenshot test sets for v2; the people dataset for v5 | `wordlists/`, test results |
+| **C. AI models** | Phone speed tests; **our own text model (v1.1)**; Arabic OCR (PaddleOCR) for v2; people detection, tiles, training for v5; video method for v6 | Model files, results docs |
 
 Everyone writes their own part of the report as they go (§5).
 
@@ -50,15 +57,17 @@ Everyone writes their own part of the report as they go (§5).
 
 ## 3. Phase by phase
 
-### Phase 0 — Housekeeping (Week 1)
+### Phase 0 — Housekeeping (Weeks 1–2)
 
-| Task | Stream | Size |
+| Task | Stream | Status |
 |---|---|---|
-| Put the project in **git** (code, docs, word lists; not `.venv`, datasets or model files) | all | 1 h |
-| Finish the phone speed test: `bench/bench_phone.py` (fp32 / fp16 / drq, CPU / GPU / NNAPI, 640 and 480 px) | C | 1 evening |
-| Check the Redmi 12's Android version (13 or 14 decides the v2 method) | A | 5 min |
-| Email Mohammed Attia: permission to use his lexicon | B | 15 min |
-| Ask the department: deadline, report format, supervisor | all | — |
+| Put the project in **git** | all | ✅ 2026-10-07 |
+| Finish the phone speed test (P0b) | C | ✅ 2026-10-07 (GPU ~205 ms at 640 px) |
+| Check the Redmi 12's Android version | A | ✅ Android 15 |
+| Google Play developer account | all | ✅ Already exists (the team published another app on 2026-10-07) |
+| Ask the department: deadline, AI-tool rules | all | ✅ About six months; AI tools allowed |
+| Email Mohammed Attia: permission to use his lexicon | B | Open |
+| Assign the three streams | all | Open |
 
 ### v1 — Bad-language text (Weeks 1–5)
 
@@ -88,31 +97,52 @@ Design: investigation §3.5. Method: research-methods §4.7.
 
 **Interim:** if v1 needs the second layer before our model is ready, use HAYAA-student (research license) as a stand-in.
 
-### v2 — Big people (Weeks 8–11)
+### v2 — Text inside images (Week 5 test, Weeks 6–9)
+
+v2 builds the **window picture** step (`takeScreenshotOfWindow`, Android 14+) that the people versions reuse.
+
+| Weeks | Stream | What | Done when |
+|---|---|---|---|
+| 5 | C | **P0d (OCR phone test)**: PaddleOCR PP-OCRv5 Arabic and English mobile models on the Redmi 12: ms per screen, RAM, CPU vs GPU; accuracy on a small set of meme and thumbnail screenshots | A table; NFR-14 targets set |
+| 6–7 | A | Window picture on screen change (max 3 per second), find image areas, hide first over changed images (FR-14) | Pictures arrive in the app, nothing saved to disk |
+| 6–8 | C + A | OCR in the app; the read text goes through the same filter as v1 (and v1.1); cover the word boxes inside the image (FR-12) | Bad words inside images are covered |
+| 8–9 | B | Test set: real screenshots with text in images (memes, thumbnails, video subtitles); measure NFR-14 and the waiting time | Numbers in a results doc |
+
+### v3 — Big people (Weeks 10–12)
 
 | Step | Stream | What |
 |---|---|---|
-| Window picture + hide first | A | `takeScreenshotOfWindow` (Android 14+), cover on change, uncover after check (FR-14) |
-| Model in the app | C | LiteRT + NMS, the fastest config from P0b, mask cover (FR-13) |
+| Model in the app | C | LiteRT + NMS on the GPU at 640 px (fastest setup from P0b), mask cover (FR-13) |
+| Hide first | A | Reuse the v2 window picture: cover on change, uncover after check (FR-14) |
 | Test set | B | Real phone screenshots (feeds, video apps), people labelled by size |
 | Evaluation | B + C | NFR-4 (big), NFR-5, NFR-6, battery |
 
-**Decision before v2 (from P0b):** if no model setup checks a full screen in ≤ 150 ms, tiles will not fit on this phone. Then v3 needs a smaller input size, a faster phone, or fewer tiles, and the plan is adjusted.
+**Known from P0b:** no setup checks a full screen in ≤ 150 ms at 640 px (GPU ~205 ms), so tiles cannot run on every change. v4 checks tiles only where the screen changed.
 
-### v3 — Medium people (Weeks 12–13)
+### v4 — Medium people (Weeks 13–14)
 
-Tiles (FR-17) using the fastest setup, with tiles checked only where the screen changed. Measure medium-people recall against speed.
+Tiles (FR-17) on the GPU, checked only where the screen changed. Measure medium-people recall against speed.
 
-### v4 — Small people (Weeks 14–19)
+### v5 — Small people (Weeks 14–20)
 
 | Weeks | Stream | What |
 |---|---|---|
-| 14–15 | B | Collect phone screenshots (feeds, grids, video apps, games). Store them safely and privately. |
+| 14–15 | B | Collect data: the team's own phone screenshots (feeds, grids, video apps, games), kept private and never published, plus openly licensed pictures from the internet |
 | 15–16 | C | Label people with SAM 3 (text prompt "person"), and check a sample by hand |
-| 16–18 | C | Fine-tune the people model on these screenshots, then export it to the phone again |
-| 19 | B + C | Evaluate on a held-out set: small / medium / large recall, false covers |
+| 16–19 | C | Fine-tune the people model on this data (optionally with RF-DETR as a teacher), then export it to the phone again. Same size and speed as today. |
+| 20 | B + C | Evaluate on a held-out set: small / medium / large recall, false covers |
 
-### Report and defense (Weeks 20–22)
+### v6 — Video (Weeks 21–23)
+
+The window picture gives at most 3 pictures per second, which cannot follow a playing video. v6 compares ways to fix that and picks one:
+
+| Option | Idea |
+|---|---|
+| Tracking | Check every ~333 ms and move the covers with the people between checks |
+| Faster source for video only | Screen capture while a video plays, if the permission prompt is acceptable |
+| Strict mode | Keep the video area covered while it plays; uncover when paused and checked |
+
+### Report and defense (Weeks 24–27)
 
 Final report, demo video (record the screen with the filter on), slides, practice defense.
 
@@ -122,10 +152,10 @@ Final report, demo video (record the screen with the filter on), slides, practic
 
 | Item | Why later |
 |---|---|
-| Text inside images and videos (PaddleOCR, Arabic) | Separate pipeline; the team has PaddleOCR experience, so it is the first optional item |
 | Arabic dialects and Arabizi | The word list already has 959 Arabizi entries; needs review |
-| Android 13 fallback (FR-16) | Only if the test phone or users need it |
-| Video mode (FR-19) | Needs more checks per second than the phone gives today |
+| A short product name | Candidate: **Sitr (سِتر)**. Check the Play Store for clashes first (issue #4) |
+| Android 13 and older (FR-16) | Dropped for now: the app is built for Android 14+ first |
+| Apps that block screenshots | Not needed: banking apps rarely show what we hide |
 
 ---
 
@@ -135,12 +165,12 @@ Final report, demo video (record the screen with the filter on), slides, practic
 |---|---|---|
 | 1. Introduction, problem, goals | Week 1 | Proposal, SRS §1 |
 | 2. Background and related work | Weeks 1–3 | Investigation §2, §9; research-methods §4.1–§4.3 |
-| 3. Requirements | Week 2 | SRS v2.1 |
+| 3. Requirements | Week 2 | SRS v2.2 |
 | 4. Research methods | Week 2, updated each phase | [`research-methods.md`](research-methods.md) |
-| 5. Design | Weeks 2–9 | Investigation §3–§5 |
+| 5. Design | Weeks 2–12 | Investigation §3–§5, app design |
 | 6. Implementation | Each phase | Code and phase notes |
-| 7. Evaluation and results | Each phase | Results docs (P0, v1, v1.1 model comparison, v2, v3, v4) |
-| 8. Discussion, limits, future work | Weeks 20–21 | All of the above |
+| 7. Evaluation and results | Each phase | Results docs (P0, v1, v1.1 model comparison, v2 to v6) |
+| 8. Discussion, limits, future work | Weeks 24–25 | All of the above |
 | References | Continuously | research-methods §9 |
 
 ---
@@ -149,10 +179,10 @@ Final report, demo video (record the screen with the filter on), slides, practic
 
 | Risk | When we know | Plan B |
 |---|---|---|
-| Phone too slow for people detection | End of Week 1 (P0b) | Smaller input, fewer tiles, or a stronger test phone |
-| Test phone is Android 13 | Week 1 | Update it, borrow an Android 14+ phone, or use the screen-capture fallback |
 | Arabic list review takes longer than planned | Week 3 | Ship v1 with swearing and sexual first; insults and blasphemy next |
 | Attia says no | Any time | Remove the 239 entries that only come from his lexicon |
 | Teachers are weak in Arabic (low agreement with our labels) | Week 5 | Use more human labels on a smaller set; use the Arabic-specific base model (CAMeLBERT) |
 | Our text model is too slow or uses too much RAM on the phone (NFR-13) | Week 2 (P0c), confirmed Week 7 | Fewer layers, smaller vocabulary, shorter inputs, run it only on context-dependent messages |
-| v4 data or training takes too long | Week 17 | Report v4 as partial results; v1–v3 are complete products on their own |
+| Arabic OCR too slow or weak on the phone | Week 5 (P0d) | Check only images that changed, smaller input, English first |
+| v5 data or training takes too long | Week 18 | Report v5 as partial results; v1–v4 are complete products on their own |
+| No video method is good enough | Week 22 | Ship strict mode (video stays covered while playing) and report the limit |

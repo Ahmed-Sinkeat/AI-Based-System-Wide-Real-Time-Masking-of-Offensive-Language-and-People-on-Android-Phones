@@ -1,4 +1,4 @@
-# HaramBlurr — P0 Measurement Results (Linux v1)
+# P0 Measurement Results (Linux v1)
 
 > **Paused — plan B (2026-10-06).** The project moved to **Android first**. See [`investigation-android-v1.md`](investigation-android-v1.md) and [`p0-results-android-v1.md`](p0-results-android-v1.md). The model accuracy results here (§4–§5) still apply. The speed results are for the laptop only.
 

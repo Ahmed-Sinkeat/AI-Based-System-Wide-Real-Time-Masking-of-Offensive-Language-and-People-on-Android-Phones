@@ -1,6 +1,6 @@
-# HaramBlurr — Research Methods and References
+# Research Methods and References
 
-Graduation project, Software Engineering · Date: 2026-10-06 · Status: living document (updated after each phase)
+Graduation project, Software Engineering · Date: 2026-10-06, updated 2026-10-18 · Status: living document (updated after each phase)
 Related: [`roadmap.md`](roadmap.md) · [`investigation-android-v1.md`](investigation-android-v1.md) · [`p0-results-android-v1.md`](p0-results-android-v1.md) · [`p0-results-linux-v1.md`](p0-results-linux-v1.md)
 
 References use IEEE style. Numbers in square brackets point to §9.
@@ -9,7 +9,7 @@ References use IEEE style. Numbers in square brackets point to §9.
 
 ## 1. Purpose and scope
 
-The project builds an Android app that hides offensive language and images of people on the phone screen, in every app, on the device itself. This document records **how the research was done**: what questions it asks, which methods answer them, what data and tools were used, and what the limits are. It covers the work done so far (research, tests, competitor study, word-list building) and the planned evaluation of each release (v1 text, v2–v4 people).
+The project builds an Android app that hides offensive language and images of people on the phone screen, in every app, on the device itself. This document records **how the research was done**: what questions it asks, which methods answer them, what data and tools were used, and what the limits are. It covers the work done so far (research, tests, competitor study, word-list building) and the planned evaluation of each release (v1 text, v1.1 text model, v2 text inside images, v3–v5 people, v6 video).
 
 ---
 
@@ -22,12 +22,13 @@ The project builds an Android app that hides offensive language and images of pe
 | **RQ3** | How fast and how accurate are real-time person-segmentation models on a low-cost phone, for people of different sizes on the screen? |
 | **RQ4** | What problems do users report with existing tools, and which of them can a different design avoid? |
 | **RQ5** | Can a small model that runs on a low-cost phone, trained with labels from large open models ("teachers"), find offensive Arabic and English messages **and the offensive words in them** better than a word list, within the phone's speed and size limits? |
+| **RQ6** | Can on-phone OCR read Arabic and English text inside images fast enough to cover the offensive words in it? |
 
 ---
 
 ## 3. Research design
 
-The project follows an **engineering design research** approach: build an artifact (the app) in stages, and evaluate each stage against measurable requirements (SRS v2.1). Several methods feed into it:
+The project follows an **engineering design research** approach: build an artifact (the app) in stages, and evaluate each stage against measurable requirements (SRS v2.2). Several methods feed into it:
 
 | # | Method | Answers | Status |
 |---|---|---|---|
@@ -36,7 +37,7 @@ The project follows an **engineering design research** approach: build an artifa
 | M3 | Competitor and user-feedback analysis | RQ4 | Done |
 | M4 | Controlled offline experiments with person-segmentation models (laptop and phone) | RQ3 | Done (phone speed test partly) |
 | M5 | Lexicon construction: combining and normalizing Arabic offensive-word lists | RQ2 | Done (combined list); manual review planned |
-| M6 | Evaluation of each release on the test phone | RQ1–RQ3 | Planned (v1 → v4) |
+| M6 | Evaluation of each release on the test phone | RQ1–RQ3, RQ6 | Planned (v1 → v6) |
 | M7 | Training and evaluating our own on-device text model (teacher → student) | RQ2, RQ5 | Planned (v1.1) |
 
 ---
@@ -63,7 +64,7 @@ The project follows an **engineering design research** approach: build an artifa
 
 - **Android platform (RQ1).** An accessibility service can read on-screen text and draw trusted overlays [25]. Since Android 8.0 it can ask for the screen box of each character [26], and Chrome supports this for web pages [34]. Android 14 added screenshots of a single window and new overlay methods [27], limited to one screenshot per 333 ms [28]. Normal "draw over other apps" overlays that let touches through are capped at 80% opacity [29], [30]. Screen capture (MediaProjection) needs user consent for every session on Android 14+ [31], and attempts to hide an app's own overlay from screen capture failed on a MediaTek phone [36]. Google Play restricts non-accessibility uses of the accessibility API [32]. The official codelab [35] and an open-source accessibility app with overlays and OCR [40] serve as implementation references.
 - **Arabic offensive language (RQ2).** Word lists built from social media exist [1], [6], [20]–[24]; shared tasks and studies show that Arabic letter normalization and reducing repeated letters help detection [2]–[4]; Arabizi needs its own handling [5]. Normalization follows Lucene's `ArabicNormalizer` [17]; many phrases can be matched in one pass with Aho-Corasick [18]. A small distilled Arabic toxicity model exists for on-device use [15], and could serve as a second check.
-- **Text inside images (later).** Google's on-device OCR (ML Kit) does not support Arabic [33]; PaddleOCR has an Arabic mobile model [16], and it already runs on Android in an open-source app [41].
+- **Text inside images (v2).** Google's on-device OCR (ML Kit) does not support Arabic [33]; PaddleOCR has an Arabic mobile model [16], and it already runs on Android in an open-source app [41].
 - **People detection (RQ3).** Candidate real-time models were YOLO segmentation models [10] and RF-DETR [8], [11], [48]; SAM 3 [9] can label people from a text prompt to build training data. COCO [7] is the standard benchmark.
 - **Related tools (RQ4).** HaramBlur (browser extension and Android app) [37], [38] and SafeGaze [39] blur images; none filters text.
 - **Linux phase (plan B).** Per-window shader plugins for the Hyprland desktop [43], [44], its rendering pipeline [46] and a planned Vulkan renderer [45]; YOLO with OpenVINO on an integrated GPU [47].
@@ -178,7 +179,7 @@ The project follows an **engineering design research** approach: build an artifa
 
 ### 4.6 M6 — Planned evaluation of each release
 
-Each release is measured against the SRS v2.1 targets on the test phone. Results go into a results document per release.
+Each release is measured against the SRS v2.2 targets on the test phone. Results go into a results document per release.
 
 **v1 (bad-language text)**
 
@@ -190,7 +191,15 @@ Each release is measured against the SRS v2.1 targets on the test phone. Results
 | Battery (NFR-8) | Reset battery statistics (`dumpsys batterystats --reset`), then 30 minutes of scripted scrolling with the filter on and off, 3 times each | Small difference (report the value) |
 | App coverage | List of popular apps where the text is readable and the word boxes work | Report |
 
-**v2–v4 (people)**
+**v2 (text inside images)**
+
+| Measure | Method |
+|---|---|
+| OCR speed and memory (P0d) | PaddleOCR mobile models on the Redmi 12, CPU and GPU, as in M4: ms per screen, peak RAM, warm phone |
+| Hidden words in images (NFR-14) | Real screenshots with text in images (memes, thumbnails, video subtitles); the team marks offensive words; share covered, with a 95% confidence interval |
+| Waiting time | App timestamps: change event → window picture → OCR → cover |
+
+**v3–v5 (people)**
 
 | Measure | Method |
 |---|---|
@@ -199,7 +208,9 @@ Each release is measured against the SRS v2.1 targets on the test phone. Results
 | Exposure | Slow-motion filming as for v1: frames in which a person is visible before the cover |
 | Over-cover, battery, memory | As in M4 and v1 |
 
-**v4 training data.** Phone screenshots collected by the team, labelled with SAM 3, a sample checked by hand, and **split by app and by screenshot session** so that test images are not near-copies of training images.
+**v6 (video).** Share of video seconds in which a person is visible, measured by slow-motion filming; compared across the methods in the roadmap (tracking, screen capture during video, strict mode).
+
+**v5 training data.** Phone screenshots collected by the team, plus openly licensed pictures from the internet (source and license recorded per set), labelled with SAM 3, a sample checked by hand, and **split by app and by screenshot session** so that test images are not near-copies of training images.
 
 ### 4.7 M7 — Training and evaluating our own on-device text model (v1.1)
 
@@ -260,7 +271,7 @@ Metrics: macro-F1 over the 5 categories; **word-level F1** (as in the toxic-span
 
 | Threat | Where | What we do |
 |---|---|---|
-| **Synthetic test data** does not match real screens | M4 | v2–v4 are evaluated on real phone screenshots (M6) |
+| **Synthetic test data** does not match real screens | M4 | v3–v5 are evaluated on real phone screenshots (M6) |
 | **One test phone** | M4, M6 | Report the phone model; where possible repeat key measurements on a second phone |
 | **Heat and background load** change phone speed | M4, M6 | Pauses between runs, battery temperature recorded, airplane mode and screen brightness fixed |
 | **Word lists come from one region's social media** | M5 | Manual review; test on standard-Arabic clean text |
@@ -274,7 +285,7 @@ Metrics: macro-F1 over the 5 categories; **word-level F1** (as in the toxic-span
 
 ## 6. Ethics, privacy and licensing
 
-- **Privacy by design.** Screen content is processed only in memory on the phone. The app has no internet permission and saves no screenshots (NFR-10). Test screenshots collected for v4 are stored privately by the team, used only for this project, and personal details in them are not published.
+- **Privacy by design.** Screen content is processed only in memory on the phone. The app has no internet permission and saves no screenshots (NFR-10). Screenshots collected for v5 are stored privately by the team, used only for this project, and never published. Internet pictures are used only where their license allows training.
 - **Consent.** The app explains what it can see before the user turns it on (FR-1). It is a personal tool, not a monitoring tool.
 - **Offensive data.** The word lists and test data contain offensive language. They are used only to build and test the filter, and are not shown in the report beyond short examples where needed.
 - **Licenses.** Every source's license is recorded (§4.5, §9). AGPL-3.0 code (the competitor) was read, not copied. CC-BY-4.0 sources are credited. Attia's lexicon has no license, so the team will ask the author for permission (roadmap, Phase 0); its entries can be removed if needed (provenance column). HAYAA-student and the Mubarak list are for research use only.
@@ -301,7 +312,7 @@ Metrics: macro-F1 over the 5 categories; **word-level F1** (as in the toxic-span
 
 ## 8. Use of AI tools
 
-An AI coding assistant was used to help with web searches, reading source code, writing the benchmark and list-building scripts, and drafting these documents. All measurements come from running the scripts on our hardware, and the outputs are kept in `bench/results/` and `wordlists/`. Facts taken from sources were checked against the primary source where possible (§4.1). The team is responsible for the content and reviews it before submission.
+An AI coding assistant was used to help with web searches, reading source code, writing the benchmark and list-building scripts, and drafting these documents. All measurements come from running the scripts on our hardware, and the outputs are kept in `bench/results/` and `wordlists/`. Facts taken from sources were checked against the primary source where possible (§4.1). The department does not forbid AI tools (confirmed 2026-10-18). No AI tool is named as an author or co-author. The team is responsible for the content and reviews it before submission.
 
 ---
 

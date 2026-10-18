@@ -1,7 +1,7 @@
-# HaramBlurr — App Design (v1, with hooks for v1.1–v4)
+# App Design (v1, with hooks for v1.1–v6)
 
 Date: 2026-10-07 · Status: **agreed in design review, for team review** · Scope: the Android app.
-Requirements: SRS v2.1 (`srs-en.html`). Background and sources: [`investigation-android-v1.md`](investigation-android-v1.md). Plan: [`roadmap.md`](roadmap.md).
+Requirements: SRS v2.2 (`srs-en.html`). Background and sources: [`investigation-android-v1.md`](investigation-android-v1.md). Plan: [`roadmap.md`](roadmap.md).
 
 ---
 
@@ -10,15 +10,15 @@ Requirements: SRS v2.1 (`srs-en.html`). Background and sources: [`investigation-
 | Topic | Decision | Why |
 |---|---|---|
 | Language | **Kotlin only** | The team knows Kotlin. The accessibility service and covers must be native anyway. Rust was considered for the matcher, but a word lookup takes under 1 ms in Kotlin, and Rust would add the NDK and a JNI bridge. |
-| Structure | **One app, one accessibility service** (approach A). The text filter is a plain-Kotlin package with no Android code. | Least setup. The filter can still be tested on the laptop. A separate process for models is reconsidered in v2 only if the people model crashes or stalls. |
+| Structure | **One app, one accessibility service** (approach A). The text filter is a plain-Kotlin package with no Android code. | Least setup. The filter can still be tested on the laptop. A separate process for models is reconsidered in v3 only if the people model crashes or stalls. |
 | Screens | **Jetpack Compose + Material 3**, Arabic right-to-left and English, following the phone's language | Modern, built-in RTL |
-| Android versions | **minSdk 26** (Android 8.0: per-letter text boxes). Target: the latest stable SDK. People features (v2+) only on **Android 14+**. | §2 of the investigation |
+| Android versions | **minSdk 26** (Android 8.0: per-letter text boxes). Target: the latest stable SDK. Picture features (v2+: text in images, people, video) only on **Android 14+**; no fallback for older phones for now. | §2 of the investigation |
 | Covers | **One full-screen, touch-through accessibility overlay** that draws every cover | Fewer windows, faster; a trusted accessibility overlay may be fully opaque and let touches through |
 | Peeking | **None in v1.** Pausing is the only way to see covered content. | Covers cannot catch taps without blocking the app underneath |
 | Languages | **Language packs**: the user picks one (default: phone language) or two. Only chosen packs use RAM. Text is routed to a pack by its script. | Smaller and faster; each language can use its best model |
 | Text filtering | **Layer ① word list (v1)**; **layer ② our own small model per language (v1.1)** for context and offensive words | Investigation §3.5 |
 | Privacy | **No internet permission.** Screen text is processed in memory only. | Promise to users; looks less like malware to Play Protect |
-| Install | APK over ADB for development and demo; a **student "limited distribution" developer account** registered early | Android developer verification (§3 below) |
+| Install | APK over ADB for development and demo; Google Play later with the team's **existing Google Play developer account** | Android developer verification (§3 below) |
 
 ---
 
@@ -34,7 +34,7 @@ app/
  │   └─ Matcher      text → [ (start, end, category) ]
  ├─ model/       (v1.1) TextModel interface: text → categories + offensive word spans
  │               one implementation per pack (LiteRT); cache by message fingerprint
- ├─ service/     HaramBlurrService (AccessibilityService)
+ ├─ service/     MaskingService (AccessibilityService)
  │               events → read visible text → filter (+ model) → word boxes → overlay
  ├─ overlay/     CoverOverlay: one full-screen TYPE_ACCESSIBILITY_OVERLAY, draws boxes
  ├─ ui/          Compose: setup, home, settings, try-it
@@ -61,11 +61,11 @@ assets/packs/<lang>/   words.tsv  (v1.1: model.tflite, tokenizer.json, threshold
 | Fact | Design answer |
 |---|---|
 | **Restricted settings** (Android 13+, stricter in 15): an app installed from an APK cannot turn on accessibility until the user allows "restricted settings" | Setup step 5 shows how: App info → ⋮ → "Allow restricted settings" |
-| **Developer verification**: from 30 Sep 2026 in four countries, worldwide in 2027, certified phones install only apps from verified developers; ADB installs are exempt; a student / hobbyist "limited distribution" account exists | ADB for development and demo; register the student account in Phase 0 |
+| **Developer verification**: from 30 Sep 2026 in four countries, worldwide in 2027, certified phones install only apps from verified developers; ADB installs are exempt; a student / hobbyist "limited distribution" account exists | ADB for development and demo; the team already has a verified Google Play developer account (an app was published on 2026-10-07) |
 | **Android 17 Advanced Protection Mode** (opt-in) removes accessibility access from apps that are not accessibility tools | We are not an accessibility tool and do not claim to be. Detect the mode (`AdvancedProtectionManager`) and explain it on Home |
 | **Play Protect** scans sideloaded apps; Android 17 watches for misuse of accessibility overlays | No internet permission, minimal permissions, clear consent screen, honest description. Test early for warnings |
-| **LiteRT CompiledModel API** (CPU / GPU / NPU, Kotlin) | Runtime for v1.1 and v2 models |
-| **Google SafetyCore / ContentSafetyManager** (on-device sensitive-image classifier, API in development) | Watch only; maybe an extra check for v2+ |
+| **LiteRT CompiledModel API** (CPU / GPU / NPU, Kotlin) | Runtime for v1.1, v2 (OCR) and v3+ models |
+| **Google SafetyCore / ContentSafetyManager** (on-device sensitive-image classifier, API in development) | Watch only; maybe an extra check for v3+ |
 
 Sources: investigation §2, §8, §11, and research-methods §9.
 
@@ -95,7 +95,7 @@ Sources: investigation §2, §8, §11, and research-methods §9.
 
 ### Settings
 
-Languages · What to hide · Cover style and colour · **Skipped apps** (searchable) · About and privacy. Added later: **Strictness** (v1.1, from the model's confidence) and **People** (v2+).
+Languages · What to hide · Cover style and colour · **Skipped apps** (searchable) · About and privacy. Added later: **Strictness** (v1.1, from the model's confidence) and **People** (v3+).
 
 **Not included:** accounts, cloud, statistics beyond counts, password or lock (not planned in the SRS).
 
@@ -116,9 +116,9 @@ Languages · What to hide · Cover style and colour · **Skipped apps** (searcha
 
 | State | Text | Buttons |
 |---|---|---|
-| On | "HaramBlurr is on · Arabic · 12 words covered today" | Pause 15 min · Turn off |
+| On | "Filter is on · Arabic · 12 words covered today" | Pause 15 min · Turn off |
 | Paused | "Paused until 14:30" | Resume |
-| Problem | "HaramBlurr stopped: tap to fix" | Opens the fix screen |
+| Problem | "Filter stopped: tap to fix" | Opens the fix screen |
 
 ### Quick Settings tile
 
@@ -181,5 +181,7 @@ Project setup: Kotlin + Gradle (Kotlin DSL), one app module. No CI or lint tooli
 | Version | Hook in this design |
 |---|---|
 | v1.1 | `model/` TextModel per pack; Strictness setting; files added to `packs/<lang>/` |
-| v2–v4 | Window picture (Android 14+), people model, mask covers drawn by the same CoverOverlay; People settings; possibly a separate process for the model |
-| Later | Text inside images (PaddleOCR), Arabizi pack, Android 13 fallback, video mode |
+| v2 | Window picture (Android 14+), OCR model; words found in images go through the same `filter/` and are covered by the same CoverOverlay |
+| v3–v5 | People model, mask covers drawn by the same CoverOverlay; People settings; possibly a separate process for the model |
+| v6 | Video: the method chosen in the roadmap (tracking between checks, screen capture during video, or strict mode) |
+| Later | Arabizi pack; a short product name (issue #4) |
