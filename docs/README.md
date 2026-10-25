@@ -15,6 +15,7 @@
 | [`roadmap.md`](roadmap.md) | **Plan by week**: phases v1 → v6, workstreams, exit criteria, report plan, schedule risks |
 | [`research-methods.md`](research-methods.md) | **Research questions, methods (M1–M7), evaluation plan, validity, ethics, AI-tool use, references (IEEE)** |
 | [`research-en.html`](research-en.html) | **Research and related work as one readable page** (PDF: `research-en.pdf`) |
+| [`plan-review-2026-10-25.md`](plan-review-2026-10-25.md) | **Plan review before v1-a**: four points to decide (NFR-3 gap, autoplay video in v3, minimum text model, schedule reset), architecture gaps (cover store, scroll following, threading), proposed changes with owners |
 | [`app-design-v1.md`](app-design-v1.md) | **App design (agreed)**: tech stack, architecture, screens inside the app, covers / notification / tile outside it, data, errors, testing, things to verify early |
 | [`asbuild.md`](asbuild.md) | **As-built log**: every decision, why, alternatives, and what got in the way (add an entry each time) |
 | [`issue.md`](issue.md) | **Issues**: open problems and checks with next actions, by priority and stream; closed issues with their fix |

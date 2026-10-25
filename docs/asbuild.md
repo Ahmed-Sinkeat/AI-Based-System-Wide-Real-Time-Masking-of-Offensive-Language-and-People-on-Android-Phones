@@ -235,3 +235,12 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **Alternatives considered:** None.
 - **What got in the way:** No product called "Muslim AI Browser", "PurrWeb AI", "Muslim Guard" or "Skipify" could be found. The closest matches were Kahf, Porda AI, HaramBlock, Skipit and SceneSkipper.
 - **Evidence:** [`research-methods.md`](research-methods.md) §8.
+
+### 2026-10-25 — Plan review before v1-a
+- **What:** Reviewed the whole plan (roadmap, app design, SRS v3.0, investigation, phone results, issues, research methods, word lists) before writing app code. Written up in [`plan-review-2026-10-25.md`](plan-review-2026-10-25.md) with proposed changes and owners.
+- **Why:** Last check that the design holds before v1-a starts; cheaper to fix the design document than the code.
+- **Result:** The architecture (one accessibility service, one trusted overlay, window picture) holds. Four points need a team decision: (1) NFR-3 (text cover within 3 frames) cannot be met because the accessibility event arrives after the app has drawn; re-baseline to a measured p95 target. (2) Playing video generates no accessibility events, so v3 needs a video policy (keep covered, or poll pictures while a video node is on screen); it cannot wait for v6. (3) Stream C is over-committed and the text model has two unbudgeted hard parts (an on-phone tokenizer in Kotlin; word-level teacher labels); define a minimum layer ② (Arabic, message level, n-gram baseline + one WordPiece encoder). (4) The schedule is already behind: end of Week 2 and v1-a has not started; reset Week 1 to Mon 26 Oct 2026.
+- **Alternatives considered:** Starting v1-a at once and fixing the design as problems appear (rejected: the video and NFR-3 points change what v1-b and v3 promise).
+- **What got in the way:** Nothing.
+- **Evidence:** [`plan-review-2026-10-25.md`](plan-review-2026-10-25.md). Decisions on its §4 table go into this log as they are taken; open points become issues.
+
