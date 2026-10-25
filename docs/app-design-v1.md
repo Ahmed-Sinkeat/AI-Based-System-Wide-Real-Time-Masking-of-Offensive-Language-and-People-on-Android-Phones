@@ -1,7 +1,7 @@
 # App Design (v1, with hooks for v1.1–v6)
 
 Date: 2026-10-07 · Status: **agreed in design review, for team review** · Scope: the Android app.
-Requirements: SRS v2.2 (`srs-en.html`). Background and sources: [`investigation-android-v1.md`](investigation-android-v1.md). Plan: [`roadmap.md`](roadmap.md).
+Requirements: SRS v3.0 (`srs-en.html`). Background and sources: [`investigation-android-v1.md`](investigation-android-v1.md). Plan: [`roadmap.md`](roadmap.md).
 
 ---
 
@@ -14,7 +14,7 @@ Requirements: SRS v2.2 (`srs-en.html`). Background and sources: [`investigation-
 | Screens | **Jetpack Compose + Material 3**, Arabic right-to-left and English, following the phone's language | Modern, built-in RTL |
 | Android versions | **minSdk 26** (Android 8.0: per-letter text boxes). Target: the latest stable SDK. Picture features (v2+: text in images, people, video) only on **Android 14+**; no fallback for older phones for now. | §2 of the investigation |
 | Covers | **One full-screen, touch-through accessibility overlay** that draws every cover | Fewer windows, faster; a trusted accessibility overlay may be fully opaque and let touches through |
-| Peeking | **None in v1.** Pausing is the only way to see covered content. | Covers cannot catch taps without blocking the app underneath |
+| Peeking | **Peek one item (FR-23).** The accessibility button starts a 5 s peek mode: covers become tappable (outlined); tapping one shows that item only, until it leaves the screen. Pause (5/15/60 min) shows everything. Off in self-control mode (FR-25, future). | Covers let touches pass, so they cannot catch normal taps; the accessibility button is a separate, built-in signal. Changed 2026-10-21 (was "none in v1") |
 | Languages | **Language packs**: the user picks one (default: phone language) or two. Only chosen packs use RAM. Text is routed to a pack by its script. | Smaller and faster; each language can use its best model |
 | Text filtering | **Layer ① word list (v1)**; **layer ② our own small model per language (v1.1)** for context and offensive words | Investigation §3.5 |
 | Privacy | **No internet permission.** Screen text is processed in memory only. | Promise to users; looks less like malware to Play Protect |
@@ -108,7 +108,8 @@ Languages · What to hide · Cover style and colour · **Skipped apps** (searcha
 - **Solid block, slightly rounded corners**, 2–4 dp larger than the word on each side. No text or icon on word covers.
 - Colour: neutral grey by default; the user can choose another colour.
 - "Whole message" mode covers the message's box.
-- **Touches pass through**; covers never open.
+- **Touches pass through.** A cover opens only through peek (FR-23): accessibility button, then tap that cover. Uncovered items are kept in memory only and covered again when they leave the screen.
+- **Context words** (list entries marked *context*) are covered at once; the cover is removed only if the text model says the message is clean above the strictness level (FR-24).
 - Covers **move with scrolling** (FR-3) and are removed at once on pause, off, or when a skipped app opens; on resume the screen is checked again immediately.
 - Positions come from Android's per-letter boxes, so right-to-left text needs no special handling.
 

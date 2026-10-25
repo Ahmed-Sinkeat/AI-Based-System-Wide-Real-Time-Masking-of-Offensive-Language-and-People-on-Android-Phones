@@ -1,7 +1,7 @@
 # Roadmap
 
 Date: 2026-10-18 (re-planned; first version 2026-10-06) · Start of plan: **Week 1 = Mon 12 Oct 2026** · Team: 3 students
-Details of each step: [`investigation-android-v1.md`](investigation-android-v1.md) §10. Requirements: SRS v2.2 (`srs-en.html`). Methods: [`research-methods.md`](research-methods.md).
+Details of each step: [`investigation-android-v1.md`](investigation-android-v1.md) §10. Requirements: SRS v3.0 (`srs-en.html`). Methods: [`research-methods.md`](research-methods.md).
 
 > **Deadline: about six months from 18 Oct 2026, so around mid-April 2027 (Week 27).** The exact date is not fixed yet. If it moves, keep "Report and defense" at the end and shorten v5 (bonus) first.
 
@@ -176,7 +176,7 @@ Final report, demo video (record the screen with the filter on), slides, practic
 |---|---|---|
 | 1. Introduction, problem, goals | Week 1 | Proposal, SRS §1 |
 | 2. Background and related work | Weeks 1–3 | Investigation §2, §9; research-methods §4.1–§4.3 |
-| 3. Requirements | Week 2 | SRS v2.2 |
+| 3. Requirements | Week 2 | SRS v3.0 (ISO/IEC/IEEE 29148 structure) |
 | 4. Research methods | Week 2, updated each phase | [`research-methods.md`](research-methods.md) |
 | 5. Design | Weeks 2–12 | Investigation §3–§5, app design |
 | 6. Implementation | Each phase | Code and phase notes |

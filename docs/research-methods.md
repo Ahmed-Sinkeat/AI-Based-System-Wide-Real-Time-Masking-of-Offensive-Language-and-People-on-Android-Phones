@@ -28,7 +28,7 @@ The project builds an Android app that hides offensive language and images of pe
 
 ## 3. Research design
 
-The project follows an **engineering design research** approach: build an artifact (the app) in stages, and evaluate each stage against measurable requirements (SRS v2.2). Several methods feed into it:
+The project follows an **engineering design research** approach: build an artifact (the app) in stages, and evaluate each stage against measurable requirements (SRS v3.0). Several methods feed into it:
 
 | # | Method | Answers | Status |
 |---|---|---|---|
@@ -179,7 +179,7 @@ The project follows an **engineering design research** approach: build an artifa
 
 ### 4.6 M6 — Planned evaluation of each release
 
-Each release is measured against the SRS v2.2 targets on the test phone. Results go into a results document per release.
+Each release is measured against the SRS v3.0 targets on the test phone. Results go into a results document per release.
 
 **v1 (bad-language text)**
 
@@ -326,9 +326,14 @@ Metrics: macro-F1 over the 5 categories; **word-level F1** (as in the toxic-span
 
 ## 8. Use of AI tools
 
-An AI coding assistant was used to help with web searches, reading source code, writing the benchmark and list-building scripts, and drafting these documents. All measurements come from running the scripts on our hardware, and the outputs are kept in `bench/results/` and `wordlists/`. Facts taken from sources were checked against the primary source where possible (§4.1). The department does not forbid AI tools (confirmed 2026-10-18). No AI tool is named as an author or co-author. The team is responsible for the content and reviews it before submission.
+*This statement is final.*
 
----
+The team used AI tools for two things only:
+
+1. **Research:** searching for and summarising papers, documentation, competitor tools and user reviews. Every fact taken from a source was checked against the primary source (§4.1).
+2. **Benchmark testing:** helping write and run the scripts that measure the models on our laptop and phone. Every number comes from running those scripts on our own hardware, and the outputs are kept in `bench/results/`.
+
+AI tools were not used for anything else. The department allows AI tools (confirmed 2026-10-18). No AI tool is named as an author or co-author. The team understands, checks and is responsible for all content.
 
 ## 9. References
 

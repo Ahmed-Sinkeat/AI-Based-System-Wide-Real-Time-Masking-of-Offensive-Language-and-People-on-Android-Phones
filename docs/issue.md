@@ -23,6 +23,8 @@ Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** And
 | 30 | 🟢 | GPU start-up at 480 px takes ~52–60 s and ~470 MB (640: ~4 s, ~180 MB) | Only if 480 px is ever used: try the GPU delegate's serialization cache and re-measure | C | 2026-10-07 |
 | 7 | 🟢 | Full-INT8 export of the people model is broken (boxes and scores share one scale) | Only if more CPU speed is needed: export with boxes divided by the input size | C | 2026-10-06 |
 | 8 | 🟢 | TFLite export stopped after 640 px: 320 px, yolo11n and yolo26s were never exported | Re-run `bench/export_tflite.py` when needed | C | 2026-10-03 |
+| 35 | 🟠 | **Drawn people and anime** count as people (SRS 2.8), but the model learned from photos (COCO): domain gap, unmeasured (risk K-9) | v3: add drawn / anime screenshots to the real test set and report them as a separate group; if weaker, add licensed drawn pictures to v5 training | B + C | 2026-10-21 |
+| 36 | 🟢 | Are emoji, app icons, stickers and avatars "people"? | Team decision; suggestion: emoji and icons no, stickers and avatars with a human face yes if found. Record it here and in asbuild | all | 2026-10-21 |
 | 9 | 🟢 | `bench/yolo26n-seg.onnx` is the **480 px** export (each export overwrites it) | Do not use it as "the 640 model"; name exports by size if it matters | C | 2026-10-06 |
 
 ### Text inside images (v2) and video (v6)
@@ -47,6 +49,7 @@ Why things were done is logged in [`asbuild.md`](asbuild.md). Streams: **A** And
 | 17 | 🟢 | Does the overlay slow scrolling (NFR-7)? | v1-a: scroll with the overlay on and off, watch frame drops | A | 2026-10-07 |
 | 18 | 🟢 | Restricted-settings steps on HyperOS may differ from stock Android | v1-a: install from a file and follow setup step 5 on the Redmi 12 | A | 2026-10-07 |
 | 19 | 🟢 | Play Protect may warn about an app that reads the screen and draws over it | Install early builds from a file and watch for warnings | A | 2026-10-07 |
+| 34 | 🟢 | HyperOS may hide or move the **accessibility button** that starts peek (FR-23, risk K-10) | v1-a: request the button on the Redmi 12 and check where it appears; backup: a notification button "show this screen for 10 s" | A | 2026-10-21 |
 | 20 | 🟢 | Shared test vectors (Python list builder vs Kotlin app cleaning) not created yet | Create the file when v1-b starts; use it in both test suites | A + B | 2026-10-07 |
 
 ### Text model (v1.1)
