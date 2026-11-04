@@ -243,3 +243,10 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **Alternatives considered:** 500–600 MB as the review suggested (rejected: no target pushes us to stay small). Keeping 250 MB as the only limit (rejected: risks a requirement change in v3–v4).
 - **What got in the way:** Nothing.
 - **Evidence:** [`srs-en.pdf`](srs-en.pdf) §6 NFR-9; [`p0-results-android-v1.md`](p0-results-android-v1.md) (people model 87–180 MB peak).
+
+### 2026-11-04 — Repository made public; licences added
+- **What:** GitHub repo switched to public. Code under **AGPL-3.0** ([`LICENSE`](../LICENSE)), documents and results under **CC BY 4.0** ([`LICENSE-docs`](../LICENSE-docs)); third-party word lists keep their own licences.
+- **Why:** Share the work openly; AGPL matches YOLO26 (Ultralytics), which the app will ship.
+- **Alternatives considered:** MIT (any build with YOLO26 is AGPL anyway); all rights reserved; removing the Attia list first (rejected: it is 239 of 947 Arabic terms and our only categories; we credit him and will ask him).
+- **What got in the way:** Nothing.
+- **Evidence:** [`LICENSE`](../LICENSE), [`LICENSE-docs`](../LICENSE-docs), [README "License"](../README.md#license).
