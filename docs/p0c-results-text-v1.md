@@ -24,6 +24,22 @@ Scope: **is a text model fast and small enough for layer ② (FR-20, NFR-13)?** 
 - **GPU / NNAPI / fp16 failures come from the export**, not the model (sizes left dynamic; word table stored in fp16). Not needed: the CPU is fast enough, and the GPU is kept for the people model.
 - **Export checked:** the phone file gives the same answer as the original model (difference < 1e-6 for fp32; int8 picks the same answer).
 
+## 2b. The other small candidates (same test, best setting of each)
+
+| Model | Parameters after cut | Best setting | Average | p95 | Peak memory | Meets NFR-13? |
+|---|---|---|---|---|---|---|
+| **bert-mini-arabic** | 11 M | fp32, CPU 2 threads, fp16 math | **16.4 ms** | 16.7 ms | **38 MB** | **Yes** |
+| bert-medium-arabic | 41 M | int8, CPU 4 threads | 96 ms | 106 ms | 208 MB | No (2× too slow, 2× too much memory) |
+| | | fp32, CPU 2 threads, fp16 math | 98 ms | 99 ms | 207 MB | No |
+| multilingual-e5-small | 33 M | int8, CPU 4 threads | 77 ms | 79 ms | 178 MB | No |
+| | | fp32, CPU 2 threads, fp16 math | 159 ms | 175 ms | 178 MB | No |
+| mmBERT-small | 54 M | — | failed | | | Not measured |
+
+- **Only bert-mini-arabic passes.** The next size up is already 5–6× slower and uses 4–5× the memory.
+- **mmBERT-small** could not run: its export uses an operation LiteRT does not support on 64-bit integers (`ABS`). Not fixed: it is bigger than e5-small, which already misses the target.
+- Some p95 values are much higher than the average (bert-medium on 2 threads: 196 → 423 ms), so the phone's speed was not steady in places; the battery reached 36 °C.
+- e5-small fp32 on 1 thread ended without a timing (cause not shown in the log). It would be the slowest setting anyway.
+
 ## 3. How it was measured
 
 - Model: input 64 token ids → encoder → first token → linear layer with 5 outputs (random weights).
@@ -32,5 +48,5 @@ Scope: **is a text model fast and small enough for layer ② (FR-20, NFR-13)?** 
 
 ## 4. Next
 
-- Same test for bert-medium-arabic, multilingual-e5-small and mmBERT-small (running).
+- **bert-mini-arabic goes on to step 2.** Bigger models only if bert-mini is not accurate enough; then try fewer layers (distillation) or shorter inputs to bring them under 50 ms.
 - P0c step 2: quick training on a small Arabic set to compare accuracy.
