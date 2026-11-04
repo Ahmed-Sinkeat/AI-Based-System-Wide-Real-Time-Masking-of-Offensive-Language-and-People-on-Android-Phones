@@ -250,3 +250,10 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **Alternatives considered:** MIT (any build with YOLO26 is AGPL anyway); all rights reserved; removing the Attia list first (rejected: it is 239 of 947 Arabic terms and our only categories; we credit him and will ask him).
 - **What got in the way:** Nothing.
 - **Evidence:** [`LICENSE`](../LICENSE), [`LICENSE-docs`](../LICENSE-docs), [README "License"](../README.md#license).
+
+### 2026-11-04 — Text model on the phone: quick speed and memory test (P0c step 1)
+- **What:** 4 small encoders exported to LiteRT (64 tokens, vocabulary cut to 30 000) and timed on the Redmi 12 CPU/GPU. Only **bert-mini-arabic** is within the NFR-13 target (~16 ms, ~38 MB); bert-medium-arabic (96 ms, 208 MB) and multilingual-e5-small (77 ms, 178 MB) are above it. NFR-13 is a target, not a hard limit: a heavier model may be used first and made lighter later.
+- **Why:** Check that a text model (layer ②, FR-20) fits on the phone before collecting data and training.
+- **Alternatives considered:** Full candidate list (rejected for now: a quick answer first); base and generative models (clearly too big).
+- **What got in the way:** GPU and fp16 runs fail because of the export; mmBERT-small uses ABS on int64, which LiteRT does not support.
+- **Evidence:** [`p0c-results-text-v1.md`](p0c-results-text-v1.md); `bench/results/phone_latency.csv`; [`bench/export_text.py`](../bench/export_text.py).

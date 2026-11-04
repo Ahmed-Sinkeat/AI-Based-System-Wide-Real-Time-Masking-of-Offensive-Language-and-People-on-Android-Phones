@@ -5,7 +5,7 @@ Scope: **is a text model fast and small enough for layer ② (FR-20, NFR-13)?** 
 
 ## 1. Bottom line
 
-**Yes, it is possible.** The smallest candidate, **bert-mini-arabic** (11 M parameters after the vocabulary cut), checks one 64-token message in **~16 ms** with **~38 MB** of memory on the phone CPU. The target is ≤ 50 ms and ≤ 100 MB (NFR-13).
+**Yes, it is possible.** The smallest candidate, **bert-mini-arabic** (11 M parameters after the vocabulary cut), checks one 64-token message in **~16 ms** with **~38 MB** of memory on the phone CPU. The target is ≤ 50 ms and ≤ 100 MB (NFR-13). This is a target, not a hard limit: a heavier model can be used first and made lighter later.
 
 ## 2. bert-mini-arabic, one message of 64 tokens
 
@@ -26,17 +26,17 @@ Scope: **is a text model fast and small enough for layer ② (FR-20, NFR-13)?** 
 
 ## 2b. The other small candidates (same test, best setting of each)
 
-| Model | Parameters after cut | Best setting | Average | p95 | Peak memory | Meets NFR-13? |
+| Model | Parameters after cut | Best setting | Average | p95 | Peak memory | Within the NFR-13 target? |
 |---|---|---|---|---|---|---|
 | **bert-mini-arabic** | 11 M | fp32, CPU 2 threads, fp16 math | **16.4 ms** | 16.7 ms | **38 MB** | **Yes** |
-| bert-medium-arabic | 41 M | int8, CPU 4 threads | 96 ms | 106 ms | 208 MB | No (2× too slow, 2× too much memory) |
-| | | fp32, CPU 2 threads, fp16 math | 98 ms | 99 ms | 207 MB | No |
-| multilingual-e5-small | 33 M | int8, CPU 4 threads | 77 ms | 79 ms | 178 MB | No |
-| | | fp32, CPU 2 threads, fp16 math | 159 ms | 175 ms | 178 MB | No |
+| bert-medium-arabic | 41 M | int8, CPU 4 threads | 96 ms | 106 ms | 208 MB | Not yet (2× the time, 2× the memory) |
+| | | fp32, CPU 2 threads, fp16 math | 98 ms | 99 ms | 207 MB | Not yet |
+| multilingual-e5-small | 33 M | int8, CPU 4 threads | 77 ms | 79 ms | 178 MB | Not yet |
+| | | fp32, CPU 2 threads, fp16 math | 159 ms | 175 ms | 178 MB | Not yet |
 | mmBERT-small | 54 M | — | failed | | | Not measured |
 
-- **Only bert-mini-arabic passes.** The next size up is already 5–6× slower and uses 4–5× the memory.
-- **mmBERT-small** could not run: its export uses an operation LiteRT does not support on 64-bit integers (`ABS`). Not fixed: it is bigger than e5-small, which already misses the target.
+- **Only bert-mini-arabic is within the target today.** The next size up is already 5–6× slower and uses 4–5× the memory.
+- **mmBERT-small** could not run: its export uses an operation LiteRT does not support on 64-bit integers (`ABS`). Not fixed: it is bigger than e5-small, which is already above the target.
 - Some p95 values are much higher than the average (bert-medium on 2 threads: 196 → 423 ms), so the phone's speed was not steady in places; the battery reached 36 °C.
 - e5-small fp32 on 1 thread ended without a timing (cause not shown in the log). It would be the slowest setting anyway.
 

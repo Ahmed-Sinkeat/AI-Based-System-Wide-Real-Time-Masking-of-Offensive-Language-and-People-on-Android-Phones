@@ -20,7 +20,7 @@
 | [`issue.md`](issue.md) | **Issues**: open problems and checks with next actions, by priority and stream; closed issues with their fix |
 | [`investigation-android-v1.md`](investigation-android-v1.md) | How it works on Android: text filter (§3), people (§4–§7), limits, the competing HaramBlur extension and app (§9), plan (§10), useful resources (§11) |
 | [`p0-results-android-v1.md`](p0-results-android-v1.md) | People-model test results on the phone (for v3–v5), what broke, what to re-run |
-| [`p0c-results-text-v1.md`](p0c-results-text-v1.md) | **Text model on the phone** (P0c step 1, quick): feasible: only bert-mini-arabic passes (~16 ms / ~38 MB); bert-medium, e5-small too heavy |
+| [`p0c-results-text-v1.md`](p0c-results-text-v1.md) | **Text model on the phone** (P0c step 1, quick): feasible: only bert-mini-arabic is within target (~16 ms / ~38 MB); bert-medium, e5-small too heavy |
 | [`srs-en.pdf`](srs-en.pdf), [`srs-ar.pdf`](srs-ar.pdf) | Requirements (SRS v3.0, ISO/IEC/IEEE 29148 structure, v1 to v6), English and Arabic |
 | [`Initial-Project-Proposal.pdf`](Initial-Project-Proposal.pdf) | Proposal (Arabic): **bad language + people** on **Android** |
 | [`../wordlists/`](../wordlists/README.md) | Combined Arabic bad-word list (1 906 terms from 7 sources) + build script. Raw start for v1-c. |
