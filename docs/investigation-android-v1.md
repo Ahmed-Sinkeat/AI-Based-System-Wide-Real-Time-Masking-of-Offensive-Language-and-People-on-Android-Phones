@@ -105,7 +105,7 @@ Most apps already tell Android what text is on the screen, so screen readers can
 | Text | v1? | Why |
 |---|---|---|
 | Normal app text: posts, comments, chats, titles, buttons | ✅ | Apps give it to accessibility |
-| Web pages in Chrome, and apps that show web pages (WebView) | ✅ | Chrome gives page text **and per-letter boxes** to accessibility (checked in Chromium's source [13]). Other browsers (Firefox, Samsung, Opera) must be **tested in v1-b**. |
+| Web pages in Chrome, and apps that show web pages (WebView) | ✅ | Chrome gives page text **and per-letter boxes** to accessibility (checked in Chromium's source [13]). **Measured 2026-11-04:** Chrome, WhatsApp, TikTok, Telegram give boxes; YouTube partly; Facebook none ([p0d](p0d-results-quick-tests-v1.md) §2). Other browsers (Firefox, Samsung, Opera) must be **tested in v1-b**. |
 | Text the app draws itself (many games, some custom apps) | ❌ | Not given to accessibility |
 | **Text inside images and videos** (memes, thumbnails, burned-in subtitles) | ❌ (v2) | Needs OCR (reading text from pixels). Google's on-device OCR (ML Kit) **does not support Arabic** [10]. **v2: PaddleOCR** (PP-OCRv5 Arabic mobile model, about 8 MB [16]). A team member has worked with PaddleOCR and plans to contribute Arabic improvements to it. |
 

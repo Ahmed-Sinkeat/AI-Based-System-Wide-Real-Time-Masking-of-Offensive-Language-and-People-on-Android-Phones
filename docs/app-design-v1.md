@@ -46,7 +46,7 @@ assets/packs/<lang>/   words.tsv  (v1.1: model.tflite, tokenizer.json, threshold
 
 ### One screen change, step by step
 
-1. An app shows new text (scroll, new page, new message). Android sends an event. The service waits until scrolling settles (event timeout) and keeps only the latest screen.
+1. An app shows new text (scroll, new page, new message). Android sends an event. **While a list scrolls, the whole scrolling area is covered at once** (old word covers would stay behind: measured, [p0d](p0d-results-quick-tests-v1.md) §3). The service waits until scrolling settles (event timeout), keeps only the latest screen, and then puts back the exact covers.
 2. It reads the **visible** text items, skipping input boxes (FR-11), its own app, system UI, and skipped apps.
 3. **Router** splits the text by script and sends it to the chosen packs only.
 4. **Layer ①**: Normalizer → Tokenizer → Matcher finds listed words and phrases.
@@ -110,7 +110,7 @@ Languages · What to hide · Cover style and colour · **Skipped apps** (searcha
 - "Whole message" mode covers the message's box.
 - **Touches pass through.** A cover opens only through peek (FR-23): accessibility button, then tap that cover. Uncovered items are kept in memory only and covered again when they leave the screen.
 - **Context words** (list entries marked *context*) are covered at once; the cover is removed only if the text model says the message is clean above the strictness level (FR-24).
-- Covers **move with scrolling** (FR-3) and are removed at once on pause, off, or when a skipped app opens; on resume the screen is checked again immediately.
+- Covers **move with scrolling** (FR-3): during a scroll the scrolling area is covered, then exact covers return when it stops. Covers are removed at once on pause, off, or when a skipped app opens; on resume the screen is checked again immediately.
 - Positions come from Android's per-letter boxes, so right-to-left text needs no special handling.
 
 ### Status notification (silent, while the filter runs)
@@ -149,6 +149,7 @@ Tap: on / off. Long-press: open the app. Label: **On / Paused 14:30 / Off** (til
 | Pack model fails to load (v1.1) | Word list only for that language; warning card |
 | Pack word list fails to load | That language off; notification shows the error |
 | Overlay cannot be drawn, or service stopped | Notification "stopped: tap to fix"; warning card |
+| Service shows "on" in settings but is not running (seen after a reinstall or force-stop) | On app start, check the service is bound; if not, a warning card asking the user to switch it off and on |
 | Advanced Protection on | Setup and Home explain why the filter cannot run |
 
 ---
@@ -170,9 +171,9 @@ Project setup: Kotlin + Gradle (Kotlin DSL), one app module. No CI or lint tooli
 | Assumption | How we check | If wrong |
 |---|---|---|
 | The status notification shows when the service has stopped | Kill the app process on the Redmi 12 and watch the notification | Make the service foreground if Android allows it for accessibility services, or add a 15-minute health check (WorkManager) that switches the notification to "stopped" |
-| Popular apps share their text and per-letter boxes | Log what the service sees in Chrome, WhatsApp, Facebook, X, YouTube, Instagram, TikTok | Whole-message covers for that app; note it in the results |
+| ~~Popular apps share their text and per-letter boxes~~ **Checked 2026-11-04:** most do; Facebook does not, YouTube partly ([p0d](p0d-results-quick-tests-v1.md) §2) | Check at run time, per item | Whole-message covers for that item |
 | Covers do not slow scrolling (NFR-7) | Scroll with the overlay on and off; watch frame drops | Fewer redraws: only when covers change |
-| Our covers appear in the user's own screenshots | Take a screenshot with covers visible | Record it as a limit |
+| Our covers appear in the user's own screenshots | Take a screenshot with covers visible (a full-display picture taken by the service does include them; the window picture does not, [p0d](p0d-results-quick-tests-v1.md) §4) | Record it as a limit |
 | Restricted-settings flow on the Redmi 12 (HyperOS) | Install the APK from a file and follow setup step 5 | Adjust the instructions |
 
 ---

@@ -1,0 +1,8 @@
+exported models_tflite/text_bertmedium_ar_fp32.tflite 155.0 MB, 41.1 M params after trim
+exported models_tflite/text_bertmedium_ar_fp16.tflite 77.6 MB, 41.1 M params after trim
+exported models_tflite/text_bertmedium_ar_drq.tflite 154.8 MB, 41.1 M params after trim
+exported models_tflite/text_e5small_fp32.tflite 125.4 MB, 33.2 M params after trim
+exported models_tflite/text_e5small_fp16.tflite 62.8 MB, 33.2 M params after trim
+exported models_tflite/text_e5small_drq.tflite 125.2 MB, 33.2 M params after trim
+exported models_tflite/text_mmbertsmall_fp32.tflite 205.4 MB, 53.7 M params after trim
+exported models_tflite/text_mmbertsmall_fp16.tflite 103.0 MB, 53.7 M params after trim

@@ -1,0 +1,3 @@
+<resources>
+    <string name="desc">Test only. Logs counts (never text) of what apps share, draws test covers, and checks window pictures.</string>
+</resources>

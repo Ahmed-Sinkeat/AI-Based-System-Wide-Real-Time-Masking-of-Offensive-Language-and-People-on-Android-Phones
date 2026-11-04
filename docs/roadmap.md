@@ -83,7 +83,7 @@ v1 has two layers built together: the **word list** (part 1) and **our own small
 | v1-c Word lists | 1–4 | B | Review `wordlists/ar_combined.tsv`: keep standard Arabic, sort into 4 categories, write blasphemy phrases, move normal words to "phrase only". Review the English list. | Final list with a category for every entry |
 | v1 evaluation | 5 | B + A | Measure NFR-1, NFR-2, NFR-3 and battery (method: research-methods §4.6) | Numbers in a results doc |
 
-**Decision after v1-b:** if the gap before the cover is more than 3 frames, cover a bit more text around changes, and write it up honestly as a limit of Android.
+**Decision after v1-b:** scrolling already shows a gap (quick test, [p0d](p0d-results-quick-tests-v1.md) §3), so covering the scrolling area during a scroll is planned. If the gap before the cover is still more than 3 frames, cover a bit more text around changes, and write it up honestly as a limit of Android.
 
 #### v1 part 2 — Our own text model (Weeks 2–9, in parallel with part 1)
 
@@ -91,11 +91,11 @@ Design: investigation §3.5. Method: research-methods §4.7.
 
 | Weeks | Stream | What | Done when |
 |---|---|---|---|
-| 2 | C | **P0c step 1 (phone test)**: export all candidates (investigation §3.5), trimmed to one language, to LiteRT; on the Redmi 12 measure real RAM, ms per message at 16 / 32 / 64 tokens, CPU 1/2/4 threads and GPU | A table; only candidates meeting NFR-13 go on |
+| 2 | C | **P0c step 1 (phone test)**: export all candidates (investigation §3.5), trimmed to one language, to LiteRT; on the Redmi 12 measure real RAM, ms per message at 16 / 32 / 64 tokens, CPU 1/2/4 threads and GPU | A table; only candidates meeting NFR-13 go on. **Quick run done 2026-11-04:** bert-mini-arabic ~16 ms / ~38 MB ([p0c](p0c-results-text-v1.md)) |
 | 2–3 | C | Set up the teachers on the laptop or Colab (Qwen3Guard-8B, Laya). Write the typed questions (offensive? category? which words?). Check the terms of any API teacher. | Teachers answer on a small Arabic sample |
 | 3–5 | B + C | Build the data: OSACT 2020, Mubarak 2017, ArabicDialectSafety (standard Arabic), list-matched sentences, clean text. Teacher labels by majority vote. | Labelled train / dev / test sets |
 | 5 | B | Check a sample of teacher labels by hand (two people), Cohen's kappa | Agreement reported; bad labels fixed |
-| 5 | C | **P0c step 2 (quality test)**: quick fine-tune of the remaining candidates on a small dev set per language | One model chosen per language pack |
+| 5 | C | **P0c step 2 (quality test)**: quick fine-tune of the remaining candidates on a small dev set per language | One model chosen per language pack. **Quick check done 2026-11-04:** bert-mini-arabic 0.82 macro-F1 on OSACT 2020 vs word list 0.65 ([p0d](p0d-results-quick-tests-v1.md) §5) |
 | 5–7 | C | Train each pack's student: trimmed, distilled from the teachers, fewer layers if needed, two heads (message category, word-level), int8 / fp16. Add the efficiency methods (cache, batching, short inputs). | Meets NFR-13 in a phone benchmark |
 | 7–8 | C + A | Measure on the Redmi 12; put it in the app as layer ② | Runs inside the app |
 | 8–9 | B + C | Compare per language on the same test set: word list · classic n-gram model · Model2Vec · HAYAA-student · multilingual-toxicity-small · our model · teachers; plus the efficiency ablation on a recorded scrolling session | Results tables (thesis chapter 7) |

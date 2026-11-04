@@ -1,0 +1,6 @@
+word list (680 words): macro-F1 0.649, offensive-F1 0.467
+epoch 1: macro-F1 0.659, offensive-F1 0.535 (92 s)
+epoch 2: macro-F1 0.806, offensive-F1 0.697 (183 s)
+epoch 3: macro-F1 0.817, offensive-F1 0.704 (275 s)
+epoch 4: macro-F1 0.802, offensive-F1 0.691 (368 s)
+model OR list: macro-F1 0.664, offensive-F1 0.530

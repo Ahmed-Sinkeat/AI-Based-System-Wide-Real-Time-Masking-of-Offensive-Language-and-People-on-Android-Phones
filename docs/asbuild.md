@@ -257,3 +257,10 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **Alternatives considered:** Full candidate list (rejected for now: a quick answer first); base and generative models (clearly too big).
 - **What got in the way:** GPU and fp16 runs fail because of the export; mmBERT-small uses ABS on int64, which LiteRT does not support.
 - **Evidence:** [`p0c-results-text-v1.md`](p0c-results-text-v1.md); `bench/results/phone_latency.csv`; [`bench/export_text.py`](../bench/export_text.py).
+
+### 2026-11-04 — Quick phone tests (letter boxes, cover gap, window picture, text accuracy)
+- **What:** Tested with a small test app ([`probe/`](../probe)) on the Redmi 12. Letter boxes work in most apps; Facebook needs whole-item covers. No gap on new text; a real gap while scrolling, so on scroll we cover the whole scrolling area until it stops. The window picture works without our covers in it, at most ~3 per second. bert-mini-arabic beats the word list (0.82 vs 0.65 macro-F1 on OSACT 2020). Reinstalling the app silently stops the service; the app must detect this.
+- **Why:** Check the points of the technical review on the real phone before building the app.
+- **Alternatives considered:** Testing every app by hand (rejected: does not scale; check at run time with a whole-item fallback, test by UI toolkit instead).
+- **What got in the way:** `screenrecord` showed a false lag on new text (plain screenshots did not); reinstalling unbinds the accessibility service; HaramBlur was also running.
+- **Evidence:** [`p0d-results-quick-tests-v1.md`](p0d-results-quick-tests-v1.md); `bench/results/probe_*.log`, `text_train_osact.log`.

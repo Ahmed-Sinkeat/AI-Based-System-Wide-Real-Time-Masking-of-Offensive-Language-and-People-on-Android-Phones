@@ -1,0 +1,20 @@
+11-04 21:54:26.173  9228  9228 I PROBE   : CMD shot
+11-04 21:54:26.723  9228  9228 I PROBE   : SHOT first pkg=com.android.chrome ok ms=26 size=1080x2460 window=1080x2460 ourCoverInPicture=false darkShare=0.00
+11-04 21:54:26.728  9228  9228 I PROBE   : SHOT immediate pkg=com.android.chrome FAILED code=3 ms=5
+11-04 21:54:27.209  9228  9228 I PROBE   : SHOT after400ms pkg=com.android.chrome ok ms=25 size=1080x2460 window=1080x2460 ourCoverInPicture=false darkShare=0.00
+11-04 21:54:27.299  9228  9228 I PROBE   : SHOT fullDisplay ourCoverInPicture=true
+11-04 21:54:33.414  9228  9228 I PROBE   : CMD shot
+11-04 21:54:33.803  9228  9228 I PROBE   : SHOT first pkg=com.whatsapp ok ms=21 size=1080x2460 window=1080x2460 ourCoverInPicture=false darkShare=0.00
+11-04 21:54:33.807  9228  9228 I PROBE   : SHOT immediate pkg=com.whatsapp FAILED code=3 ms=4
+11-04 21:54:34.282  9228  9228 I PROBE   : SHOT after400ms pkg=com.whatsapp ok ms=18 size=1080x2460 window=1080x2460 ourCoverInPicture=false darkShare=0.00
+11-04 21:54:34.368  9228  9228 I PROBE   : SHOT fullDisplay ourCoverInPicture=true
+11-04 21:54:40.626  9228  9228 I PROBE   : CMD shot
+11-04 21:54:41.067  9228  9228 I PROBE   : SHOT first pkg=org.telegram.messenger ok ms=57 size=1080x2460 window=1080x2460 ourCoverInPicture=false darkShare=0.01
+11-04 21:54:41.071  9228  9228 I PROBE   : SHOT immediate pkg=org.telegram.messenger FAILED code=3 ms=4
+11-04 21:54:41.559  9228  9228 I PROBE   : SHOT after400ms pkg=org.telegram.messenger ok ms=29 size=1080x2460 window=1080x2460 ourCoverInPicture=false darkShare=0.01
+11-04 21:54:41.636  9228  9228 I PROBE   : SHOT fullDisplay ourCoverInPicture=true
+11-04 21:54:48.082  9228  9228 I PROBE   : CMD shot
+11-04 21:54:48.477  9228  9228 I PROBE   : SHOT first pkg=com.google.android.youtube ok ms=19 size=1080x2460 window=1080x2460 ourCoverInPicture=false darkShare=0.00
+11-04 21:54:48.479  9228  9228 I PROBE   : SHOT immediate pkg=com.google.android.youtube FAILED code=3 ms=2
+11-04 21:54:48.959  9228  9228 I PROBE   : SHOT after400ms pkg=com.google.android.youtube ok ms=21 size=1080x2460 window=1080x2460 ourCoverInPicture=false darkShare=0.02
+11-04 21:54:49.049  9228  9228 I PROBE   : SHOT fullDisplay ourCoverInPicture=true

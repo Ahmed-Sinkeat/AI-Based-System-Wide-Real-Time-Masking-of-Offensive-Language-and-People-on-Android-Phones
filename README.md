@@ -12,7 +12,7 @@ An Android app that hides offensive language and images of people on the phone s
 
 | Version | Hides | Status |
 |---|---|---|
-| **v1** | Bad words in on-screen text (Arabic + English): a word list, plus our own small text model for context-dependent insults (trained from large "teacher" models) | Next: app skeleton (v1-a) |
+| **v1** | Bad words in on-screen text (Arabic + English): a word list, plus our own small text model for context-dependent insults (trained from large "teacher" models) | Phone checks passed: text model ~16 ms and 0.82 F1 (word list 0.65); word boxes in most apps. Next: app skeleton (v1-a) |
 | **v2** | Bad words in text **inside images** (memes, thumbnails, subtitles), with on-phone OCR | Planned |
 | **v3** | Big people (taller than ~96 px on screen) | Model tested: 85–95% hidden |
 | **v4** | Medium people (~32–96 px), checking the screen in tiles | Model tested: 87–89% with tiles |
@@ -46,6 +46,7 @@ Details and evidence: [`docs/asbuild.md`](docs/asbuild.md) (every decision, date
 | [`docs/`](docs/README.md) | All documents: start at [`docs/README.md`](docs/README.md) |
 | [`wordlists/`](wordlists/README.md) | Combined Arabic bad-word list (1 906 terms from 7 sources) and the script that builds it |
 | `bench/` | Model tests on the laptop and the phone (Python) |
+| [`probe/`](probe) | Small Android test app (accessibility service) used for the quick phone tests; logs counts only, never text |
 | `app/` | The Android app (not started yet) |
 
 ## Getting the data (not in git)
