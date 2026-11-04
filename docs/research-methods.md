@@ -96,6 +96,7 @@ The project follows an **engineering design research** approach: build an artifa
 | Google Play reviews of the HaramBlur Android app [38] | `google-play-scraper` [19]: newest 200 reviews each for English/US, Arabic/Egypt, Arabic/Saudi Arabia, duplicates removed, 2026-10-06 | **364 reviews**, 14 Jun – 5 Oct 2026; 44 with 1–3 stars |
 | Store metadata [38] | Same tool | ~696 000 installs; 4.61 stars from 14 667 ratings; released 17 Nov 2025; in-app purchases $3.99–$34.99 |
 | The team's own use of the app | Informal use by a team member | Three problems: feels heavy, misses images, asks for permission again |
+| Other tools suggested as alternatives [39], [100]–[109] | Web search of store pages and repositories, 2026-10-22 (not installed or tested) | 11 tools; 4 suggested names do not exist (research-en §4.8) |
 
 **Analysis.**
 1. Read all issues and all 1–3 star reviews in full.
@@ -326,14 +327,7 @@ Metrics: macro-F1 over the 5 categories; **word-level F1** (as in the toxic-span
 
 ## 8. Use of AI tools
 
-*This statement is final.*
-
-The team used AI tools for two things only:
-
-1. **Research:** searching for and summarising papers, documentation, competitor tools and user reviews. Every fact taken from a source was checked against the primary source (§4.1).
-2. **Benchmark testing:** helping write and run the scripts that measure the models on our laptop and phone. Every number comes from running those scripts on our own hardware, and the outputs are kept in `bench/results/`.
-
-AI tools were not used for anything else. The department allows AI tools (confirmed 2026-10-18). No AI tool is named as an author or co-author. The team understands, checks and is responsible for all content.
+AI tools were used only for **research** (finding and summarising sources) and **benchmark testing** (the model test scripts).
 
 ## 9. References
 
@@ -496,7 +490,7 @@ All online sources were accessed on **6 October 2026** unless stated otherwise.
 [70] Google, "Streamlining LLM inference at the edge with TFLite," Google Developers Blog. [Online]. Available: https://developers.googleblog.com/en/streamlining-llm-inference-at-the-edge-with-tflite/
 
 
-*References [71]–[95] were added for the related-work review in [`research-en.html`](research-en.html) (accessed 18 October 2026).*
+*References [71]–[95] were added for the related-work review in [`research-en.pdf`](research-en.pdf) (accessed 18 October 2026).*
 
 [71] T. Davidson, D. Warmsley, M. Macy, and I. Weber, "Automated hate speech detection and the problem of offensive language," in *Proc. ICWSM*, 2017, pp. 512–515.
 
@@ -555,3 +549,51 @@ All online sources were accessed on **6 October 2026** unless stated otherwise.
 [98] C. Zhou, X. Li, C. C. Loy, and B. Dai, "EdgeSAM: Prompt-in-the-loop distillation for on-device deployment of SAM," arXiv:2312.06660, 2023.
 
 [99] X. Zhao *et al.*, "Fast Segment Anything," arXiv:2306.12156, 2023.
+
+### Wider field and other tools (added 2026-10-28)
+
+[100] Halalz, "Kahf Browser" (package org.halalz.kahfbrowser), Google Play. [Online]. Available: https://play.google.com/store/apps/details?id=org.halalz.kahfbrowser
+
+[101] Fusha Tech, "Tahir" browser extension, Firefox Add-ons. [Online]. Available: https://addons.mozilla.org/firefox/addon/tahir/
+
+[102] Ihya Tech Sdn. Bhd., "Tahir Browser," App Store. [Online]. Available: https://apps.apple.com/app/tahir-browser/id6745337808
+
+[103] hijam-git, "Porda AI," AGPL-3.0, GitHub. [Online]. Available: https://github.com/hijam-git/Porda-AI
+
+[104] "Haram Block" add-on, Firefox Add-ons. [Online]. Available: https://addons.mozilla.org/firefox/addon/haramblock/
+
+[105] "Bad Word Profanity Filter (Censor Bad Language)," Firefox Add-ons. [Online]. Available: https://addons.mozilla.org/firefox/addon/profanity/
+
+[106] ClearPlay, Inc., "ClearPlay" streaming filter. [Online]. Available: https://www.clearplay.com
+
+[107] VidAngel Entertainment, "VidAngel" filtering service. [Online]. Available: https://www.vidangel.com
+
+[108] "Skipit – Skip inappropriate scenes on Netflix," Chrome Web Store. [Online]. Available: https://chromewebstore.google.com/detail/bappjlgdnjcakomplieifcainibfhjed
+
+[109] "SceneSkipper," Firefox Add-ons. [Online]. Available: https://addons.mozilla.org/firefox/addon/sceneskipper/
+
+[110] Family Entertainment and Copyright Act of 2005, Pub. L. 109-9, Title II (Family Movie Act), codified at 17 U.S.C. § 110(11).
+
+[111] Motion Picture Association, Classification and Rating Administration, "Classification and rating rules." [Online]. Available: https://www.filmratings.com
+
+[112] International Age Rating Coalition, "How IARC works." [Online]. Available: https://www.globalratings.com
+
+[113] General Authority for Media Regulation (Saudi Arabia), "Strict regulations to ensure that cinemas comply with film classification and content safety." [Online]. Available: https://gamr.gov.sa/en/news/strict-regulations-to-ensure-that-cinemas-comply-with-film-classification-and-content-safety
+
+[114] M. Shafaei, N. S. Samghabadi, S. Kar, and T. Solorio, "Age suitability rating: Predicting the MPAA rating based on movie dialogues," in *Proc. 12th Language Resources and Evaluation Conf. (LREC)*, Marseille, France, 2020, pp. 1327–1335.
+
+[115] F. C. Akyon and A. Temizel, "Deep architectures for content moderation and movie content rating," arXiv:2212.04533, 2022.
+
+[116] A. Khaksar Pour, W. C. Seng, S. Palaiahnakote, H. Tahaei, and N. B. Anuar, "A survey on video content rating: Taxonomy, challenges and open issues," *Multimedia Tools Appl.*, vol. 80, no. 16, pp. 24121–24145, 2021, doi: 10.1007/s11042-021-10838-8.
+
+[117] L. Sweeney, "k-anonymity: A model for protecting privacy," *Int. J. Uncertainty, Fuzziness Knowl.-Based Syst.*, vol. 10, no. 5, pp. 557–570, 2002, doi: 10.1142/S0218488502001648.
+
+[118] S. Garfinkel, J. Near, A. Dajani, P. Singer, and B. Guttman, "De-identifying government datasets: Techniques and governance," NIST SP 800-188, 2023, doi: 10.6028/NIST.SP.800-188.
+
+[119] U.S. Dept. of Health and Human Services, "Guidance regarding methods for de-identification of protected health information in accordance with the HIPAA Privacy Rule" (45 CFR § 164.514(b)). [Online]. Available: https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html
+
+[120] Microsoft, "Presidio: Data protection and de-identification SDK," MIT license. [Online]. Available: https://microsoft.github.io/presidio
+
+[121] Microsoft, "Dynamic data masking," SQL Server documentation. [Online]. Available: https://learn.microsoft.com/en-us/sql/relational-databases/security/dynamic-data-masking
+
+[122] The Qur'an, Sūrat an-Nūr 24:30–31.

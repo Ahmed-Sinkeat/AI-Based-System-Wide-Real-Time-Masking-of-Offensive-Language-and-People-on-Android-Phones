@@ -1,7 +1,7 @@
 # App Design (v1, with hooks for v1.1–v6)
 
 Date: 2026-10-07 · Status: **agreed in design review, for team review** · Scope: the Android app.
-Requirements: SRS v3.0 (`srs-en.html`). Background and sources: [`investigation-android-v1.md`](investigation-android-v1.md). Plan: [`roadmap.md`](roadmap.md).
+Requirements: SRS v3.0 ([`srs-en.pdf`](srs-en.pdf)). Background and sources: [`investigation-android-v1.md`](investigation-android-v1.md). Plan: [`roadmap.md`](roadmap.md).
 
 ---
 

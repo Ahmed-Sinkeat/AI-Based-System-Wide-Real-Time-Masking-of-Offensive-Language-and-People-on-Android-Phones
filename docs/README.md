@@ -14,15 +14,14 @@
 |---|---|
 | [`roadmap.md`](roadmap.md) | **Plan by week**: phases v1 → v6, workstreams, exit criteria, report plan, schedule risks |
 | [`research-methods.md`](research-methods.md) | **Research questions, methods (M1–M7), evaluation plan, validity, ethics, AI-tool use, references (IEEE)** |
-| [`research-en.html`](research-en.html) | **Research and related work as one readable page** (PDF: `research-en.pdf`) |
+| [`research-en.pdf`](research-en.pdf) | **Research and related work as one readable page** |
 | [`app-design-v1.md`](app-design-v1.md) | **App design (agreed)**: tech stack, architecture, screens inside the app, covers / notification / tile outside it, data, errors, testing, things to verify early |
 | [`asbuild.md`](asbuild.md) | **As-built log**: every decision, why, alternatives, and what got in the way (add an entry each time) |
 | [`issue.md`](issue.md) | **Issues**: open problems and checks with next actions, by priority and stream; closed issues with their fix |
 | [`investigation-android-v1.md`](investigation-android-v1.md) | How it works on Android: text filter (§3), people (§4–§7), limits, the competing HaramBlur extension and app (§9), plan (§10), useful resources (§11) |
 | [`p0-results-android-v1.md`](p0-results-android-v1.md) | People-model test results on the phone (for v3–v5), what broke, what to re-run |
-| `srs-en.html` / `.pdf`, `srs-ar.html` / `.pdf` | Requirements (SRS v3.0, ISO/IEC/IEEE 29148 structure, v1 to v6), English and Arabic |
-| `proposal-ar.html` → `Initial-Project-Proposal.pdf` | Proposal (Arabic): **bad language + people** on **Android** |
-| `cover.html` | Report cover page |
+| [`srs-en.pdf`](srs-en.pdf), [`srs-ar.pdf`](srs-ar.pdf) | Requirements (SRS v3.0, ISO/IEC/IEEE 29148 structure, v1 to v6), English and Arabic |
+| [`Initial-Project-Proposal.pdf`](Initial-Project-Proposal.pdf) | Proposal (Arabic): **bad language + people** on **Android** |
 | [`../wordlists/`](../wordlists/README.md) | Combined Arabic bad-word list (1 906 terms from 7 sources) + build script. Raw start for v1-c. |
 
 ## Plan B (Linux, paused)

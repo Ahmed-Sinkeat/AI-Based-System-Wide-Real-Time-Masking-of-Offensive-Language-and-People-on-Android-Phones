@@ -27,3 +27,6 @@ private/
 *.swp
 .idea/
 .vscode/
+
+# HTML sources stay local; only Markdown (and sometimes PDF) goes to GitHub
+*.html

@@ -168,7 +168,7 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **What:** The deadline is about six months away (about mid-April 2027; week 1 = Mon 12 Oct 2026). New order: **v1** bad-language text → **v1.1** our own small text model → **v2** bad words in text **inside images** (on-phone OCR) → **v3** big people → **v4** medium → **v5** small (own fine-tuned model) → **v6** people in videos. Roadmap rewritten for 27 weeks; SRS updated to **v2.2** (new FR-12 text in images, FR-19 video, NFR-14 OCR targets after test P0d).
 - **Why:** Text inside images reuses the text filter and is cheaper than people, so it comes before them. Video is the hardest (needs more than 3 pictures per second), so it is last.
 - **Also decided:** Hide the **whole person**, with no gender guess. Building our own small-people model by fine-tuning is in scope (v5).
-- **Evidence:** [`roadmap.md`](roadmap.md), [`srs-en.html`](srs-en.html), issues #31–#33
+- **Evidence:** [`roadmap.md`](roadmap.md), [`srs-en.pdf`](srs-en.pdf), issues #31–#33
 
 ### 2026-10-18 — Scope limits and project facts
 - **What:**
@@ -202,14 +202,14 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **Evidence:** `private/` (not in git)
 
 ### 2026-10-18 — Research and related-work page (HTML + PDF)
-- **What:** Wrote [`research-en.html`](research-en.html) (+ `research-en.pdf`, 16 pages): research questions, methods, a full related-work review in 9 topics (offensive language, Arabic, small phone models, OCR, people segmentation, hiding images, Android platform, existing products, gap table), findings so far, evaluation plan, validity, ethics. Added 25 new references [71]–[95] to [`research-methods.md`](research-methods.md) §9 so numbers match.
+- **What:** Wrote [`research-en.pdf`](research-en.pdf) (+ `research-en.pdf`, 16 pages): research questions, methods, a full related-work review in 9 topics (offensive language, Arabic, small phone models, OCR, people segmentation, hiding images, Android platform, existing products, gap table), findings so far, evaluation plan, validity, ethics. Added 25 new references [71]–[95] to [`research-methods.md`](research-methods.md) §9 so numbers match.
 - **Why:** The research was done but the related-work chapter was not written; this is the base for the report's background chapter and something readable to show the supervisor.
 - **Alternatives considered:** Arabic version too (skipped for now, English only); a separate reference list (rejected, numbers would drift).
 - **What got in the way:** One survey (Husain & Uzuner, TALLIP) could not be verified and was left out. SafeGaze features were not tested, so they are marked "not checked".
-- **Evidence:** [`research-en.html`](research-en.html) §4, references.
+- **Evidence:** [`research-en.pdf`](research-en.pdf) §4, references.
 
 ### 2026-10-18 — Decision models added to the related work
-- **What:** [`research-en.html`](research-en.html) §4.3 now covers "decision models" (Jev and open alternatives, refs [49]–[53]); §4.4 says text read from images goes through the same text model.
+- **What:** [`research-en.pdf`](research-en.pdf) §4.3 now covers "decision models" (Jev and open alternatives, refs [49]–[53]); §4.4 says text read from images goes through the same text model.
 - **Why:** The typed answer of our v1 text model and its teachers come from this idea, but the page did not say so. People are not done this way: a decision model gives a label for the whole image, and we need each person's shape to cover only the person.
 - **Alternatives considered:** Using Jev in the app (rejected: cloud only, screen text would leave the phone).
 - **What got in the way:** Nothing.
@@ -220,18 +220,26 @@ Open problems are tracked in [`issue.md`](issue.md). Details live in the linked 
 - **Why:** Requirements and claims must be correct before design; the supervisor checks claims against tests.
 - **Alternatives considered:** Citing the supervisor's papers now (postponed by the team).
 - **What got in the way:** Several Arabic models and datasets state no license (AraBERT, ArabicBERT, OSACT, ArabicDialectSafety); MARBERT and HAYAA-student are research-only. **Ultralytics YOLO is AGPL-3.0**, so the app must stay open source (or switch to RF-DETR, Apache-2.0). The GLiNER2.5-Decide page no longer resolves.
-- **Evidence:** [`srs-en.html`](srs-en.html), [`research-methods.md`](research-methods.md) §6, [`investigation-android-v1.md`](investigation-android-v1.md) §4, issue #21.
+- **Evidence:** [`srs-en.pdf`](srs-en.pdf), [`research-methods.md`](research-methods.md) §6, [`investigation-android-v1.md`](investigation-android-v1.md) §4, issue #21.
 
 ### 2026-10-21 — SRS 3.0 (ISO/IEC/IEEE 29148 structure); peek, pause, context words, self-control; team guides expanded
 - **What:** (1) SRS EN + AR rewritten as **v3.0** following the ISO/IEC/IEEE 29148 structure: purpose, scope, definitions, references, user classes, constraints C-1–C-10, external interfaces, functional requirements by feature (F1–F8) each with version, MoSCoW priority and an acceptance check, use cases UC-1–UC-6, NFRs by category, verification methods (T/D/I/A), version exit criteria and traceability to RQ1–RQ6. Requirement IDs kept; new: **FR-22** pause 5/15/60 min, **FR-23** peek one item through the accessibility button, **FR-24** cover first for context words, **FR-25** self-control mode (future), **NFR-15–19** (fail toward hiding, accessibility, setup test with 5 people, platform-free filter with shared test vectors, licences), risks **K-9** (drawn people and anime) and **K-10** (accessibility button on HyperOS). "Person" now explicitly includes drawn, anime and game figures. FR-2 accepts a "stopped" notification state. (2) App design: "Peeking: none in v1" replaced by FR-23; context-word covering added. (3) Team guides EN + AR: new sections on pause / peek / self-control and the gender question, drawn pictures and anime, technical details (text path, people-model pipeline with NMS and prototype masks, tiles, quantization, distillation, perception timing), and the full defense question bank (80 questions). PDFs reprinted.
 - **Why:** Preparing for the first supervisor discussion: the user must be able to uncover content on purpose, some users want help keeping a promise to themselves, and the SRS needed a recognised structure with an acceptance check for every requirement.
 - **Alternatives considered:** Hiding only women or only men (kept out of scope: a wrong guess shows a person; a later design that shows a person only when a classifier is very sure is described in the team guide). Making covers tappable all the time (rejected: blocks the app underneath). A real lock against turning the filter off (not possible for a normal Android app; self-control mode adds friction only).
 - **What got in the way:** Nothing. The 13 ms (Potter 2014) and Nielsen limits are cited from memory and must be checked before the report.
-- **Evidence:** [`srs-en.html`](srs-en.html) §4.2–4.4, §4.8, §6, §9; [`app-design-v1.md`](app-design-v1.md); issues #34–#36.
+- **Evidence:** [`srs-en.pdf`](srs-en.pdf) §4.2–4.4, §4.8, §6, §9; [`app-design-v1.md`](app-design-v1.md); issues #34–#36.
 
-### 2026-10-22 — Final AI-use statement; competitor tools searched
-- **What:** `research-methods.md` §8 rewritten as the final statement: AI tools were used only for research and benchmark testing. Searched the tools named in the first supervisor meeting (Kahf, Muslim AI Browser, Tahir, PurrWeb AI, Muslim Guard, Skipify) plus ClearPlay and VidAngel for the tool comparison.
-- **Why:** The supervisor allows AI anywhere, provided the team states where and how it was used. He also asked for 3–4 other tools, what each has and what each lacks.
-- **Alternatives considered:** None.
-- **What got in the way:** No product called "Muslim AI Browser", "PurrWeb AI", "Muslim Guard" or "Skipify" could be found. The closest matches were Kahf, Porda AI, HaramBlock, Skipit and SceneSkipper.
-- **Evidence:** [`research-methods.md`](research-methods.md) §8.
+### 2026-10-28 — Wider field (privacy masking, content rating) and full tool table in the research page
+- **What:** [`research-en.pdf`](research-en.pdf) + PDF (now 21 pages): §4.8 gets a second table of nine other tools (Kahf/SafeGaze, Tahir ×2, Porda AI, HaramBlock, a profanity filter, ClearPlay, VidAngel, Skipit/SceneSkipper); new §4.9 **privacy and data masking** (k-anonymity, HIPAA de-identification, NIST SP 800-188, dynamic data masking, Presidio); new §4.10 **content rating and censorship** (MPA board, Saudi regulator, IARC questionnaire, hand-edited TV and streaming filters, automatic rating research, Qur'an 24:30–31 as the humanities basis); the gap section is now §4.11 with two new rows; the AI bullet matches the final statement. References [100]–[122] added to both documents; M3 data table gets the second search.
+- **Why:** These were the supervisor's two questions from the first meeting: where the project fits in the wider science, and 3–4 other tools with what each has and lacks.
+- **Alternatives considered:** A separate document (rejected: the research page is already the related-work chapter).
+- **What got in the way:** Four suggested tool names do not exist. Tool facts come from store pages, not from installing the tools.
+- **Also:** A 6-page meeting handout with only these three answers, in English and Arabic, is in `private/wider-field-en/ar.html` + `.pdf`.
+- **Evidence:** [`research-en.pdf`](research-en.pdf) §4.8–4.11; [`research-methods.md`](research-methods.md) §4.3, §9.
+
+### 2026-11-04 — Memory limit 500 MB (target 250 MB)
+- **What:** NFR-9 with the people model: **target < 250 MB, hard limit ≤ 500 MB** (SRS EN + AR, PDFs reprinted; investigation §9 aligned).
+- **Why:** The technical review (Nov 2026) said 250 MB is too tight before the models run together; a 500 MB ceiling avoids a future requirement change, while aiming for 250 MB keeps the app safe from HyperOS background kills.
+- **Alternatives considered:** 500–600 MB as the review suggested (rejected: no target pushes us to stay small). Keeping 250 MB as the only limit (rejected: risks a requirement change in v3–v4).
+- **What got in the way:** Nothing.
+- **Evidence:** [`srs-en.pdf`](srs-en.pdf) §6 NFR-9; [`p0-results-android-v1.md`](p0-results-android-v1.md) (people model 87–180 MB peak).

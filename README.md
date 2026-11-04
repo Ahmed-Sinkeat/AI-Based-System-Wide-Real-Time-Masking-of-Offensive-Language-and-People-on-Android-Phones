@@ -4,7 +4,7 @@
 
 Graduation project, Software Engineering. **Team:** Ahmed Mohammed Omer · Omer Abd Almonim · Momen Kamal
 
-An Android app that hides offensive language and images of people on the phone screen, across the apps people use every day (limits: [SRS §5](docs/srs-en.html#scope)), using AI that runs on the phone itself. **Nothing leaves the phone:** the app has no internet permission.
+An Android app that hides offensive language and images of people on the phone screen, across the apps people use every day (limits: SRS §5 in [docs/srs-en.pdf](docs/srs-en.pdf)), using AI that runs on the phone itself. **Nothing leaves the phone:** the app has no internet permission.
 
 ---
 
@@ -60,3 +60,13 @@ These are large or rebuildable, so they are not stored in the repository:
 | `bench/*.pt`, `bench/*.onnx`, `bench/models*/` | Downloaded or exported by `bench/export.py` and `bench/export_tflite.py` |
 | `bench/neo/` | Intel GPU compute runtime unpacked from Arch packages (see `bench/env.sh`; paths in it are machine-specific) |
 | `bench/phone_tools/benchmark_model` | LiteRT `benchmark_model` binary for Android arm64 |
+
+## License
+
+© 2026 Ahmed Mohammed Omer, Omer Abd Almonim, Momen Kamal.
+
+| Part | License |
+|---|---|
+| Code (`bench/`, `wordlists/build_ar.py`, the app) | [AGPL-3.0](LICENSE) |
+| Documents and results (`docs/`, `bench/results/`) | [CC BY 4.0](LICENSE-docs) |
+| Third-party word lists (`wordlists/sources/`) and the combined list built from them (`wordlists/ar_combined.tsv`) | Each source keeps its own license; see [`wordlists/README.md`](wordlists/README.md#sources) |

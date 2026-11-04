@@ -1,7 +1,7 @@
 # Roadmap
 
 Date: 2026-10-18 (re-planned; first version 2026-10-06) · Start of plan: **Week 1 = Mon 12 Oct 2026** · Team: 3 students
-Details of each step: [`investigation-android-v1.md`](investigation-android-v1.md) §10. Requirements: SRS v3.0 (`srs-en.html`). Methods: [`research-methods.md`](research-methods.md).
+Details of each step: [`investigation-android-v1.md`](investigation-android-v1.md) §10. Requirements: SRS v3.0 ([`srs-en.pdf`](srs-en.pdf)). Methods: [`research-methods.md`](research-methods.md).
 
 > **Deadline: about six months from 18 Oct 2026, so around mid-April 2027 (Week 27).** The exact date is not fixed yet. If it moves, keep "Report and defense" at the end and shorten v5 (bonus) first.
 
